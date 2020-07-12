@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>The Signal Graph, Library Parameters, and limitations - The Synthizer Manual</title>
+        <title>DirectSource - The Synthizer Manual</title>
         
         
 
@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../release_notes.html"><strong aria-hidden="true">2.</strong> Release Notes</a></li><li class="chapter-item expanded affix "><li class="part-title">Tutorials</li><li class="chapter-item expanded "><a href="../tutorials/python.html"><strong aria-hidden="true">3.</strong> A Basic Python Tutorial</a></li><li class="chapter-item expanded affix "><li class="part-title">Concepts</li><li class="chapter-item expanded "><a href="../concepts/introduction.html"><strong aria-hidden="true">4.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../concepts/signal_graph.html" class="active"><strong aria-hidden="true">5.</strong> The Signal Graph, Library Parameters, and limitations</a></li><li class="chapter-item expanded "><a href="../concepts/conventions.html"><strong aria-hidden="true">6.</strong> C API Conventions</a></li><li class="chapter-item expanded "><a href="../concepts/initialization.html"><strong aria-hidden="true">7.</strong> Logging, Initialization, and Shutdown</a></li><li class="chapter-item expanded "><a href="../concepts/object_model.html"><strong aria-hidden="true">8.</strong> Objects, Handles, and Properties</a></li><li class="chapter-item expanded "><a href="../concepts/streams.html"><strong aria-hidden="true">9.</strong> Streams</a></li><li class="chapter-item expanded "><a href="../concepts/3d_panning.html"><strong aria-hidden="true">10.</strong> 3D Panning </a></li><li class="chapter-item expanded "><a href="../concepts/channel_mixing.html"><strong aria-hidden="true">11.</strong> Channel Upmixing and Downmixing </a></li><li class="chapter-item expanded affix "><li class="part-title">The Object Reference</li><li class="chapter-item expanded "><a href="../object_reference/context.html"><strong aria-hidden="true">12.</strong> Context</a></li><li class="chapter-item expanded "><a href="../object_reference/buffer.html"><strong aria-hidden="true">13.</strong> Buffer</a></li><li class="chapter-item expanded "><a href="../object_reference/source.html"><strong aria-hidden="true">14.</strong> Source (abstract)</a></li><li class="chapter-item expanded "><a href="../object_reference/direct_source.html"><strong aria-hidden="true">15.</strong> DirectSource</a></li><li class="chapter-item expanded "><a href="../object_reference/spatialized_source.html"><strong aria-hidden="true">16.</strong> SpatializedSource (abstract)</a></li><li class="chapter-item expanded "><a href="../object_reference/panned_source.html"><strong aria-hidden="true">17.</strong> PannedSource</a></li><li class="chapter-item expanded "><a href="../object_reference/source_3d.html"><strong aria-hidden="true">18.</strong> Source3D</a></li><li class="chapter-item expanded "><a href="../object_reference/generator.html"><strong aria-hidden="true">19.</strong> Generator (abstract)</a></li><li class="chapter-item expanded "><a href="../object_reference/streaming_generator.html"><strong aria-hidden="true">20.</strong> StreamingGenerator</a></li><li class="chapter-item expanded "><a href="../object_reference/buffer_generator.html"><strong aria-hidden="true">21.</strong> BufferGenerator</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../release_notes.html"><strong aria-hidden="true">2.</strong> Release Notes</a></li><li class="chapter-item expanded affix "><li class="part-title">Tutorials</li><li class="chapter-item expanded "><a href="../tutorials/python.html"><strong aria-hidden="true">3.</strong> A Basic Python Tutorial</a></li><li class="chapter-item expanded affix "><li class="part-title">Concepts</li><li class="chapter-item expanded "><a href="../concepts/introduction.html"><strong aria-hidden="true">4.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../concepts/signal_graph.html"><strong aria-hidden="true">5.</strong> The Signal Graph, Library Parameters, and limitations</a></li><li class="chapter-item expanded "><a href="../concepts/conventions.html"><strong aria-hidden="true">6.</strong> C API Conventions</a></li><li class="chapter-item expanded "><a href="../concepts/initialization.html"><strong aria-hidden="true">7.</strong> Logging, Initialization, and Shutdown</a></li><li class="chapter-item expanded "><a href="../concepts/object_model.html"><strong aria-hidden="true">8.</strong> Objects, Handles, and Properties</a></li><li class="chapter-item expanded "><a href="../concepts/streams.html"><strong aria-hidden="true">9.</strong> Streams</a></li><li class="chapter-item expanded "><a href="../concepts/3d_panning.html"><strong aria-hidden="true">10.</strong> 3D Panning </a></li><li class="chapter-item expanded "><a href="../concepts/channel_mixing.html"><strong aria-hidden="true">11.</strong> Channel Upmixing and Downmixing </a></li><li class="chapter-item expanded affix "><li class="part-title">The Object Reference</li><li class="chapter-item expanded "><a href="../object_reference/context.html"><strong aria-hidden="true">12.</strong> Context</a></li><li class="chapter-item expanded "><a href="../object_reference/buffer.html"><strong aria-hidden="true">13.</strong> Buffer</a></li><li class="chapter-item expanded "><a href="../object_reference/source.html"><strong aria-hidden="true">14.</strong> Source (abstract)</a></li><li class="chapter-item expanded "><a href="../object_reference/direct_source.html" class="active"><strong aria-hidden="true">15.</strong> DirectSource</a></li><li class="chapter-item expanded "><a href="../object_reference/spatialized_source.html"><strong aria-hidden="true">16.</strong> SpatializedSource (abstract)</a></li><li class="chapter-item expanded "><a href="../object_reference/panned_source.html"><strong aria-hidden="true">17.</strong> PannedSource</a></li><li class="chapter-item expanded "><a href="../object_reference/source_3d.html"><strong aria-hidden="true">18.</strong> Source3D</a></li><li class="chapter-item expanded "><a href="../object_reference/generator.html"><strong aria-hidden="true">19.</strong> Generator (abstract)</a></li><li class="chapter-item expanded "><a href="../object_reference/streaming_generator.html"><strong aria-hidden="true">20.</strong> StreamingGenerator</a></li><li class="chapter-item expanded "><a href="../object_reference/buffer_generator.html"><strong aria-hidden="true">21.</strong> BufferGenerator</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -155,36 +155,31 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#the-signal-graph-library-parameters-and-limitations" id="the-signal-graph-library-parameters-and-limitations">The Signal Graph, Library Parameters, and Limitations</a></h1>
-<p>Synthizer's signal graph is/will be as follows (not all of this exists yet):</p>
-<ul>
-<li>1 or more generators feed a source, optionally through a number of effects.</li>
-<li>1 or more sources feed:
-<ul>
-<li>A context, which is directly passed to audio output.</li>
-<li>Optionally, any number of user-specified effects.</li>
-<li>Optionally, any number of reverb zones.</li>
-</ul>
-</li>
-</ul>
-<p>Synthizer always processes audio at a sample rate of 44100, and with a block size of 256. All parameter updates take effect
-at the block boundaries, or around every 5 MS.  These parameters cannot be reconfigured without recompiling the library.  Synthizer will get the best latency it can for the system it's running on.  This can also not be controlled or influenced by the programmer.</p>
-<p>No audio input or output can be over 16 channels.  This limit may be raised in future.</p>
-<p>Object handles are not reused, but there is a limit of 65535 concurrent outstanding object handles. This is due to an internal lockfree
-slab which allows for relatively fast handle translation without syscalls.  If this limit proves problematic, it will be raised, but for all practical intents memory or CPU will be exhausted first.</p>
+                        <h1><a class="header" href="#directsource" id="directsource">DirectSource</a></h1>
+<p>Inherits from Source.</p>
+<h2><a class="header" href="#constructors" id="constructors">Constructors</a></h2>
+<h3><a class="header" href="#syz_createdirectsource" id="syz_createdirectsource"><code>syz_createDirectSource</code></a></h3>
+<pre><code>SYZ_CAPI syz_ErrorCode syz_createDirectSource(syz_Handle *out, syz_Handle context);
+</code></pre>
+<p>Creates a direct source.</p>
+<h2><a class="header" href="#properties" id="properties">Properties</a></h2>
+<p>Inherited from Source only.</p>
+<h2><a class="header" href="#remarks" id="remarks">Remarks</a></h2>
+<p>A direct source is for music and other audio assets that don't wish to participate in panning, , and should be linked directly to speakers.</p>
+<p>Audio is converted to the Context's channel count and passed directly through.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="../concepts/introduction.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../object_reference/source.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="../concepts/conventions.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../object_reference/spatialized_source.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -196,13 +191,13 @@ slab which allows for relatively fast handle translation without syscalls.  If t
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="../concepts/introduction.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../object_reference/source.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a rel="next" href="../concepts/conventions.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../object_reference/spatialized_source.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 

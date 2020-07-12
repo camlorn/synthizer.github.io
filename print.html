@@ -91,7 +91,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="release_notes.html"><strong aria-hidden="true">2.</strong> Release Notes</a></li><li class="chapter-item expanded affix "><li class="part-title">Tutorials</li><li class="chapter-item expanded "><a href="tutorials/python.html"><strong aria-hidden="true">3.</strong> A Basic Python Tutorial</a></li><li class="chapter-item expanded affix "><li class="part-title">Concepts</li><li class="chapter-item expanded "><a href="concepts/introduction.html"><strong aria-hidden="true">4.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="concepts/signal_graph.html"><strong aria-hidden="true">5.</strong> The Signal Graph, Library Parameters, and limitations</a></li><li class="chapter-item expanded "><a href="concepts/conventions.html"><strong aria-hidden="true">6.</strong> C API Conventions</a></li><li class="chapter-item expanded "><a href="concepts/initialization.html"><strong aria-hidden="true">7.</strong> Logging, Initialization, and Shutdown</a></li><li class="chapter-item expanded "><a href="concepts/object_model.html"><strong aria-hidden="true">8.</strong> Objects, Handles, and Properties</a></li><li class="chapter-item expanded "><a href="concepts/streams.html"><strong aria-hidden="true">9.</strong> Streams</a></li><li class="chapter-item expanded "><a href="concepts/3d_panning.html"><strong aria-hidden="true">10.</strong> 3D Panning </a></li><li class="chapter-item expanded "><a href="concepts/channel_mixing.html"><strong aria-hidden="true">11.</strong> Channel Upmixing and Downmixing </a></li><li class="chapter-item expanded affix "><li class="part-title">The Object Reference</li><li class="chapter-item expanded "><a href="object_reference/context.html"><strong aria-hidden="true">12.</strong> Context</a></li><li class="chapter-item expanded "><a href="object_reference/buffer.html"><strong aria-hidden="true">13.</strong> Buffer</a></li><li class="chapter-item expanded "><a href="object_reference/source.html"><strong aria-hidden="true">14.</strong> Source (abstract)</a></li><li class="chapter-item expanded "><a href="object_reference/spatialized_source.html"><strong aria-hidden="true">15.</strong> SpatializedSource (abstract)</a></li><li class="chapter-item expanded "><a href="object_reference/panned_source.html"><strong aria-hidden="true">16.</strong> PannedSource</a></li><li class="chapter-item expanded "><a href="object_reference/source_3d.html"><strong aria-hidden="true">17.</strong> Source3D</a></li><li class="chapter-item expanded "><a href="object_reference/generator.html"><strong aria-hidden="true">18.</strong> Generator (abstract)</a></li><li class="chapter-item expanded "><a href="object_reference/streaming_generator.html"><strong aria-hidden="true">19.</strong> StreamingGenerator</a></li><li class="chapter-item expanded "><a href="object_reference/buffer_generator.html"><strong aria-hidden="true">20.</strong> BufferGenerator</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="release_notes.html"><strong aria-hidden="true">2.</strong> Release Notes</a></li><li class="chapter-item expanded affix "><li class="part-title">Tutorials</li><li class="chapter-item expanded "><a href="tutorials/python.html"><strong aria-hidden="true">3.</strong> A Basic Python Tutorial</a></li><li class="chapter-item expanded affix "><li class="part-title">Concepts</li><li class="chapter-item expanded "><a href="concepts/introduction.html"><strong aria-hidden="true">4.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="concepts/signal_graph.html"><strong aria-hidden="true">5.</strong> The Signal Graph, Library Parameters, and limitations</a></li><li class="chapter-item expanded "><a href="concepts/conventions.html"><strong aria-hidden="true">6.</strong> C API Conventions</a></li><li class="chapter-item expanded "><a href="concepts/initialization.html"><strong aria-hidden="true">7.</strong> Logging, Initialization, and Shutdown</a></li><li class="chapter-item expanded "><a href="concepts/object_model.html"><strong aria-hidden="true">8.</strong> Objects, Handles, and Properties</a></li><li class="chapter-item expanded "><a href="concepts/streams.html"><strong aria-hidden="true">9.</strong> Streams</a></li><li class="chapter-item expanded "><a href="concepts/3d_panning.html"><strong aria-hidden="true">10.</strong> 3D Panning </a></li><li class="chapter-item expanded "><a href="concepts/channel_mixing.html"><strong aria-hidden="true">11.</strong> Channel Upmixing and Downmixing </a></li><li class="chapter-item expanded affix "><li class="part-title">The Object Reference</li><li class="chapter-item expanded "><a href="object_reference/context.html"><strong aria-hidden="true">12.</strong> Context</a></li><li class="chapter-item expanded "><a href="object_reference/buffer.html"><strong aria-hidden="true">13.</strong> Buffer</a></li><li class="chapter-item expanded "><a href="object_reference/source.html"><strong aria-hidden="true">14.</strong> Source (abstract)</a></li><li class="chapter-item expanded "><a href="object_reference/direct_source.html"><strong aria-hidden="true">15.</strong> DirectSource</a></li><li class="chapter-item expanded "><a href="object_reference/spatialized_source.html"><strong aria-hidden="true">16.</strong> SpatializedSource (abstract)</a></li><li class="chapter-item expanded "><a href="object_reference/panned_source.html"><strong aria-hidden="true">17.</strong> PannedSource</a></li><li class="chapter-item expanded "><a href="object_reference/source_3d.html"><strong aria-hidden="true">18.</strong> Source3D</a></li><li class="chapter-item expanded "><a href="object_reference/generator.html"><strong aria-hidden="true">19.</strong> Generator (abstract)</a></li><li class="chapter-item expanded "><a href="object_reference/streaming_generator.html"><strong aria-hidden="true">20.</strong> StreamingGenerator</a></li><li class="chapter-item expanded "><a href="object_reference/buffer_generator.html"><strong aria-hidden="true">21.</strong> BufferGenerator</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -159,6 +159,24 @@
                     <main>
                         <h1><a class="header" href="#introduction" id="introduction">Introduction</a></h1>
 <h1><a class="header" href="#release-notes" id="release-notes">Release Notes</a></h1>
+<h2><a class="header" href="#040-wip" id="040-wip">0.4.0 (WIP)</a></h2>
+<ul>
+<li>Introduce DirectSource, for music and other non-panned assets.</li>
+<li>All sources now have gain, as part of refactoring for DirectSource.</li>
+<li>Introduce <code>syz_bufferGetChannels</code>, <code>syz_bufferGetLengthInSamples</code>, and <code>syz_bufferGetLengthInSeconds</code>, and obvious Python equivalents.</li>
+<li>Source add/remove generators needed to happen in the audio thread in order to not break. For now this is using <code>Context.call</code>, but in future
+it'll probably use a ConcurrentQueue to enqueue updates and avoid the overhead, or perhaps an abstracted PropertyRing.</li>
+<li>Move to <a href="https://github.com/cameron314/concurrentqueue">moodycamel::ConcurrentQueue</a>. This removes mutexes in a lot of places
+<ul>
+<li>As part of this, get rid of our custom lockfree queues. ConcurrentQueue is better; it's MPMC and not intrusive.</li>
+</ul>
+</li>
+<li>Get rid of some dead code.</li>
+<li>Fix double properties that use P_DOUBLE_MIN to mean minimum double, not 0. This bug brought to you by surprising C++ numeric_limits behavior.</li>
+<li>Fix looping in <code>BufferGenerator</code>.</li>
+<li>Offer additional guarantees around <code>syz_getX</code> behavior with respect to properties that Synthizer modifies, like generator positions.</li>
+<li>CONTRIBUTING.md and pull request templates.</li>
+</ul>
 <h2><a class="header" href="#030" id="030">0.3.0</a></h2>
 <ul>
 <li>Added support for Flac and MP3 via <a href="https://github.com/mackron/dr_libs">dr_libs</a>.</li>
@@ -431,6 +449,8 @@ If the reference is weak <code>syz_handleFree</code> will set the property inter
 Synthizer may use strong properties for cases such as <code>BufferGenerator</code>, where it is advantageous for the library to be able to control the lifetime.</p>
 <p>Property writes are always ordered with respect to other property writes on the same thread, and in general work how you would expect.  Reads are different because Synthizer made the trade-off of low latency and fast writes for fast and consistent reads, and internally uses a number of lockfree ringbuffers to move writes between threads.  Synthizer reserves the right to make property reads eventually consistent.  Synthizer reserves the right to make property reads unordered with respect to their writes even in cases of only one thread doing both reads and writes.
 <code>syz_setX(obj, property, value)</code> followed by a read to the same property may or may not return the value just written.  Synthizer plans to offer some limited forms of atomicity and database-like transactions in future, which may freeze and/or rewind time with respect to external reads. Note that implicit property reads done by Synthizer itself as part of i.e. source creation are ordered with respect to writes in the expected manner.</p>
+<p>In the case of properties that Synthizer itself updates, i.e. the position of a generator, and assuming that it is called from outside any future features that do things to property get/set, <code>syz_getX</code> will return some value from the recent past.  How far back is unspecified, but would be anyway because the audio thread always runs ahead of your program.
+Synthizer will make an effort to make Synthizer-modified properties faster to read in future, usually no more than the normal C API overhead and the cost of one atomic, though the infrastructure to do this does not yet exist.</p>
 <p>If you got lost in the above paragraph: <code>syz_setX</code> does what you intuitively expect, <code>syz_getX</code> might or might not do what you expect.</p>
 <p>The actual links between properties and objects are specified in this manual, and also in <code>synthizer_properties.h</code> as a collection of x-macros. The names and contents of the x-macros are unstable, but will be stabilized before 1.0 in order to open up interesting use cases to C developers who might want reflection-like capabilities, i.e. generating UIs.</p>
 <h1><a class="header" href="#streams" id="streams">Streams</a></h1>
@@ -515,7 +535,14 @@ For efficiency, whether two objects are from different contexts is unvalidated, 
 <p>Currently, the only way to make a buffer is from a stream, in the self-explanatory manner. See <a href="object_reference/../concepts/streams.html">Streams</a> for information on streams.</p>
 <p>This call will decode the stream in the calling thread, returning errors as necessary. Synthizer will eventually offer a BufferCache which supports background decoding and caching, but for the moment the responsibility of background decoding is placed on the calling program.</p>
 <h2><a class="header" href="#properties-2" id="properties-2">Properties</a></h2>
-<p>None currently. Some in the near future.</p>
+<p>None.</p>
+<h2><a class="header" href="#functions" id="functions">Functions</a></h2>
+<h3><a class="header" href="#getters" id="getters">Getters</a></h3>
+<pre><code>SYZ_CAPI syz_ErrorCode syz_bufferGetChannels(unsigned int *out, syz_Handle buffer);
+SYZ_CAPI syz_ErrorCode syz_bufferGetLengthInSamples(unsigned int *out, syz_Handle buffer);
+SYZ_CAPI syz_ErrorCode syz_bufferGetLengthInSeconds(double *out, syz_Handle buffer);
+</code></pre>
+<p>The self-explanatory getters. These aren't properties because they can't be written and they shouldn't participate in the property infrastructure.</p>
 <h2><a class="header" href="#remarks-1" id="remarks-1">Remarks</a></h2>
 <p>Buffers hold audio data, as a collection of contiguous chunks.  Data is resampled to the Synthizer samplerate and converted to 16-bit PCM using triangular dither.</p>
 <p>Buffers are one of the few Synthizer objects that don't require a context.  They may be used freely with any object requiring a buffer, from any thread.  In order to facilitate this, buffers are immutable after creation.</p>
@@ -524,39 +551,52 @@ For efficiency, whether two objects are from different contexts is unvalidated, 
 <h2><a class="header" href="#constructors-2" id="constructors-2">Constructors</a></h2>
 <p>None.</p>
 <h2><a class="header" href="#properties-3" id="properties-3">Properties</a></h2>
-<p>None currently. Probably <code>SYZ_P_GAIN</code> moved down from <code>SpatializedSource</code> in the near future.</p>
-<h2><a class="header" href="#functions" id="functions">Functions</a></h2>
+<table><thead><tr><th>Enum</th><th>Type</th><th>Default</th><th>Range</th><th>Description</th></tr></thead><tbody>
+<tr><td>SYZ_P_GAIN</td><td>double</td><td>any finite double</td><td>An additional gain factor applied to this source in DB</td><td></td></tr>
+</tbody></table>
+<h2><a class="header" href="#functions-1" id="functions-1">Functions</a></h2>
 <h3><a class="header" href="#syz_sourceaddgenerator-syz_sourceremovegenerator" id="syz_sourceaddgenerator-syz_sourceremovegenerator"><code>syz_sourceAddGenerator</code>, <code>syz_sourceRemoveGenerator</code></a></h3>
 <pre><code>SYZ_CAPI syz_ErrorCode syz_sourceAddGenerator(syz_Handle source, syz_Handle generator);
 SYZ_CAPI syz_ErrorCode syz_sourceRemoveGenerator(syz_Handle source, syz_Handle generator);
 </code></pre>
 <p>Add/remove a generator from a source. Each generator may be added once and duplicate add calls will have no effect. Each generator should only be used with one source at a time.</p>
 <h2><a class="header" href="#remarks-2" id="remarks-2">Remarks</a></h2>
-<p>Sources represent audio output.  They combine all generators connected to them, apply any effects if necessary, and feed the context.</p>
-<h1><a class="header" href="#spatializedsource-abstract" id="spatializedsource-abstract">SpatializedSource (abstract)</a></h1>
+<p>Sources represent audio output.  They combine all generators connected to them, apply any effects if necessary, and feed the context. Subclasses of Source add panning and other features.</p>
+<h1><a class="header" href="#directsource" id="directsource">DirectSource</a></h1>
+<p>Inherits from Source.</p>
 <h2><a class="header" href="#constructors-3" id="constructors-3">Constructors</a></h2>
-<p>None</p>
+<h3><a class="header" href="#syz_createdirectsource" id="syz_createdirectsource"><code>syz_createDirectSource</code></a></h3>
+<pre><code>SYZ_CAPI syz_ErrorCode syz_createDirectSource(syz_Handle *out, syz_Handle context);
+</code></pre>
+<p>Creates a direct source.</p>
 <h2><a class="header" href="#properties-4" id="properties-4">Properties</a></h2>
+<p>Inherited from Source only.</p>
+<h2><a class="header" href="#remarks-3" id="remarks-3">Remarks</a></h2>
+<p>A direct source is for music and other audio assets that don't wish to participate in panning, , and should be linked directly to speakers.</p>
+<p>Audio is converted to the Context's channel count and passed directly through.</p>
+<h1><a class="header" href="#spatializedsource-abstract" id="spatializedsource-abstract">SpatializedSource (abstract)</a></h1>
+<h2><a class="header" href="#constructors-4" id="constructors-4">Constructors</a></h2>
+<p>None</p>
+<h2><a class="header" href="#properties-5" id="properties-5">Properties</a></h2>
 <table><thead><tr><th>Enum</th><th>Type</th><th>Default</th><th>Range</th><th>Description</th></tr></thead><tbody>
-<tr><td>SYZ_P_GAIN</td><td>double</td><td>any finite double</td><td>An additional gain factor applied to this source in DB</td><td></td></tr>
 <tr><td>SYZ_P_PANNER_STRATEGY</td><td>int</td><td>SYZ_PANNER_STRATEGY_HRTF</td><td>any SYZ_PANNER_STRATEGY</td><td>The panner strategy for this source.</td></tr>
 </tbody></table>
-<h2><a class="header" href="#remarks-3" id="remarks-3">Remarks</a></h2>
+<h2><a class="header" href="#remarks-4" id="remarks-4">Remarks</a></h2>
 <p>SpatializedSource is an abstract class which gives all panned sources their distance model and gain.</p>
 <h1><a class="header" href="#pannedsource" id="pannedsource">PannedSource</a></h1>
 <p>Inherits from <a href="object_reference/./spatialized_source.html">SpatializedSource</a>.</p>
-<h2><a class="header" href="#constructors-4" id="constructors-4">Constructors</a></h2>
+<h2><a class="header" href="#constructors-5" id="constructors-5">Constructors</a></h2>
 <h3><a class="header" href="#syz_createpannedsource" id="syz_createpannedsource"><code>syz_createPannedSource</code></a></h3>
 <pre><code>SYZ_CAPI syz_ErrorCode syz_createPannedSource(syz_Handle *out, syz_Handle context);
 </code></pre>
 <p>Creates a panned source.</p>
-<h3><a class="header" href="#properties-5" id="properties-5">Properties</a></h3>
+<h3><a class="header" href="#properties-6" id="properties-6">Properties</a></h3>
 <table><thead><tr><th>Enum</th><th>Type</th><th>Default</th><th>Range</th><th>Description</th></tr></thead><tbody>
 <tr><td>SYZ_P_AZIMUTH</td><td>double</td><td>0.0</td><td>0.0 to 360.0</td><td>The azimuth of the panner. See remarks.</td></tr>
 <tr><td>SYZ_P_ELEVATION</td><td>double</td><td>0.0</td><td>-90.0 to 90.0</td><td>See remarks</td></tr>
 <tr><td>SYZ_P_PANNING_SCALAR</td><td>0.0</td><td>-1.0 to 1.0</td><td>see remarks</td><td></td></tr>
 </tbody></table>
-<h1><a class="header" href="#remarks-4" id="remarks-4">Remarks</a></h1>
+<h1><a class="header" href="#remarks-5" id="remarks-5">Remarks</a></h1>
 <p>The PannedSource gives direct control over a panner, which is either controlled via azimuth/elevation in degrees or a panning scalar.</p>
 <p>If using azimuth/elevation, 0.0 azimuth is forward and positive angles are clockwise.  Elevation ranges from -90 (down) to 90 (up).</p>
 <p>Some applications want to control panners through a panning scalar instead, i.e. for UI purposes. If using panning scalars, -1.0 is full left and 1.0 is full right.</p>
@@ -564,12 +604,12 @@ SYZ_CAPI syz_ErrorCode syz_sourceRemoveGenerator(syz_Handle source, syz_Handle g
 <p>For information on panning, see <a href="object_reference/../concepts/3d_panning.html">3D Panning</a>.</p>
 <h1><a class="header" href="#source3d" id="source3d">Source3D</a></h1>
 <p>Inherits from <a href="object_reference/./spatialized_source.html">SpatializedSource</a>.</p>
-<h2><a class="header" href="#constructors-5" id="constructors-5">Constructors</a></h2>
+<h2><a class="header" href="#constructors-6" id="constructors-6">Constructors</a></h2>
 <h3><a class="header" href="#syz_createsource3d" id="syz_createsource3d"><code>syz_createSource3D</code></a></h3>
 <pre><code>SYZ_CAPI syz_ErrorCode syz_createSource3D(syz_Handle *out, syz_Handle context);
 </code></pre>
 <p>Creates a source3d positioned at the origin and with no associated generators.</p>
-<h2><a class="header" href="#properties-6" id="properties-6">Properties</a></h2>
+<h2><a class="header" href="#properties-7" id="properties-7">Properties</a></h2>
 <table><thead><tr><th>Enum</th><th>Type</th><th>Default</th><th>Range</th><th>Description</th></tr></thead><tbody>
 <tr><td>SYZ_P_POSITION</td><td>double3</td><td>(0, 0, 0)</td><td>any</td><td>The position of the sourec.</td></tr>
 <tr><td>SYZ_P_ORIENTATION</td><td>double6</td><td>(0, 1, 0, 0, 0, 1)</td><td>Two packed unit vectors</td><td>The orientation of the source as <code>(atx, aty, atz, upx, upy, upz)</code>. Currently unused.</td></tr>
@@ -580,37 +620,37 @@ SYZ_CAPI syz_ErrorCode syz_sourceRemoveGenerator(syz_Handle source, syz_Handle g
 <tr><td>SYZ_P_CLOSENESS_BOOST</td><td>double</td><td>From Context</td><td>any finite double</td><td>The closeness boost for this source in DB.</td></tr>
 <tr><td>SYZ_P_CLOSENESS_BOOST_DISTANCE</td><td>double</td><td>From Context</td><td>value &gt;= 0.0</td><td>The closeness boost distance for this source.</td></tr>
 </tbody></table>
-<h2><a class="header" href="#remarks-5" id="remarks-5">Remarks</a></h2>
+<h2><a class="header" href="#remarks-6" id="remarks-6">Remarks</a></h2>
 <p>A Source3D represents an entity in 3D space.  For explanations of the above properties, see <a href="object_reference/../concepts/3d_panning.html">3D Panning</a>.</p>
 <p>When created, Source3D reads all of its defaults from the Context's corresponding properties.  Changes to the Context versions don't affect already created sources.  A typical use case is to configure the Context to the defaults of the game, and then create sources.</p>
 <h1><a class="header" href="#generator-abstract" id="generator-abstract">Generator (abstract)</a></h1>
 <p>This section will exist in the near future; internal refactoring is necessary.</p>
 <h1><a class="header" href="#streaminggenerator" id="streaminggenerator">StreamingGenerator</a></h1>
 <p>Inherits from <a href="object_reference/./generator.html">Generator</a>.</p>
-<h2><a class="header" href="#constructors-6" id="constructors-6">Constructors</a></h2>
+<h2><a class="header" href="#constructors-7" id="constructors-7">Constructors</a></h2>
 <h3><a class="header" href="#syz_createstreaminggenerator" id="syz_createstreaminggenerator"><code>syz_createStreamingGenerator</code></a></h3>
 <pre><code>SYZ_CAPI syz_ErrorCode syz_createStreamingGenerator(syz_Handle *out, syz_Handle context, const char *protocol, const char *path, const char *options);
 </code></pre>
 <p>Creates a StreamingGenerator from the standard <a href="object_reference/../concepts/streams.html">stream parameters</a>.</p>
-<h2><a class="header" href="#properties-7" id="properties-7">Properties</a></h2>
+<h2><a class="header" href="#properties-8" id="properties-8">Properties</a></h2>
 <p>None currently. Some in future.</p>
-<h2><a class="header" href="#remarks-6" id="remarks-6">Remarks</a></h2>
+<h2><a class="header" href="#remarks-7" id="remarks-7">Remarks</a></h2>
 <p>StreamingGenerator plays streams, decoding and reading on demand.  Note  that this is a heavyweight object with a long start-up time.  The typical use case is for music playback.</p>
 <p>Due to the expense of streaming from disk and other I/O sources, having more than a few StreamingGenerators going will cause a decrease in audio quality on many systems, typically manifesting as drop--outs and crackling.</p>
 <h1><a class="header" href="#buffergenerator" id="buffergenerator">BufferGenerator</a></h1>
 <p>Inherits from <a href="object_reference/./generator.html">Generator</a>.</p>
-<h2><a class="header" href="#constructors-7" id="constructors-7">Constructors</a></h2>
+<h2><a class="header" href="#constructors-8" id="constructors-8">Constructors</a></h2>
 <h3><a class="header" href="#syz_createbuffergenerator" id="syz_createbuffergenerator"><code>syz_createBufferGenerator</code></a></h3>
 <pre><code>SYZ_CAPI syz_ErrorCode syz_createBufferGenerator(syz_Handle *out, syz_Handle context);
 </code></pre>
 <p>Creates a BufferGenerator. The buffer is set to NULL and the resulting generator will play silence until one is associated.</p>
-<h2><a class="header" href="#properties-8" id="properties-8">Properties</a></h2>
+<h2><a class="header" href="#properties-9" id="properties-9">Properties</a></h2>
 <table><thead><tr><th>Enum</th><th>Type</th><th>Default Value</th><th>Range</th><th>Description</th></tr></thead><tbody>
 <tr><td>SYZ_P_BUFFER</td><td>Object</td><td>0</td><td>Any Buffer handle</td><td>The buffer to play</td></tr>
 <tr><td>SYZ_P_POSITION</td><td>double</td><td>0.0</td><td>value &gt;= 0.0</td><td>The position in the buffer.</td></tr>
 <tr><td>SYZ_P_LOOPING</td><td>int</td><td>0</td><td>0 or 1</td><td>Whether playback loops at the end of the buffer.</td></tr>
 </tbody></table>
-<h2><a class="header" href="#remarks-7" id="remarks-7">Remarks</a></h2>
+<h2><a class="header" href="#remarks-8" id="remarks-8">Remarks</a></h2>
 <p>BufferGenerators play <a href="object_reference/./buffer.html">Buffer</a>s.</p>
 <p><code>SYZ_P_POSITION</code> is reset if <code>SYZ_P_BUFFER</code> is modified.</p>
 <p><code>SYZ_P_POSITION</code> can be set past the end of the buffer.  If <code>SYZ_P_LOOPING = 0</code>, the generator will play silence.  Otherwise, the position will immediately loop to the beginning.</p>
