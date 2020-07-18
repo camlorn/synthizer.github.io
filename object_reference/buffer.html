@@ -158,7 +158,7 @@
                         <h1><a class="header" href="#buffer" id="buffer">Buffer</a></h1>
 <h2><a class="header" href="#constructors" id="constructors">Constructors</a></h2>
 <h3><a class="header" href="#syz_createbufferfromstream" id="syz_createbufferfromstream"><code>syz_createBufferFromStream</code></a></h3>
-<pre><code>SYZ_CAPI syz_ErrorCode syz_createBufferFromStream(syz_Handle *out, syz_Handle context, const char *protocol, const char *path, const char *options);
+<pre><code>SYZ_CAPI syz_ErrorCode syz_createBufferFromStream(syz_Handle *out, const char *protocol, const char *path, const char *options);
 </code></pre>
 <p>Currently, the only way to make a buffer is from a stream, in the self-explanatory manner. See <a href="../concepts/streams.html">Streams</a> for information on streams.</p>
 <p>This call will decode the stream in the calling thread, returning errors as necessary. Synthizer will eventually offer a BufferCache which supports background decoding and caching, but for the moment the responsibility of background decoding is placed on the calling program.</p>

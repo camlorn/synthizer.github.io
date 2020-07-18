@@ -158,12 +158,12 @@
                         <h1><a class="header" href="#a-basic-python-tutorial" id="a-basic-python-tutorial">A Basic Python Tutorial</a></h1>
 <h2><a class="header" href="#installation" id="installation">Installation</a></h2>
 <p>We support Python 3.  Python wheels for Windows X64 are published to Pypi, so to install:</p>
-<pre><code>pip install synthizer
+<pre><code class="language-bash">pip install synthizer
 </code></pre>
 <p>Note that this won't currently work on 32-bit Python; this will be fixed.</p>
 <h2><a class="header" href="#some-basics" id="some-basics">Some Basics</a></h2>
 <p>Synthizer requires initialization and deinitialization. The best way to initialize Synthizer is to use the context manager:</p>
-<pre><code>with synthizer.initialized():
+<pre><code class="language-python">with synthizer.initialized():
     # Code...
 </code></pre>
 <p>The context manager will handle deinitialization on exceptions.  Though <code>synthizer.initialize()</code> and <code>synthizer.shutdown()</code> are exposed, use is discouraged as the context manager ensures clean shutdown in (almost) all cases.</p>
@@ -176,7 +176,7 @@ and also to ensure that it can be well understood when things are and aren't usi
 <p>Most objects in Synthizer require a context, which represents a listener in 3D space, an audio output device, and other miscellaneous infrastructure.
 Objects are passed a context on construction, and two objects from different contexts never interact.</p>
 <p>To get a context:</p>
-<pre><code>ctx = synthizer.Context()
+<pre><code class="language-python">ctx = synthizer.Context()
 </code></pre>
 <p>Currently, selecting audio output devices isn't supported, and audio will go to the system default.</p>
 <h2><a class="header" href="#buffers-streams-and-generators" id="buffers-streams-and-generators">Buffers, Streams, and Generators</a></h2>
@@ -196,10 +196,10 @@ notably <code>BufferGenerator</code> (takes a buffer) and <code>StreamingGenerat
 <p>To play back a stream, you have two choices: you can use a <code>StreamingGenerator</code>, which takes these parameters directly and will decode in realtime, or you can use a <code>BufferGenerator</code>, which takes a pre-decoded buffer.</p>
 <p>Buffers are in-memory decoded assets, essentially arrays of 16-bit samples resampled to Synthizer's samplerate. Note that they aren't actually contiguous arrays and are also immutable.</p>
 <p>To get a streaming generator:</p>
-<pre><code>generator = synthizer.StreamingGenerator(ctx, &quot;file&quot;, &quot;test.wav&quot;)
+<pre><code class="language-python">generator = synthizer.StreamingGenerator(ctx, &quot;file&quot;, &quot;test.wav&quot;)
 </code></pre>
 <p>To get a buffer from a stream:</p>
-<pre><code>buffer = synthizer.Buffer.from_stream(&quot;file&quot;, &quot;test.wav&quot;)
+<pre><code class="language-python">buffer = synthizer.Buffer.from_stream(&quot;file&quot;, &quot;test.wav&quot;)
 </code></pre>
 <p>Note the following:</p>
 <ul>
@@ -224,10 +224,10 @@ multiple constructors here yet, but will in future.</li>
 <li>Object, i.e. <code>buffer_generator.buffer = b</code>.</li>
 </ul>
 <p>Property writing is very fast.  Property reading is incredibly slow and won't be improved.  Code like the following is a terrible idea:</p>
-<pre><code>myobj.property += 5
+<pre><code class="language-python">myobj.property += 5
 </code></pre>
 <p>The above hides a number of C API details elaborated on elsewhere in this document.  In addition to being slow, future changes to the library may cause it to not do what you expect.  In general, try to derive Synthizer properties from values you already have.  As a concrete example of what Synthizer reserves the right to break, code like the following may stop working in future:</p>
-<pre><code>myobj.property = 0
+<pre><code class="language-python">myobj.property = 0
 myobj.property += 5
 myobj.property += 5
 # May fail in future
@@ -241,13 +241,13 @@ destroying the object externally will destroy your references to it, but Synthiz
 for those who already know trigonometry is that Synthizer's coordinate system is right-handed and orientations consist of 2 orthogonal unit vectors <code>(atx, aty, atz, upx, upy, upz)</code> stored
 as a packed property so that they can both be set atomically.  But the longer version for those who don't know trigonometry is:</p>
 <p>Degrees to radians is:</p>
-<pre><code>import math
+<pre><code class="language-python">import math
 
 def deg2rad(angle):
     return (angle / 180.0) * math.pi
 </code></pre>
 <p>People who don't know trig usually ask for orientations that are clockwise of north. To do that:</p>
-<pre><code>import math
+<pre><code class="language-python">import math
 
 def make_orientation(degrees):
     rad = deg2rad(angle)
@@ -271,22 +271,25 @@ def make_orientation(degrees):
 <li><code>pause</code>, <code>play</code>: pause/play the source. Note that these are currently implemented via generator add/remove, but a better way is coming.</li>
 <li><code>seek &lt;seconds&gt;</code>: self-explanatory.</li>
 <li><code>pos &lt;x&gt; &lt;y&gt; &lt;z&gt;</code>: move the source. X is right, y is forward, z is up.</li>
+<li><code>loop</code>: Toggle looping of the generator.</li>
+<li><code>gain &lt;value&gt;</code>: Control the gain of the generator, in DB.</li>
 <li><code>quit</code>: self-explanatory.</li>
 </ul>
 <p>Note that the default distance model parameters cause the source to become completely silent at around 50 units out. Movements close to the head won't change the volume much. Also, HRTF improvements are coming.</p>
 <p>This example also doesn't demonstrate destruction, as that's handled by library deinitialization and process shutdown. A proper program needs <code>source.destroy()</code> etc for dynamic sources, as explained above.</p>
 <p>The code:</p>
-<pre><code>&quot;&quot;&quot;A simple media player, demonstrating the Synthizer basics.&quot;&quot;&quot;
+<pre><code class="language-python">&quot;&quot;&quot;A simple media player, demonstrating the Synthizer basics.&quot;&quot;&quot;
 
-import synthizer
-import time
 import sys
 
+import synthizer
+
 if len(sys.argv) != 2:
-    print(&quot;Usage: example.py &lt;file&gt;&quot;)
+    print(f&quot;Usage: {sys.argv[0]} &lt;file&gt;&quot;)
     sys.exit(1)
 
-# Log to debug. At the moment this writes directly to stdout, but will in future integrate with Python's logging modules.
+# Log to debug. At the moment this writes directly to stdout, but will in
+#  future integrate with Python's logging modules.
 # It's best to call this before any initialization.
 synthizer.configure_logging_backend(synthizer.LoggingBackend.STDERR)
 synthizer.set_log_level(synthizer.LogLevel.DEBUG)
@@ -297,9 +300,9 @@ with synthizer.initialized():
     ctx = synthizer.Context()
 
     # A BufferGenerator plays back a buffer:
-    generator = synthizer.BufferGenerator(context=ctx)
+    generator = synthizer.BufferGenerator(ctx)
     # A buffer holds audio data. We read from the specified file:
-    buffer = synthizer.Buffer.from_stream(ctx, protocol=&quot;file&quot;, path=sys.argv[1])
+    buffer = synthizer.Buffer.from_stream(&quot;file&quot;, sys.argv[1])
     # Tell the generator to use the buffer.
     generator.buffer = buffer
     # A Source3D is a 3D source, as you'd expect.
@@ -307,6 +310,8 @@ with synthizer.initialized():
     # It'll play the BufferGenerator.
     source.add_generator(generator)
     playing = True
+    # Keep track of looping, since property reads are expensive:
+    looping = False
 
     # A simple command parser.
     while True:
@@ -315,10 +320,10 @@ with synthizer.initialized():
         if len(cmd) == 0:
             continue
         if cmd[0] == &quot;pause&quot;:
-                # We don't have proper pausing yet, but can simulate it
-                if playing:
-                    source.remove_generator(generator)
-                    playing = False
+            # We don't have proper pausing yet, but can simulate it
+            if playing:
+                source.remove_generator(generator)
+                playing = False
         elif cmd[0] == &quot;play&quot;:
             if not playing:
                 source.add_generator(generator)
@@ -329,22 +334,44 @@ with synthizer.initialized():
                 continue
             try:
                 x, y, z = [float(i) for i in cmd[1:]]
-            except:
+            except ValueError:
                 print(&quot;Unable to parse coordinates&quot;)
                 continue
             source.position = (x, y, z)
         elif cmd[0] == &quot;seek&quot;:
             if len(cmd) != 2:
                 print(&quot;Syntax: pos &lt;seconds&gt;&quot;)
+                continue
             try:
                 pos = float(cmd[1])
-            except:
+            except ValueError:
                 print(&quot;Unable to parse position&quot;)
-            generator.position = pos
+                continue
+            try:
+                generator.position = pos
+            except synthizer.SynthizerError as e:
+                print(e)
         elif cmd[0] == &quot;quit&quot;:
             break
+        elif cmd[0] == &quot;loop&quot;:
+            looping = not looping
+            generator.looping = looping
+            print(&quot;Looping&quot; if looping else &quot;Not looping&quot;)
+        elif cmd[0] == &quot;gain&quot;:
+            if len(cmd) != 2:
+                print(&quot;Syntax: gain &lt;value&gt;&quot;)
+                continue
+            try:
+                value = float(cmd[1])
+            except ValueError:
+                print(&quot;Unable to parse value.&quot;)
+                continue
+            # Convert to scalar gain from db.
+            gain = 10**(value/20)
+            source.gain = gain
         else:
             print(&quot;Unrecognized command&quot;)
+
 </code></pre>
 
                     </main>
