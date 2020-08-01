@@ -159,6 +159,29 @@
                     <main>
                         <h1><a class="header" href="#introduction" id="introduction">Introduction</a></h1>
 <h1><a class="header" href="#release-notes" id="release-notes">Release Notes</a></h1>
+<h2><a class="header" href="#060-wip" id="060-wip">0.6.0 (WIP)</a></h2>
+<h3><a class="header" href="#features" id="features">Features</a></h3>
+<ul>
+<li>Major improvements to StreamingGenerator:
+<ul>
+<li>Position and looping are now exposed.</li>
+<li>Streaming now happens in a background thread.</li>
+<li>Streaming now builds up a buffer which prevents underruns.</li>
+<li>Note that this uses a bunch of as-yet-untested threading/concurrency stuff that hasn't been exercised heavily, so if you notice bugs
+please open issues.</li>
+</ul>
+</li>
+<li>Introduce a stereo panning strategy. Note that this will become the default panning strategy 
+in the future, because it's the only one that's safe on all speaker arrangements.
+If you want HRTF, request it by setting <code>SYZ_P_PANNER_STRATEGY</code> on the context and/or sources.</li>
+</ul>
+<h3><a class="header" href="#bugs-fixed" id="bugs-fixed">Bugs Fixed</a></h3>
+<ul>
+<li>Throw an exception instead of silently crashing on invalid audio files.</li>
+<li>Fix the fundamentally broken DirectSource mixing logic. This probably still needs some improvement but is no longer fundamentally broken.</li>
+<li>Fix Stream seeking when using LookaheadByteStream internally. This fixes/allows for StreamingGenerator to seek,
+and may also fix  loading of audio files into buffers in some cases.</li>
+</ul>
 <h2><a class="header" href="#050" id="050">0.5.0</a></h2>
 <ul>
 <li>Roll out a deferred freeing strategy, which uses C++ custom allocators to
@@ -539,6 +562,7 @@ Synthizer will make an effort to make Synthizer-modified properties faster to re
 <p>The panning strategy specifies how sources are to be panned.  SYnthizer supports the following panning strategies:</p>
 <table><thead><tr><th>Strategy</th><th>Channels</th><th>Description</th></tr></thead><tbody>
 <tr><td>SYZ_PANNER_STRATEGY_HRTF</td><td>2</td><td>An HRTF implementation, intended for use via headphones.</td></tr>
+<tr><td>SYZ_PANNER_STRATEGY_STEREO</td><td>2</td><td>A simple stereo panning strategy assuming speakers are at -90 and 90.</td></tr>
 </tbody></table>
 <h1><a class="header" href="#channel-upmixing-and-downmixing" id="channel-upmixing-and-downmixing">Channel Upmixing and Downmixing</a></h1>
 <p>Synthizer's current channel mixing algorithm is as follows:</p>
@@ -686,10 +710,18 @@ SYZ_CAPI syz_ErrorCode syz_sourceRemoveGenerator(syz_Handle source, syz_Handle g
 </code></pre>
 <p>Creates a StreamingGenerator from the standard <a href="object_reference/../concepts/streams.html">stream parameters</a>.</p>
 <h2><a class="header" href="#properties-8" id="properties-8">Properties</a></h2>
-<p>None currently. Some in future.</p>
+<table><thead><tr><th>Enum</th><th>Type</th><th>Default Value</th><th>Range</th><th>Description</th></tr></thead><tbody>
+<tr><td>SYZ_P_POSITION</td><td>double</td><td>0.0</td><td>value &gt;= 0.0</td><td>The position in of the stream.</td></tr>
+<tr><td>SYZ_P_LOOPING</td><td>int</td><td>0</td><td>0 or 1</td><td>Whether playback loops</td></tr>
+</tbody></table>
 <h2><a class="header" href="#remarks-7" id="remarks-7">Remarks</a></h2>
-<p>StreamingGenerator plays streams, decoding and reading on demand.  Note  that this is a heavyweight object with a long start-up time.  The typical use case is for music playback.</p>
-<p>Due to the expense of streaming from disk and other I/O sources, having more than a few StreamingGenerators going will cause a decrease in audio quality on many systems, typically manifesting as drop--outs and crackling.</p>
+<p>StreamingGenerator plays streams, decoding and reading on demand.  The typical use case is for music playback.</p>
+<p>Due to the expense of streaming from disk and other I/O sources, having more than a few StreamingGenerators going will cause a decrease in audio quality on many systems, typically manifesting as drop--outs and crackling.
+StreamingGenerator creates one background thread per instance and does all decoding and I/O in that thread.</p>
+<p>At startup, StreamingGenerator's background thread eagerly decodes a relatively large amount of data in order to build up a buffer which prevents underruns.
+Thereafter, it will pick up property changes every time the background thread wakes up to add more data to the buffer.  This means that most operations are high latency, currently on the order of 100 to 200 MS.
+The least latent operation is the initial start-up, which will begin playing as soon as enough data is decoded.  How long that takes depends on the format and I/O characteristics of the stream, as well as
+the user's machine and current load of the system.</p>
 <h1><a class="header" href="#buffergenerator" id="buffergenerator">BufferGenerator</a></h1>
 <p>Inherits from <a href="object_reference/./generator.html">Generator</a>.</p>
 <h2><a class="header" href="#constructors-8" id="constructors-8">Constructors</a></h2>

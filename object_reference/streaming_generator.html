@@ -163,10 +163,18 @@
 </code></pre>
 <p>Creates a StreamingGenerator from the standard <a href="../concepts/streams.html">stream parameters</a>.</p>
 <h2><a class="header" href="#properties" id="properties">Properties</a></h2>
-<p>None currently. Some in future.</p>
+<table><thead><tr><th>Enum</th><th>Type</th><th>Default Value</th><th>Range</th><th>Description</th></tr></thead><tbody>
+<tr><td>SYZ_P_POSITION</td><td>double</td><td>0.0</td><td>value &gt;= 0.0</td><td>The position in of the stream.</td></tr>
+<tr><td>SYZ_P_LOOPING</td><td>int</td><td>0</td><td>0 or 1</td><td>Whether playback loops</td></tr>
+</tbody></table>
 <h2><a class="header" href="#remarks" id="remarks">Remarks</a></h2>
-<p>StreamingGenerator plays streams, decoding and reading on demand.  Note  that this is a heavyweight object with a long start-up time.  The typical use case is for music playback.</p>
-<p>Due to the expense of streaming from disk and other I/O sources, having more than a few StreamingGenerators going will cause a decrease in audio quality on many systems, typically manifesting as drop--outs and crackling.</p>
+<p>StreamingGenerator plays streams, decoding and reading on demand.  The typical use case is for music playback.</p>
+<p>Due to the expense of streaming from disk and other I/O sources, having more than a few StreamingGenerators going will cause a decrease in audio quality on many systems, typically manifesting as drop--outs and crackling.
+StreamingGenerator creates one background thread per instance and does all decoding and I/O in that thread.</p>
+<p>At startup, StreamingGenerator's background thread eagerly decodes a relatively large amount of data in order to build up a buffer which prevents underruns.
+Thereafter, it will pick up property changes every time the background thread wakes up to add more data to the buffer.  This means that most operations are high latency, currently on the order of 100 to 200 MS.
+The least latent operation is the initial start-up, which will begin playing as soon as enough data is decoded.  How long that takes depends on the format and I/O characteristics of the stream, as well as
+the user's machine and current load of the system.</p>
 
                     </main>
 
