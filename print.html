@@ -159,6 +159,16 @@
                     <main>
                         <h1><a class="header" href="#introduction" id="introduction">Introduction</a></h1>
 <h1><a class="header" href="#release-notes" id="release-notes">Release Notes</a></h1>
+<h2><a class="header" href="#072" id="072">0.7.2</a></h2>
+<ul>
+<li>New property on BufferGenerator: <code>SYZ_P_PITCH_BEND</code>.</li>
+<li>We will adopt pre-1.0 semantic versioning going forward in order to be compatible with Rust-style <code>^</code> dependencies:
+<code>0.major.minor</code>, with minor incrementing for features and major incrementing for incompatible API updates. This should enable at least some compatibility in version numbers across package managers.</li>
+</ul>
+<h2><a class="header" href="#071" id="071">0.7.1</a></h2>
+<ul>
+<li>Attempt releasing 32-bit Python wheels.</li>
+</ul>
 <h2><a class="header" href="#070" id="070">0.7.0</a></h2>
 <ul>
 <li>Add a noise generator.</li>
@@ -750,12 +760,16 @@ the user's machine and current load of the system.</p>
 <tr><td>SYZ_P_BUFFER</td><td>Object</td><td>0</td><td>Any Buffer handle</td><td>The buffer to play</td></tr>
 <tr><td>SYZ_P_POSITION</td><td>double</td><td>0.0</td><td>value &gt;= 0.0</td><td>The position in the buffer.</td></tr>
 <tr><td>SYZ_P_LOOPING</td><td>int</td><td>0</td><td>0 or 1</td><td>Whether playback loops at the end of the buffer.</td></tr>
+<tr><td>SYZ_P_PITCH_BEND</td><td>double</td><td>1.0</td><td>value &gt;= 0.0</td><td>Multiplier on the rate of the buffer's playback.</td></tr>
 </tbody></table>
 <h2><a class="header" href="#remarks-8" id="remarks-8">Remarks</a></h2>
 <p>BufferGenerators play <a href="object_reference/./buffer.html">Buffer</a>s.</p>
 <p><code>SYZ_P_POSITION</code> is reset if <code>SYZ_P_BUFFER</code> is modified.</p>
 <p><code>SYZ_P_POSITION</code> can be set past the end of the buffer.  If <code>SYZ_P_LOOPING = 0</code>, the generator will play silence.  Otherwise, the position will immediately loop to the beginning.</p>
 <p>More than one BufferGenerator can use the same underlying Buffer.</p>
+<p><code>SYZ_P_PITCH_BEND</code> is a multiplicative rate on the playback of the buffer.  Though this clarification is currently unimportant, the difference between this and it being <em>the</em> rate
+is that it will eventually be combined with doppler effects.  A value of 2.0 is one octave higher. A value of 0.5 is one octave lower.  Expect <code>SYZ_P_PITCH_BEND</code> to move to a base &quot;class&quot; in future:
+though we only support it for buffers at the moment, many other generator types will be able to do so in future.</p>
 <h1><a class="header" href="#noisegenerator" id="noisegenerator">NoiseGenerator</a></h1>
 <p>Inherits from <a href="object_reference/./generator.html">Generator</a>.</p>
 <h2><a class="header" href="#constructors-9" id="constructors-9">Constructors</a></h2>
