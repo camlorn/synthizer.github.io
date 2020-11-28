@@ -17,12 +17,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
+        
         <link rel="icon" href="favicon.svg">
+        
+        
         <link rel="shortcut icon" href="favicon.png">
+        
         <link rel="stylesheet" href="css/variables.css">
         <link rel="stylesheet" href="css/general.css">
         <link rel="stylesheet" href="css/chrome.css">
+        
         <link rel="stylesheet" href="css/print.css" media="print">
+        
 
         <!-- Fonts -->
         <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
@@ -124,9 +130,11 @@
                     <h1 class="menu-title">The Synthizer Manual</h1>
 
                     <div class="right-buttons">
+                        
                         <a href="print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
+                        
                         
                     </div>
                 </div>
@@ -156,6 +164,19 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#release-notes" id="release-notes">Release Notes</a></h1>
+<h2><a class="header" href="#076" id="076">0.7.6</a></h2>
+<ul>
+<li>Synthizer now builds on Linux.  This is preliminary.  If you experience issues, please report them, as Linux isn't my primary platform.  That said, I have received multiple confirmations that it works.</li>
+<li>Python now publishes source distributions, which are capable of building without any extra intervention on your part, except for Windows which requires being in an appropriate MSVC shell.  On Linux, you can install Synthizer into virtualenvs with a simple <code>pip install synthizer</code>, assuming a supported C and C++ compiler.
+<ul>
+<li>Note that git is currently required in order to clone the Synthizer repository. We might include Synthizer inline in future.</li>
+</ul>
+</li>
+<li>Prebuilt C artifacts for Windows now link against the multithreaded dynamic CRT. This was done to speed up Python builds and because there is
+no obvious right choice. If you need a different configuration, please build from source specifying <code>CMAKE_MSVC_RUNTIME_LIBRARY</code> and <code>SYNTHIZER_LIB_TYPE</code> to appropriate values.</li>
+<li>The audio generation all runs inline in the audio callback. This has the knock-on effect of making.
+property reads even slower than they were already, but is necessary to work well on Linux. See issue #32 for tracking fast property reads.</li>
+</ul>
 <h2><a class="header" href="#075" id="075">0.7.5</a></h2>
 <ul>
 <li>Introduce <a href="./object_reference/fdn_reverb.html">reverb</a>.</li>
