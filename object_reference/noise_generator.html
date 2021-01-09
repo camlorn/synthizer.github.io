@@ -177,7 +177,8 @@ The number of output channels cannot be configured at runtime.  Each channel pro
 </tbody></table>
 <h2><a class="header" href="#remarks" id="remarks">Remarks</a></h2>
 <p>NoiseGenerators generate noise, which will be useful in future when various effects are added.  For instance filtered noise makes plausible wind.
-Synthizer allows setting the algorithm used to generate noise to one of the following options.  Note that these are more precisely named than white/pink/brown; the sections below document the equivalent in the more standard nomenclature.</p>
+Note that noise generators don't support <code>SYZ_P_PITCH_BEND</code> because noise doesn't have a pitch by definition.</p>
+<p>Synthizer allows setting the algorithm used to generate noise to one of the following options.  Note that these are more precisely named than white/pink/brown; the sections below document the equivalent in the more standard nomenclature.</p>
 <h3><a class="header" href="#syz_noise_type_uniform" id="syz_noise_type_uniform"><code>SYZ_NOISE_TYPE_UNIFORM</code></a></h3>
 <p>A uniform noise source.  From an audio perspective this is white noise, but is sampled from a uniform rather than Gaussian distribution for efficiency.</p>
 <h3><a class="header" href="#syz_noise_type_vm" id="syz_noise_type_vm"><code>SYZ_NOISE_TYPE_VM</code></a></h3>

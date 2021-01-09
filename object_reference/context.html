@@ -171,6 +171,7 @@
 <p>Creates a context configured to play through the default output device.</p>
 <h2><a class="header" href="#properties" id="properties">Properties</a></h2>
 <table><thead><tr><th>Enum</th><th>Type</th><th>Default</th><th>Range</th><th>Description</th></tr></thead><tbody>
+<tr><td>SYZ_P_GAIN</td><td>double</td><td>1.0</td><td>value &gt;= 0.0</td><td>The gain of the context</td></tr>
 <tr><td>SYZ_P_POSITION</td><td>double3</td><td>(0, 0, 0)</td><td>any</td><td>The position of the listener.</td></tr>
 <tr><td>SYZ_P_ORIENTATION</td><td>double6</td><td>(0, 1, 0, 0, 0, 1)</td><td>Two packed unit vectors</td><td>The orientation of the listener as <code>(atx, aty, atz, upx, upy, upz)</code>.</td></tr>
 <tr><td>SYZ_P_DISTANCE_MODEL</td><td>int</td><td>SYZ_DISTANCE_MODEL_LINEAR</td><td>any SYZ_DISTANCE_MODEL</td><td>The default distance model for new sources.</td></tr>
@@ -180,6 +181,13 @@
 <tr><td>SYZ_P_CLOSENESS_BOOST</td><td>double</td><td>0.0</td><td>any finite double</td><td>The default closeness boost for new sources in DB.</td></tr>
 <tr><td>SYZ_P_CLOSENESS_BOOST_DISTANCE</td><td>double</td><td>0.0</td><td>value &gt;= 0.0</td><td>The default closeness boost distance for new sources</td></tr>
 </tbody></table>
+<h2><a class="header" href="#functions" id="functions">Functions</a></h2>
+<h3><a class="header" href="#syz_pause-syz_play" id="syz_pause-syz_play"><code>syz_pause</code>, <code>syz_play</code></a></h3>
+<pre><code>syz_ErrorCode syz_pause(syz_Handle object);
+syz_ErrorCode syz_play(syz_Handle object);
+</code></pre>
+<p>The standard play/pause functions, which do exactly what their name suggests.</p>
+<p>When the context is paused, nothing it manages advances and no audio is audible.</p>
 <h2><a class="header" href="#remarks" id="remarks">Remarks</a></h2>
 <p>The context is the main entrypoint to Synthizer, responsible for the following:</p>
 <ul>

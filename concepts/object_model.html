@@ -166,6 +166,7 @@
                         <h1><a class="header" href="#objects-handles-and-properties" id="objects-handles-and-properties">Objects, Handles, and Properties</a></h1>
 <p>Synthizer represents references to objects with a <code>syz_Handle</code> type.  The following excerpts from <code>synthizer.h</code> are available on every object type:</p>
 <pre><code>SYZ_CAPI syz_ErrorCode syz_handleFree(syz_Handle handle);
+SYZ_CAPI syz_ErrorCode syz_handleGetObjectType(int *out, syz_Handle handle);
 
 SYZ_CAPI syz_ErrorCode syz_getI(int *out, syz_Handle target, int property);
 SYZ_CAPI syz_ErrorCode syz_setI(syz_Handle target, int property, int value);
@@ -177,7 +178,10 @@ SYZ_CAPI syz_ErrorCode syz_setD3(syz_Handle target, int property, double x, doub
 SYZ_CAPI syz_ErrorCode syz_getD6(double *x1, double *y1, double *z1, double *x2, double *y2, double *z2, syz_Handle target, int property);
 SYZ_CAPI syz_ErrorCode syz_setD6(syz_Handle handle, int property, double x1, double y1, double z1, double x2, double y2, double z2);
 </code></pre>
-<p>Synthizer objects are like classes: they have properties, methods, and (optionally) bases. They're created through &quot;constructors&quot;, for example <code>syz_createContext</code>, and destroyed through <code>syz_handleFree</code>.</p>
+<p>Synthizer objects are like classes: they have properties, methods, and (optionally) bases. They're created through &quot;constructors&quot;, for example <code>syz_createContext</code>, and destroyed through <code>syz_handleFree</code>.
+<code>syz_handleGetObjectType</code> can be used to query the type of an object at runtime, returning one of the <code>SYZ_OTYPE</code> constants
+in <code>synthizer_constants.h</code>.  As with C's <code>malloc</code> and <code>free</code>, calling <code>syz_HandleFree</code>
+with <code>handle = 0</code> is a no-op.</p>
 <p>Property names are defined in <code>synthizer_constants.h</code> of the form <code>SYZ_P_FOO</code>.  Since some objects have common properties and in order to preserve flexibility, the property enum is shared between all objects.</p>
 <p>Properties are set through <code>syz_setX</code> and read through <code>syz_getX</code> where <code>X</code> depends on the type:</p>
 <ul>
