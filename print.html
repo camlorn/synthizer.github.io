@@ -389,7 +389,7 @@ with synthizer.initialized():
 as part of the general pre-1.0 documentation project.</p>
 <h2><a class="header" href="#introduction-1" id="introduction-1">Introduction</a></h2>
 <p>Synthizer supports sending events.  Currently, it can send finished and looped events for both
-BufferGenerator and StreamingGenerator.  This will be extended to other objects and concepts in futue,
+BufferGenerator and StreamingGenerator.  This will be extended to other objects and concepts in future,
 as appropriate.  The events have the following meanings:</p>
 <ul>
 <li>Finished: the generator isn't configured to loop and has reached the end.</li>
@@ -413,7 +413,10 @@ to a reference-counted scheme which will improve the concurrency story.</p>
         # process
 </code></pre>
 <p><code>get_events</code> takes an optional argument to limit the number of events returned in one iteration.  By default, it's unlimited.</p>
-<p>As shown above, you detect event types with <code>isinstance</code>.  Each event has a <code>source</code> and <code>context</code> property indicating the source (e.g. generator) and context associated with it, as Synthizer objects.</p>
+<p>As shown above, you detect event types with <code>isinstance</code>.  Each event has a <code>source</code> and <code>context</code> property indicating the source (e.g. generator) and context associated with it, as Synthizer objects.
+In future, other event types may include more information.</p>
+<h2><a class="header" href="#notes" id="notes">Notes</a></h2>
+<p>Events are currently alpha, as stated above.  Expect bugs.  In particular, there may be pathological cases in which </p>
 <h1><a class="header" href="#introduction-2" id="introduction-2">Introduction</a></h1>
 <p>This section of the manual introduces Synthizer concepts and should be read in order. Pages here will either explain something, or quote relevant sections of the C headers with explanation.</p>
 <h1><a class="header" href="#stability-and-versioning" id="stability-and-versioning">Stability and Versioning</a></h1>
