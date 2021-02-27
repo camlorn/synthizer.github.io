@@ -163,28 +163,28 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#noisegenerator" id="noisegenerator">NoiseGenerator</a></h1>
+                        <h1 id="noisegenerator"><a class="header" href="#noisegenerator">NoiseGenerator</a></h1>
 <p>Inherits from <a href="./generator.html">Generator</a>.</p>
-<h2><a class="header" href="#constructors" id="constructors">Constructors</a></h2>
-<h3><a class="header" href="#syz_createnoisegenerator" id="syz_createnoisegenerator"><code>syz_createNoiseGenerator</code></a></h3>
+<h2 id="constructors"><a class="header" href="#constructors">Constructors</a></h2>
+<h3 id="syz_createnoisegenerator"><a class="header" href="#syz_createnoisegenerator"><code>syz_createNoiseGenerator</code></a></h3>
 <pre><code>SYZ_CAPI syz_ErrorCode syz_createNoiseGenerator(syz_Handle *out, syz_Handle context, unsigned int channels);
 </code></pre>
 <p>Creates a NoiseGenerator configured for uniform noise with the specified number of output channels.
 The number of output channels cannot be configured at runtime.  Each channel produces decorrelated noise.</p>
-<h2><a class="header" href="#properties" id="properties">Properties</a></h2>
+<h2 id="properties"><a class="header" href="#properties">Properties</a></h2>
 <table><thead><tr><th>Enum</th><th>Type</th><th>Default Value</th><th>Range</th><th>Description</th></tr></thead><tbody>
 <tr><td>SYZ_P_NOISE_TYPE</td><td>int</td><td>SYZ_NOISE_TYPE_UNIFORM</td><td>any SYZ_NOISE_TYPE</td><td>The type of noise to generate. See remarks.</td></tr>
 </tbody></table>
-<h2><a class="header" href="#remarks" id="remarks">Remarks</a></h2>
+<h2 id="remarks"><a class="header" href="#remarks">Remarks</a></h2>
 <p>NoiseGenerators generate noise, which will be useful in future when various effects are added.  For instance filtered noise makes plausible wind.
 Note that noise generators don't support <code>SYZ_P_PITCH_BEND</code> because noise doesn't have a pitch by definition.</p>
 <p>Synthizer allows setting the algorithm used to generate noise to one of the following options.  Note that these are more precisely named than white/pink/brown; the sections below document the equivalent in the more standard nomenclature.</p>
-<h3><a class="header" href="#syz_noise_type_uniform" id="syz_noise_type_uniform"><code>SYZ_NOISE_TYPE_UNIFORM</code></a></h3>
+<h3 id="syz_noise_type_uniform"><a class="header" href="#syz_noise_type_uniform"><code>SYZ_NOISE_TYPE_UNIFORM</code></a></h3>
 <p>A uniform noise source.  From an audio perspective this is white noise, but is sampled from a uniform rather than Gaussian distribution for efficiency.</p>
-<h3><a class="header" href="#syz_noise_type_vm" id="syz_noise_type_vm"><code>SYZ_NOISE_TYPE_VM</code></a></h3>
+<h3 id="syz_noise_type_vm"><a class="header" href="#syz_noise_type_vm"><code>SYZ_NOISE_TYPE_VM</code></a></h3>
 <p>This is pink noise generated with the Voss-McCartney algorithm, which consists of a number of summed uniform random number generators which are run at different rates.
 Synthizer adds an additional random number generator at the top of the hierachy in order to improve the color of the noise in the high frequencies.</p>
-<h3><a class="header" href="#syz_noise_type_filtered_brown" id="syz_noise_type_filtered_brown"><code>SYZ_NOISE_TYPE_FILTERED_BROWN</code></a></h3>
+<h3 id="syz_noise_type_filtered_brown"><a class="header" href="#syz_noise_type_filtered_brown"><code>SYZ_NOISE_TYPE_FILTERED_BROWN</code></a></h3>
 <p>This is brown noise generated with a -6DB filter.</p>
 
                     </main>

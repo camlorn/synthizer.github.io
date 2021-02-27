@@ -163,19 +163,19 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#streaminggenerator" id="streaminggenerator">StreamingGenerator</a></h1>
+                        <h1 id="streaminggenerator"><a class="header" href="#streaminggenerator">StreamingGenerator</a></h1>
 <p>Inherits from <a href="./generator.html">Generator</a>.</p>
-<h2><a class="header" href="#constructors" id="constructors">Constructors</a></h2>
-<h3><a class="header" href="#syz_createstreaminggenerator" id="syz_createstreaminggenerator"><code>syz_createStreamingGenerator</code></a></h3>
+<h2 id="constructors"><a class="header" href="#constructors">Constructors</a></h2>
+<h3 id="syz_createstreaminggenerator"><a class="header" href="#syz_createstreaminggenerator"><code>syz_createStreamingGenerator</code></a></h3>
 <pre><code>SYZ_CAPI syz_ErrorCode syz_createStreamingGenerator(syz_Handle *out, syz_Handle context, const char *protocol, const char *path, const char *options);
 </code></pre>
 <p>Creates a StreamingGenerator from the standard <a href="../concepts/streams.html">stream parameters</a>.</p>
-<h2><a class="header" href="#properties" id="properties">Properties</a></h2>
+<h2 id="properties"><a class="header" href="#properties">Properties</a></h2>
 <table><thead><tr><th>Enum</th><th>Type</th><th>Default Value</th><th>Range</th><th>Description</th></tr></thead><tbody>
 <tr><td>SYZ_P_POSITION</td><td>double</td><td>0.0</td><td>value &gt;= 0.0</td><td>The position in of the stream.</td></tr>
 <tr><td>SYZ_P_LOOPING</td><td>int</td><td>0</td><td>0 or 1</td><td>Whether playback loops</td></tr>
 </tbody></table>
-<h2><a class="header" href="#remarks" id="remarks">Remarks</a></h2>
+<h2 id="remarks"><a class="header" href="#remarks">Remarks</a></h2>
 <p>StreamingGenerator plays streams, decoding and reading on demand.  The typical use case is for music playback.</p>
 <p>Due to the expense of streaming from disk and other I/O sources, having more than a few StreamingGenerators going will cause a decrease in audio quality on many systems, typically manifesting as drop--outs and crackling.
 StreamingGenerator creates one background thread per instance and does all decoding and I/O in that thread.</p>

@@ -163,11 +163,11 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#3d-panning" id="3d-panning">3D Panning</a></h1>
+                        <h1 id="3d-panning"><a class="header" href="#3d-panning">3D Panning</a></h1>
 <p>This page explains the steps involved in 3D panning. Note that only the panner strategy applies to <code>PannedSource</code>.</p>
-<h2><a class="header" href="#1-convert-the-sources-position-from-world-coordinates-to-azimuth-elevation-and-distance" id="1-convert-the-sources-position-from-world-coordinates-to-azimuth-elevation-and-distance">1. Convert the source's position from world coordinates to Azimuth, Elevation, and distance</a></h2>
+<h2 id="1-convert-the-sources-position-from-world-coordinates-to-azimuth-elevation-and-distance"><a class="header" href="#1-convert-the-sources-position-from-world-coordinates-to-azimuth-elevation-and-distance">1. Convert the source's position from world coordinates to Azimuth, Elevation, and distance</a></h2>
 <p>This is done by converting the position, at, and up vectors to a transformation matrix.  The result is a position in listener coordinates. Then application of the pythagorean theorem and basic trigonometry gets to spherical coordinates.</p>
-<h2><a class="header" href="#2-compute-the-gain-from-the-distance-model" id="2-compute-the-gain-from-the-distance-model">2. Compute the Gain from the Distance Model</a></h2>
+<h2 id="2-compute-the-gain-from-the-distance-model"><a class="header" href="#2-compute-the-gain-from-the-distance-model">2. Compute the Gain from the Distance Model</a></h2>
 <p>Let <code>d</code> be the distance to the source, <code>d_ref</code> the reference distance, <code>d_max</code> the max distance, <code>r</code> the roll-off factor. Then the gain of the source is computed as a linear scalar using one of the following formulas:</p>
 <table><thead><tr><th>Model</th><th>Formula</th></tr></thead><tbody>
 <tr><td>SYZ_DISTANCE_MODEL_NONE</td><td><code>1.0</code></td></tr>
@@ -178,11 +178,11 @@
 <tr><td>SYZ_DISTANCE_MODEL_INVERSE when <code>d_ref &gt; 0.0</code></td><td><code>d_ref / (d_ref + r * max(d, d_ref) - d_ref)</code></td></tr>
 </tbody></table>
 <p>Qualitatively, <code>d_ref</code> is the &quot;size&quot; of the source, <code>d_max</code> is where the source is silent, <code>r</code> is how fast the source becomes quieter.  Mapping these to real world scenarios is difficult, and in general the best approach is to experiment for your use case.</p>
-<h2><a class="header" href="#3-apply-the-closeness-boost-and-clamp" id="3-apply-the-closeness-boost-and-clamp">3. Apply the closeness boost and clamp</a></h2>
+<h2 id="3-apply-the-closeness-boost-and-clamp"><a class="header" href="#3-apply-the-closeness-boost-and-clamp">3. Apply the closeness boost and clamp</a></h2>
 <p>The closeness boost, specified through <code>SYZ_P_CLOSENESS_BOOST</code> and <code>SYZ_P_CLOSENESS_BOOST_DISTANCE</code> is used to emphasize sources that have crossed a threshold of interest, i.e. because the player is now close enough to interact.
 <code>SYZ_P_CLOSENESS_BOOST</code> specifies a gain in DB (negative DB is allowed) which is added to the source's gain when the source is closer than <code>SYZ_P_CLOSENESS_BOOST_DISTANCE</code>.</p>
 <p>After the closeness boost is applied, gain is clamped to the range 0.0 to 1.0.</p>
-<h2><a class="header" href="#4-apply-the-panning-strategy" id="4-apply-the-panning-strategy">4. Apply the Panning Strategy</a></h2>
+<h2 id="4-apply-the-panning-strategy"><a class="header" href="#4-apply-the-panning-strategy">4. Apply the Panning Strategy</a></h2>
 <p>The panning strategy specifies how sources are to be panned.  SYnthizer supports the following panning strategies:</p>
 <table><thead><tr><th>Strategy</th><th>Channels</th><th>Description</th></tr></thead><tbody>
 <tr><td>SYZ_PANNER_STRATEGY_HRTF</td><td>2</td><td>An HRTF implementation, intended for use via headphones.</td></tr>

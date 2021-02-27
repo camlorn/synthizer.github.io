@@ -163,23 +163,23 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#generator-abstract" id="generator-abstract">Generator (abstract)</a></h1>
+                        <h1 id="generator-abstract"><a class="header" href="#generator-abstract">Generator (abstract)</a></h1>
 <p>Generators generate audio, and are how Synthizer knows what to play through sources. In addition to direct
 generation, some generators take other generators as arguments, e.g. per-source effects and filters.</p>
-<h2><a class="header" href="#properties" id="properties">Properties</a></h2>
+<h2 id="properties"><a class="header" href="#properties">Properties</a></h2>
 <p>All generators support the following properties:</p>
 <table><thead><tr><th>Enum</th><th>Type</th><th>Default</th><th>Range</th><th>Description</th></tr></thead><tbody>
 <tr><td>SYZ_P_GAIN</td><td>double</td><td>1.0</td><td>value &gt;= 0.0</td><td>The gain of the generator.</td></tr>
 <tr><td>SYZ_P_PITCH_BEND</td><td>double</td><td>1.0</td><td>value &gt;= 0.0</td><td>Pitch bend of the generator as a multiplier (2.0 is +1 octave, 0.5 is -1 octave, etc)</td></tr>
 </tbody></table>
-<h2><a class="header" href="#functions" id="functions">Functions</a></h2>
-<h3><a class="header" href="#syz_pause-syz_play" id="syz_pause-syz_play"><code>syz_pause</code>, <code>syz_play</code></a></h3>
+<h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
+<h3 id="syz_pause-syz_play"><a class="header" href="#syz_pause-syz_play"><code>syz_pause</code>, <code>syz_play</code></a></h3>
 <pre><code>syz_ErrorCode syz_pause(syz_Handle object);
 syz_ErrorCode syz_play(syz_Handle object);
 
 </code></pre>
 <p>The standard play/pause functions, which do exactly what their name suggests.</p>
-<h2><a class="header" href="#remarks" id="remarks">Remarks</a></h2>
+<h2 id="remarks"><a class="header" href="#remarks">Remarks</a></h2>
 <p>Not all generators support <code>SYZ_P_PITCH_BEND</code> because it doesn't necessarily make sense for them to do so.  Where this is the case, this manual
 will document that in the remarks for that generator type.  Additionally, in cases where
 <code>SYZ_P_PITCH_BEND</code> has non-obvious behavior, the remarks will document that as well.  The most common place to se non-obvious <code>SYZ_P_PITCH_BEND</code> behavior is in effects.</p>

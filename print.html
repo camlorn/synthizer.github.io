@@ -165,31 +165,31 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#introduction" id="introduction">Introduction</a></h1>
-<h1><a class="header" href="#a-basic-python-tutorial" id="a-basic-python-tutorial">A Basic Python Tutorial</a></h1>
-<h2><a class="header" href="#installation" id="installation">Installation</a></h2>
+                        <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
+<h1 id="a-basic-python-tutorial"><a class="header" href="#a-basic-python-tutorial">A Basic Python Tutorial</a></h1>
+<h2 id="installation"><a class="header" href="#installation">Installation</a></h2>
 <p>We support Python 3.  Python wheels for Windows X64 are published to Pypi, so to install:</p>
 <pre><code class="language-bash">pip install synthizer
 </code></pre>
-<h2><a class="header" href="#some-basics" id="some-basics">Some Basics</a></h2>
+<h2 id="some-basics"><a class="header" href="#some-basics">Some Basics</a></h2>
 <p>Synthizer requires initialization and deinitialization. The best way to initialize Synthizer is to use the context manager:</p>
 <pre><code class="language-python">with synthizer.initialized():
     # Code...
 </code></pre>
 <p>The context manager will handle deinitialization on exceptions.  Though <code>synthizer.initialize()</code> and <code>synthizer.shutdown()</code> are exposed, use is discouraged as the context manager ensures clean shutdown in (almost) all cases.</p>
 <p>Once the library is deinitialized, calls into Synthizer error.</p>
-<h2><a class="header" href="#destroying-objects" id="destroying-objects">Destroying Objects</a></h2>
+<h2 id="destroying-objects"><a class="header" href="#destroying-objects">Destroying Objects</a></h2>
 <p>Unlike the rest of Python, Synthizer objects represent concrete audio architecture, which need to have a defined lifetime in order to control when they are and aren't being heard,
 and also to ensure that it can be well understood when things are and aren't using system resources.  To that end, Synthizer objects don't interact with Python garbage collection. When you're done with an object, call <code>myobj.destroy()</code>.</p>
 <p>At the moment, failing to do so will permanently leak the object.  Work in future may lift this restriction, but it's still necessary to be explicit: if you aren't, things may be audioble longer than you intend.</p>
-<h2><a class="header" href="#the-context" id="the-context">The Context</a></h2>
+<h2 id="the-context"><a class="header" href="#the-context">The Context</a></h2>
 <p>Most objects in Synthizer require a context, which represents a listener in 3D space, an audio output device, and other miscellaneous infrastructure.
 Objects are passed a context on construction, and two objects from different contexts never interact.</p>
 <p>To get a context:</p>
 <pre><code class="language-python">ctx = synthizer.Context()
 </code></pre>
 <p>Currently, selecting audio output devices isn't supported, and audio will go to the system default.</p>
-<h2><a class="header" href="#buffers-streams-and-generators" id="buffers-streams-and-generators">Buffers, Streams, and Generators</a></h2>
+<h2 id="buffers-streams-and-generators"><a class="header" href="#buffers-streams-and-generators">Buffers, Streams, and Generators</a></h2>
 <p>As elaborated in the concepts section, the Synthizer audio graph is as follows:</p>
 <ul>
 <li>A source is fed by one or more generators and pans audio.</li>
@@ -220,13 +220,13 @@ You use <code>StreamingGenerator</code> for things like music and <code>BufferGe
 <li>When Synthizer needs to overload a constructor, it does so as staticmethods on the class. We don't have
 multiple constructors here yet, but will in future.</li>
 </ul>
-<h2><a class="header" href="#sources" id="sources">Sources</a></h2>
+<h2 id="sources"><a class="header" href="#sources">Sources</a></h2>
 <p>Sources represent audio output.  They get one or more generators, combine them all, and output.  Currently we have the following kinds of sources:</p>
 <ul>
 <li>A PannedSource is manually controlled using azimuth and elevation or, alternatively, a panning scalar.</li>
 <li>Source3D is a 3D environmental source with the usual things you'd expect: distance model, position, etc.</li>
 </ul>
-<h2><a class="header" href="#properties" id="properties">Properties</a></h2>
+<h2 id="properties"><a class="header" href="#properties">Properties</a></h2>
 <p>Synthizer offers the following kinds of properties:</p>
 <ul>
 <li>int, represented as either a Python integer type or an enum. An example of the latter case is <code>source.distance_model</code>, which is a <code>synthizer.DistanceModel</code>. Synthizer exposes enums as Python 3.4-style enums via Cython.</li>
@@ -253,7 +253,7 @@ A common mistake is to try to use Synthizer to store data, for example putting t
 <p>Object properties are internally referenced in a weak fashion. That is to say that destroying (<code>.destroy()</code>)the object the property is set to will clear the property. </p>
 <p>In the Python bindings, Synthizer translates <code>SYZ_P_MY_PROPERTY</code> to <code>obj.my_property</code>. The translations of the tables in the object reference are nearly mechanical, and this simple
 transformation always tells you where the property lives in Python.</p>
-<h2><a class="header" href="#an-aside-orientation-formulas" id="an-aside-orientation-formulas">An aside: orientation formulas</a></h2>
+<h2 id="an-aside-orientation-formulas"><a class="header" href="#an-aside-orientation-formulas">An aside: orientation formulas</a></h2>
 <p>Before going much further, most people seem to eventually ask about trigonometry with respect to using a 3D audio library for 2D games. The high level overview
 for those who already know trigonometry is that Synthizer's coordinate system is right-handed and orientations consist of 2 orthogonal unit vectors <code>(atx, aty, atz, upx, upy, upz)</code> stored
 as a packed property so that they can both be set atomically.  But the longer version for those who don't know trigonometry is:</p>
@@ -271,7 +271,7 @@ def make_orientation(degrees):
     return (math.sin(rad), math.cos(rad), 0, 0, 0, 1)
 </code></pre>
 <p>Setting <code>context.orientation</code> to the result of the above will set things up so that you can treat positive x as east, positive y as north, and positive z as up. The default orientation faces the listener north.</p>
-<h2><a class="header" href="#putting-it-together" id="putting-it-together">Putting it Together</a></h2>
+<h2 id="putting-it-together"><a class="header" href="#putting-it-together">Putting it Together</a></h2>
 <p>To play a source in 3D space, do the following:</p>
 <ul>
 <li>Create a context.</li>
@@ -282,7 +282,7 @@ def make_orientation(degrees):
 <li><code>source.add_generator(generator)</code></li>
 <li>Then manipulate position, etc. on the source.</li>
 </ul>
-<h2><a class="header" href="#a-worked-example" id="a-worked-example">A Worked Example</a></h2>
+<h2 id="a-worked-example"><a class="header" href="#a-worked-example">A Worked Example</a></h2>
 <p>The following is a 3D media player, the audio library equivalent of hello world. It supports the following commands:</p>
 <ul>
 <li><code>pause</code>, <code>play</code>: pause/play the source</li>
@@ -383,11 +383,11 @@ with synthizer.initialized():
         else:
             print(&quot;Unrecognized command&quot;)
 </code></pre>
-<h1><a class="header" href="#events-alpha" id="events-alpha">Events (alpha)</a></h1>
+<h1 id="events-alpha"><a class="header" href="#events-alpha">Events (alpha)</a></h1>
 <p>The following functionality is alpha.  In particular, significant changes are expected in the
 0.9 release.  For the moment the only documentation is this tutorial; it will be improved after the planned 0.9 changes and
 as part of the general pre-1.0 documentation project.</p>
-<h2><a class="header" href="#introduction-1" id="introduction-1">Introduction</a></h2>
+<h2 id="introduction-1"><a class="header" href="#introduction-1">Introduction</a></h2>
 <p>Synthizer supports sending events.  Currently, it can send finished and looped events for both
 BufferGenerator and StreamingGenerator.  This will be extended to other objects and concepts in future,
 as appropriate.  The events have the following meanings:</p>
@@ -404,7 +404,7 @@ effectively a memory leak.  In other words, only enable events if you know you'l
 <p>The events system will drop events which would refer to invalid handles on a best-effort basis, so that
 an invalid handle is never returned to the caller of <code>syz_contextGetNextEvent</code>.  This is guaranteed to work as long as all deletion happens on the same thread as the event polling.  In future, Synthizer is going to switch handles
 to a reference-counted scheme which will improve the concurrency story.</p>
-<h2><a class="header" href="#a-python-tutorial" id="a-python-tutorial">A Python Tutorial</a></h2>
+<h2 id="a-python-tutorial"><a class="header" href="#a-python-tutorial">A Python Tutorial</a></h2>
 <p>In Python, events are exposed as an iterator on the context:</p>
 <pre><code>for event in ctx.get_events():
     if isinstance(e, synthizer.FinishedEvent):
@@ -415,9 +415,9 @@ to a reference-counted scheme which will improve the concurrency story.</p>
 <p><code>get_events</code> takes an optional argument to limit the number of events returned in one iteration.  By default, it's unlimited.</p>
 <p>As shown above, you detect event types with <code>isinstance</code>.  Each event has a <code>source</code> and <code>context</code> property indicating the source (e.g. generator) and context associated with it, as Synthizer objects.
 In future, other event types may include more information.</p>
-<h1><a class="header" href="#introduction-2" id="introduction-2">Introduction</a></h1>
+<h1 id="introduction-2"><a class="header" href="#introduction-2">Introduction</a></h1>
 <p>This section of the manual introduces Synthizer concepts and should be read in order. Pages here will either explain something, or quote relevant sections of the C headers with explanation.</p>
-<h1><a class="header" href="#stability-and-versioning" id="stability-and-versioning">Stability and Versioning</a></h1>
+<h1 id="stability-and-versioning"><a class="header" href="#stability-and-versioning">Stability and Versioning</a></h1>
 <p>Synthizer uses pre-1.0 semantic versioning.  This means:</p>
 <ul>
 <li>Major is always 0.</li>
@@ -428,7 +428,7 @@ In future, other event types may include more information.</p>
 If you find bugs, please report them <a href="https://github.com/synthizer/synthizer">against the official repository</a>.</p>
 <p>API breakage is still expected.  This manual attempts to
 document where API breakage may occur.  These are referred to as provisional features.</p>
-<h1><a class="header" href="#the-signal-graph-library-parameters-and-limitations" id="the-signal-graph-library-parameters-and-limitations">The Signal Graph, Library Parameters, and Limitations</a></h1>
+<h1 id="the-signal-graph-library-parameters-and-limitations"><a class="header" href="#the-signal-graph-library-parameters-and-limitations">The Signal Graph, Library Parameters, and Limitations</a></h1>
 <p>Synthizer's signal graph is as follows:</p>
 <ul>
 <li>1 or more generators feed a source.</li>
@@ -445,14 +445,14 @@ at the block boundaries.  These parameters cannot be reconfigured without recomp
 <p>No audio input or output can be over 16 channels.  This limit may be raised in future.</p>
 <p>Object handles are not reused, but there is a limit of 65535 concurrent outstanding object handles. This is due to an internal lockfree
 slab which allows for relatively fast handle translation without syscalls.  If this limit proves problematic, it will be raised, but for all practical intents memory or CPU will be exhausted first.</p>
-<h1><a class="header" href="#c-api-conventions" id="c-api-conventions">C API Conventions</a></h1>
+<h1 id="c-api-conventions"><a class="header" href="#c-api-conventions">C API Conventions</a></h1>
 <p>The headers are:</p>
 <ul>
 <li><code>synthizer.h</code>: All library functions</li>
 <li><code>synthizer_constants.h</code>: Constants, i.e. the very large property enum.</li>
 </ul>
 <p>The Synthizer C API returns errors and writes results to out parameters.  Out parameters are always the first parameters of a function, and errors are always nonzero.  Note that error codes are currently not defined; they will be, once things are more stable.</p>
-<h1><a class="header" href="#logging-initialization-and-shutdown" id="logging-initialization-and-shutdown">Logging, Initialization, and Shutdown</a></h1>
+<h1 id="logging-initialization-and-shutdown"><a class="header" href="#logging-initialization-and-shutdown">Logging, Initialization, and Shutdown</a></h1>
 <p>The following excerpts from <code>synthizer.h</code> specify the loggin and initialization API. Explanation follows:</p>
 <pre><code>typedef ... syz_Handle;
 
@@ -476,7 +476,7 @@ SYZ_CAPI syz_ErrorCode syz_shutdown();
 </code></pre>
 <p>Synthizer supports logging backends, which should be configured before calling <code>syz_initialize()</code> and never thereafter.  The <code>param</code> is backend specific, and unused for <code>stderr</code> (the only supported option). Log levels work exactly how one would expect and can be changed at any time.</p>
 <p><code>syz_initialize() and </code>syz_shutdown()<code>initialize and shut the library down respectively.  Calls to these nest; every</code>syz_initialize<code>should be matched with a</code>syz_shutdown`.  This is supported so that multiple dependencies to a program can initialize Synthizer without conflict, but centralizing initialization and only doing it once is <em>strongly</em> encouraged.</p>
-<h1><a class="header" href="#objects-handles-and-properties" id="objects-handles-and-properties">Objects, Handles, and Properties</a></h1>
+<h1 id="objects-handles-and-properties"><a class="header" href="#objects-handles-and-properties">Objects, Handles, and Properties</a></h1>
 <p>Synthizer represents references to objects with a <code>syz_Handle</code> type.  The following excerpts from <code>synthizer.h</code> are available on every object type:</p>
 <pre><code>SYZ_CAPI syz_ErrorCode syz_handleFree(syz_Handle handle);
 SYZ_CAPI syz_ErrorCode syz_handleGetObjectType(int *out, syz_Handle handle);
@@ -519,7 +519,7 @@ can block the audio thread because locking is required to safely manipulate hand
 it's still good enough for UI purposes.  Additionally, even if Synthizer always returned the most recent value, audio latency introduces uncertainty as well.  For properties that Synthizer updates, additional effort is made
 to keep the latency low enough for practical use, though there is always at least some.</p>
 <p>The actual links between properties and objects are specified in this manual.</p>
-<h1><a class="header" href="#streams" id="streams">Streams</a></h1>
+<h1 id="streams"><a class="header" href="#streams">Streams</a></h1>
 <p>Streams are sources of audio.  They are specified with 3 string parameters:</p>
 <ul>
 <li>protocol: The protocol. At the moment Synthizer only supports <code>&quot;file&quot;</code>.</li>
@@ -529,11 +529,11 @@ to keep the latency low enough for practical use, though there is always at leas
 <p>Whenever a Synthizer API function wants to read audio data, it will request these three parameters to indicate where the data comes from.  In future, it will be possible to register your own streams.</p>
 <p>The similarity to a URL is intentional.  We don't yet support parsing in that format, but may opt to do so in future.  Nonetheless it is simple for a host program to do that parsing before passing these parameters to Synthizer, and in particular <code>file://</code> URLs match the <code>file</code> protocol exactly.</p>
 <p>Synthizer supports decoding Flac, Wav, and MP3. Ogg is planned but low priority.</p>
-<h1><a class="header" href="#3d-panning" id="3d-panning">3D Panning</a></h1>
+<h1 id="3d-panning"><a class="header" href="#3d-panning">3D Panning</a></h1>
 <p>This page explains the steps involved in 3D panning. Note that only the panner strategy applies to <code>PannedSource</code>.</p>
-<h2><a class="header" href="#1-convert-the-sources-position-from-world-coordinates-to-azimuth-elevation-and-distance" id="1-convert-the-sources-position-from-world-coordinates-to-azimuth-elevation-and-distance">1. Convert the source's position from world coordinates to Azimuth, Elevation, and distance</a></h2>
+<h2 id="1-convert-the-sources-position-from-world-coordinates-to-azimuth-elevation-and-distance"><a class="header" href="#1-convert-the-sources-position-from-world-coordinates-to-azimuth-elevation-and-distance">1. Convert the source's position from world coordinates to Azimuth, Elevation, and distance</a></h2>
 <p>This is done by converting the position, at, and up vectors to a transformation matrix.  The result is a position in listener coordinates. Then application of the pythagorean theorem and basic trigonometry gets to spherical coordinates.</p>
-<h2><a class="header" href="#2-compute-the-gain-from-the-distance-model" id="2-compute-the-gain-from-the-distance-model">2. Compute the Gain from the Distance Model</a></h2>
+<h2 id="2-compute-the-gain-from-the-distance-model"><a class="header" href="#2-compute-the-gain-from-the-distance-model">2. Compute the Gain from the Distance Model</a></h2>
 <p>Let <code>d</code> be the distance to the source, <code>d_ref</code> the reference distance, <code>d_max</code> the max distance, <code>r</code> the roll-off factor. Then the gain of the source is computed as a linear scalar using one of the following formulas:</p>
 <table><thead><tr><th>Model</th><th>Formula</th></tr></thead><tbody>
 <tr><td>SYZ_DISTANCE_MODEL_NONE</td><td><code>1.0</code></td></tr>
@@ -544,17 +544,17 @@ to keep the latency low enough for practical use, though there is always at leas
 <tr><td>SYZ_DISTANCE_MODEL_INVERSE when <code>d_ref &gt; 0.0</code></td><td><code>d_ref / (d_ref + r * max(d, d_ref) - d_ref)</code></td></tr>
 </tbody></table>
 <p>Qualitatively, <code>d_ref</code> is the &quot;size&quot; of the source, <code>d_max</code> is where the source is silent, <code>r</code> is how fast the source becomes quieter.  Mapping these to real world scenarios is difficult, and in general the best approach is to experiment for your use case.</p>
-<h2><a class="header" href="#3-apply-the-closeness-boost-and-clamp" id="3-apply-the-closeness-boost-and-clamp">3. Apply the closeness boost and clamp</a></h2>
+<h2 id="3-apply-the-closeness-boost-and-clamp"><a class="header" href="#3-apply-the-closeness-boost-and-clamp">3. Apply the closeness boost and clamp</a></h2>
 <p>The closeness boost, specified through <code>SYZ_P_CLOSENESS_BOOST</code> and <code>SYZ_P_CLOSENESS_BOOST_DISTANCE</code> is used to emphasize sources that have crossed a threshold of interest, i.e. because the player is now close enough to interact.
 <code>SYZ_P_CLOSENESS_BOOST</code> specifies a gain in DB (negative DB is allowed) which is added to the source's gain when the source is closer than <code>SYZ_P_CLOSENESS_BOOST_DISTANCE</code>.</p>
 <p>After the closeness boost is applied, gain is clamped to the range 0.0 to 1.0.</p>
-<h2><a class="header" href="#4-apply-the-panning-strategy" id="4-apply-the-panning-strategy">4. Apply the Panning Strategy</a></h2>
+<h2 id="4-apply-the-panning-strategy"><a class="header" href="#4-apply-the-panning-strategy">4. Apply the Panning Strategy</a></h2>
 <p>The panning strategy specifies how sources are to be panned.  SYnthizer supports the following panning strategies:</p>
 <table><thead><tr><th>Strategy</th><th>Channels</th><th>Description</th></tr></thead><tbody>
 <tr><td>SYZ_PANNER_STRATEGY_HRTF</td><td>2</td><td>An HRTF implementation, intended for use via headphones.</td></tr>
 <tr><td>SYZ_PANNER_STRATEGY_STEREO</td><td>2</td><td>A simple stereo panning strategy assuming speakers are at -90 and 90.</td></tr>
 </tbody></table>
-<h1><a class="header" href="#channel-upmixing-and-downmixing" id="channel-upmixing-and-downmixing">Channel Upmixing and Downmixing</a></h1>
+<h1 id="channel-upmixing-and-downmixing"><a class="header" href="#channel-upmixing-and-downmixing">Channel Upmixing and Downmixing</a></h1>
 <p>Synthizer's current channel mixing algorithm is as follows:</p>
 <ul>
 <li>Mono to anything duplicates in all channels.</li>
@@ -563,7 +563,7 @@ to keep the latency low enough for practical use, though there is always at leas
 </ul>
 <p>Though this algorithm will be extended in future, note that Synthizer is for games and VR applications, and that it is usually impossible to determine channel layout from media files with 100% reliability.
 When better support is added, this page wil be extended explaining how it works, but expect to need to perform media type conversions or to add stream options if working with more than 2 channels per asset.</p>
-<h1><a class="header" href="#effects-and-effect-routing" id="effects-and-effect-routing">Effects and Effect Routing</a></h1>
+<h1 id="effects-and-effect-routing"><a class="header" href="#effects-and-effect-routing">Effects and Effect Routing</a></h1>
 <p>IMPORTANT: the effects API is provisional and subject to change for the time being.  At the moment this is a hopefully final rough draft of the functionality, but experience is
 required to determine if it can be stabilized in the current form.</p>
 <p>Synthizer will support two kinds of effects: global effects and generator-specific effects.  At the moment, only global effects are implemented.</p>
@@ -596,13 +596,13 @@ per-generator effects.  Specifically, an object like <a href="concepts/../object
 </code></pre>
 <p>Which will work on any effect (at most, it does nothing).  As with things like property access this is slow, and it's also not going to sound good, but it can do things like clear out the feedback paths of a reverb at the Python shell for interactive experimentation purposes.
 If there's enough demand to make resetting a normal operation, it would be possible to extend it to become one, but not without significant pending work for other things being in place first.</p>
-<h1><a class="header" href="#context" id="context">Context</a></h1>
-<h2><a class="header" href="#constructors" id="constructors">Constructors</a></h2>
-<h3><a class="header" href="#syz_createcontext" id="syz_createcontext"><code>syz_createContext</code></a></h3>
+<h1 id="context"><a class="header" href="#context">Context</a></h1>
+<h2 id="constructors"><a class="header" href="#constructors">Constructors</a></h2>
+<h3 id="syz_createcontext"><a class="header" href="#syz_createcontext"><code>syz_createContext</code></a></h3>
 <pre><code>SYZ_CAPI syz_ErrorCode syz_createContext(syz_Handle *out);
 </code></pre>
 <p>Creates a context configured to play through the default output device.</p>
-<h2><a class="header" href="#properties-1" id="properties-1">Properties</a></h2>
+<h2 id="properties-1"><a class="header" href="#properties-1">Properties</a></h2>
 <table><thead><tr><th>Enum</th><th>Type</th><th>Default</th><th>Range</th><th>Description</th></tr></thead><tbody>
 <tr><td>SYZ_P_GAIN</td><td>double</td><td>1.0</td><td>value &gt;= 0.0</td><td>The gain of the context</td></tr>
 <tr><td>SYZ_P_POSITION</td><td>double3</td><td>(0, 0, 0)</td><td>any</td><td>The position of the listener.</td></tr>
@@ -615,14 +615,14 @@ If there's enough demand to make resetting a normal operation, it would be possi
 <tr><td>SYZ_P_CLOSENESS_BOOST_DISTANCE</td><td>double</td><td>0.0</td><td>value &gt;= 0.0</td><td>The default closeness boost distance for new sources</td></tr>
 <tr><td>SYZ_P_PANNER_STRATEGY</td><td>int</td><td>SYZ_PANNER_STRATEGY_STEREO</td><td>any SYZ_PANNER_STRATEGY</td><td>The default panner strategy for new sources.</td></tr>
 </tbody></table>
-<h2><a class="header" href="#functions" id="functions">Functions</a></h2>
-<h3><a class="header" href="#syz_pause-syz_play" id="syz_pause-syz_play"><code>syz_pause</code>, <code>syz_play</code></a></h3>
+<h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
+<h3 id="syz_pause-syz_play"><a class="header" href="#syz_pause-syz_play"><code>syz_pause</code>, <code>syz_play</code></a></h3>
 <pre><code>syz_ErrorCode syz_pause(syz_Handle object);
 syz_ErrorCode syz_play(syz_Handle object);
 </code></pre>
 <p>The standard play/pause functions, which do exactly what their name suggests.</p>
 <p>When the context is paused, nothing it manages advances and no audio is audible.</p>
-<h2><a class="header" href="#remarks" id="remarks">Remarks</a></h2>
+<h2 id="remarks"><a class="header" href="#remarks">Remarks</a></h2>
 <p>The context is the main entrypoint to Synthizer, responsible for the following:</p>
 <ul>
 <li>Control and manipulation of the audio device.</li>
@@ -636,40 +636,40 @@ For efficiency, whether two objects are from different contexts is unvalidated, 
 <p>Most programs create one context and destroy it at shutdown.</p>
 <p>For the time being, all contexts output stereo audio, and it is not possible to specify the output device. These restrictions will be lifted in future.</p>
 <p>For information on the meaning of the distance model properties, see <a href="object_reference/../concepts/3d_panning.html">3D Panning</a>.</p>
-<h1><a class="header" href="#buffer" id="buffer">Buffer</a></h1>
-<h2><a class="header" href="#constructors-1" id="constructors-1">Constructors</a></h2>
-<h3><a class="header" href="#syz_createbufferfromstream" id="syz_createbufferfromstream"><code>syz_createBufferFromStream</code></a></h3>
+<h1 id="buffer"><a class="header" href="#buffer">Buffer</a></h1>
+<h2 id="constructors-1"><a class="header" href="#constructors-1">Constructors</a></h2>
+<h3 id="syz_createbufferfromstream"><a class="header" href="#syz_createbufferfromstream"><code>syz_createBufferFromStream</code></a></h3>
 <pre><code>SYZ_CAPI syz_ErrorCode syz_createBufferFromStream(syz_Handle *out, const char *protocol, const char *path, const char *options);
 </code></pre>
 <p>Currently, the only way to make a buffer is from a stream, in the self-explanatory manner. See <a href="object_reference/../concepts/streams.html">Streams</a> for information on streams.</p>
 <p>This call will decode the stream in the calling thread, returning errors as necessary. Synthizer will eventually offer a BufferCache which supports background decoding and caching, but for the moment the responsibility of background decoding is placed on the calling program.</p>
-<h2><a class="header" href="#properties-2" id="properties-2">Properties</a></h2>
+<h2 id="properties-2"><a class="header" href="#properties-2">Properties</a></h2>
 <p>None.</p>
-<h2><a class="header" href="#functions-1" id="functions-1">Functions</a></h2>
-<h3><a class="header" href="#getters" id="getters">Getters</a></h3>
+<h2 id="functions-1"><a class="header" href="#functions-1">Functions</a></h2>
+<h3 id="getters"><a class="header" href="#getters">Getters</a></h3>
 <pre><code>SYZ_CAPI syz_ErrorCode syz_bufferGetChannels(unsigned int *out, syz_Handle buffer);
 SYZ_CAPI syz_ErrorCode syz_bufferGetLengthInSamples(unsigned int *out, syz_Handle buffer);
 SYZ_CAPI syz_ErrorCode syz_bufferGetLengthInSeconds(double *out, syz_Handle buffer);
 </code></pre>
 <p>The self-explanatory getters. These aren't properties because they can't be written and they shouldn't participate in the property infrastructure.</p>
-<h2><a class="header" href="#remarks-1" id="remarks-1">Remarks</a></h2>
+<h2 id="remarks-1"><a class="header" href="#remarks-1">Remarks</a></h2>
 <p>Buffers hold audio data, as a collection of contiguous chunks.  Data is resampled to the Synthizer samplerate and converted to 16-bit PCM using triangular dither.</p>
 <p>Buffers are one of the few Synthizer objects that don't require a context.  They may be used freely with any object requiring a buffer, from any thread.  In order to facilitate this, buffers are immutable after creation.</p>
 <p>The approximate memory usage of a buffer in bytes is <code>2 * channels * duration_in_seconds * 44100</code>.  Loading large assets into buffers is not recommended. For things such as music tracks, use <a href="object_reference/./streaming_generator.html">StreamingGenerator</a>s.  Note that on 32-bit architectures, some operating systems only allow a 2 gigabyte address space.  Synthizer avoids allocating buffers as contiguous arrays in part to allow efficient use of 32-bit address spaces, but this only goes so far.  If on a 32-bit architecture, expect to run out of memory from Synthizer's perspective well before decoding 2 Gigabytes of buffers simultaneously due to the inability to find consecutive free pages.</p>
-<h1><a class="header" href="#source-abstract" id="source-abstract">Source (abstract)</a></h1>
-<h2><a class="header" href="#constructors-2" id="constructors-2">Constructors</a></h2>
+<h1 id="source-abstract"><a class="header" href="#source-abstract">Source (abstract)</a></h1>
+<h2 id="constructors-2"><a class="header" href="#constructors-2">Constructors</a></h2>
 <p>None.</p>
-<h2><a class="header" href="#properties-3" id="properties-3">Properties</a></h2>
+<h2 id="properties-3"><a class="header" href="#properties-3">Properties</a></h2>
 <table><thead><tr><th>Enum</th><th>Type</th><th>Default</th><th>Range</th><th>Description</th></tr></thead><tbody>
 <tr><td>SYZ_P_GAIN</td><td>double</td><td>Any double &gt; 0</td><td>An additional gain factor applied to this source.</td><td></td></tr>
 </tbody></table>
-<h2><a class="header" href="#functions-2" id="functions-2">Functions</a></h2>
-<h3><a class="header" href="#syz_sourceaddgenerator-syz_sourceremovegenerator" id="syz_sourceaddgenerator-syz_sourceremovegenerator"><code>syz_sourceAddGenerator</code>, <code>syz_sourceRemoveGenerator</code></a></h3>
+<h2 id="functions-2"><a class="header" href="#functions-2">Functions</a></h2>
+<h3 id="syz_sourceaddgenerator-syz_sourceremovegenerator"><a class="header" href="#syz_sourceaddgenerator-syz_sourceremovegenerator"><code>syz_sourceAddGenerator</code>, <code>syz_sourceRemoveGenerator</code></a></h3>
 <pre><code>SYZ_CAPI syz_ErrorCode syz_sourceAddGenerator(syz_Handle source, syz_Handle generator);
 SYZ_CAPI syz_ErrorCode syz_sourceRemoveGenerator(syz_Handle source, syz_Handle generator);
 </code></pre>
 <p>Add/remove a generator from a source. Each generator may be added once and duplicate add calls will have no effect. Each generator should only be used with one source at a time.</p>
-<h3><a class="header" href="#syz_pause-syz_play-1" id="syz_pause-syz_play-1"><code>syz_pause</code>, <code>syz_play</code></a></h3>
+<h3 id="syz_pause-syz_play-1"><a class="header" href="#syz_pause-syz_play-1"><code>syz_pause</code>, <code>syz_play</code></a></h3>
 <pre><code>syz_ErrorCode syz_pause(syz_Handle object);
 syz_ErrorCode syz_play(syz_Handle object);
 
@@ -677,56 +677,56 @@ syz_ErrorCode syz_play(syz_Handle object);
 <p>The standard play/pause functions.  Note that all subclasses of Source will still process panners for the time being,
 so this doesn't make a Source free in terms of things like HRTF and effect sends.  This case will be optimized further in future.</p>
 <p>When a Source is paused, no generator connected to it advances even if the generator is unpaused.</p>
-<h2><a class="header" href="#remarks-2" id="remarks-2">Remarks</a></h2>
+<h2 id="remarks-2"><a class="header" href="#remarks-2">Remarks</a></h2>
 <p>Sources represent audio output.  They combine all generators connected to them, apply any effects if necessary, and feed the context. Subclasses of Source add panning and other features.</p>
-<h1><a class="header" href="#directsource" id="directsource">DirectSource</a></h1>
+<h1 id="directsource"><a class="header" href="#directsource">DirectSource</a></h1>
 <p>Inherits from Source.</p>
-<h2><a class="header" href="#constructors-3" id="constructors-3">Constructors</a></h2>
-<h3><a class="header" href="#syz_createdirectsource" id="syz_createdirectsource"><code>syz_createDirectSource</code></a></h3>
+<h2 id="constructors-3"><a class="header" href="#constructors-3">Constructors</a></h2>
+<h3 id="syz_createdirectsource"><a class="header" href="#syz_createdirectsource"><code>syz_createDirectSource</code></a></h3>
 <pre><code>SYZ_CAPI syz_ErrorCode syz_createDirectSource(syz_Handle *out, syz_Handle context);
 </code></pre>
 <p>Creates a direct source.</p>
-<h2><a class="header" href="#properties-4" id="properties-4">Properties</a></h2>
+<h2 id="properties-4"><a class="header" href="#properties-4">Properties</a></h2>
 <p>Inherited from Source only.</p>
-<h2><a class="header" href="#remarks-3" id="remarks-3">Remarks</a></h2>
+<h2 id="remarks-3"><a class="header" href="#remarks-3">Remarks</a></h2>
 <p>A direct source is for music and other audio assets that don't wish to participate in panning, , and should be linked directly to speakers.</p>
 <p>Audio is converted to the Context's channel count and passed directly through.</p>
-<h1><a class="header" href="#spatializedsource-abstract" id="spatializedsource-abstract">SpatializedSource (abstract)</a></h1>
-<h2><a class="header" href="#constructors-4" id="constructors-4">Constructors</a></h2>
+<h1 id="spatializedsource-abstract"><a class="header" href="#spatializedsource-abstract">SpatializedSource (abstract)</a></h1>
+<h2 id="constructors-4"><a class="header" href="#constructors-4">Constructors</a></h2>
 <p>None</p>
-<h2><a class="header" href="#properties-5" id="properties-5">Properties</a></h2>
+<h2 id="properties-5"><a class="header" href="#properties-5">Properties</a></h2>
 <table><thead><tr><th>Enum</th><th>Type</th><th>Default</th><th>Range</th><th>Description</th></tr></thead><tbody>
 <tr><td>SYZ_P_PANNER_STRATEGY</td><td>int</td><td>SYZ_PANNER_STRATEGY_HRTF</td><td>any SYZ_PANNER_STRATEGY</td><td>The panner strategy for this source.</td></tr>
 </tbody></table>
-<h2><a class="header" href="#remarks-4" id="remarks-4">Remarks</a></h2>
+<h2 id="remarks-4"><a class="header" href="#remarks-4">Remarks</a></h2>
 <p>SpatializedSource is an abstract class which gives all panned sources their distance model and gain.</p>
-<h1><a class="header" href="#pannedsource" id="pannedsource">PannedSource</a></h1>
+<h1 id="pannedsource"><a class="header" href="#pannedsource">PannedSource</a></h1>
 <p>Inherits from <a href="object_reference/./spatialized_source.html">SpatializedSource</a>.</p>
-<h2><a class="header" href="#constructors-5" id="constructors-5">Constructors</a></h2>
-<h3><a class="header" href="#syz_createpannedsource" id="syz_createpannedsource"><code>syz_createPannedSource</code></a></h3>
+<h2 id="constructors-5"><a class="header" href="#constructors-5">Constructors</a></h2>
+<h3 id="syz_createpannedsource"><a class="header" href="#syz_createpannedsource"><code>syz_createPannedSource</code></a></h3>
 <pre><code>SYZ_CAPI syz_ErrorCode syz_createPannedSource(syz_Handle *out, syz_Handle context);
 </code></pre>
 <p>Creates a panned source.</p>
-<h3><a class="header" href="#properties-6" id="properties-6">Properties</a></h3>
+<h3 id="properties-6"><a class="header" href="#properties-6">Properties</a></h3>
 <table><thead><tr><th>Enum</th><th>Type</th><th>Default</th><th>Range</th><th>Description</th></tr></thead><tbody>
 <tr><td>SYZ_P_AZIMUTH</td><td>double</td><td>0.0</td><td>0.0 to 360.0</td><td>The azimuth of the panner. See remarks.</td></tr>
 <tr><td>SYZ_P_ELEVATION</td><td>double</td><td>0.0</td><td>-90.0 to 90.0</td><td>See remarks</td></tr>
 <tr><td>SYZ_P_PANNING_SCALAR</td><td>double</td><td>0.0</td><td>-1.0 to 1.0</td><td>see remarks</td></tr>
 </tbody></table>
-<h1><a class="header" href="#remarks-5" id="remarks-5">Remarks</a></h1>
+<h1 id="remarks-5"><a class="header" href="#remarks-5">Remarks</a></h1>
 <p>The PannedSource gives direct control over a panner, which is either controlled via azimuth/elevation in degrees or a panning scalar.</p>
 <p>If using azimuth/elevation, 0.0 azimuth is forward and positive angles are clockwise.  Elevation ranges from -90 (down) to 90 (up).</p>
 <p>Some applications want to control panners through a panning scalar instead, i.e. for UI purposes. If using panning scalars, -1.0 is full left and 1.0 is full right.</p>
 <p>Applications should use either a panning scalar or azimuth/elevation, never both on the same source.  Using both simultaneously is undefined behavior.</p>
 <p>For information on panning, see <a href="object_reference/../concepts/3d_panning.html">3D Panning</a>.</p>
-<h1><a class="header" href="#source3d" id="source3d">Source3D</a></h1>
+<h1 id="source3d"><a class="header" href="#source3d">Source3D</a></h1>
 <p>Inherits from <a href="object_reference/./spatialized_source.html">SpatializedSource</a>.</p>
-<h2><a class="header" href="#constructors-6" id="constructors-6">Constructors</a></h2>
-<h3><a class="header" href="#syz_createsource3d" id="syz_createsource3d"><code>syz_createSource3D</code></a></h3>
+<h2 id="constructors-6"><a class="header" href="#constructors-6">Constructors</a></h2>
+<h3 id="syz_createsource3d"><a class="header" href="#syz_createsource3d"><code>syz_createSource3D</code></a></h3>
 <pre><code>SYZ_CAPI syz_ErrorCode syz_createSource3D(syz_Handle *out, syz_Handle context);
 </code></pre>
 <p>Creates a source3d positioned at the origin and with no associated generators.</p>
-<h2><a class="header" href="#properties-7" id="properties-7">Properties</a></h2>
+<h2 id="properties-7"><a class="header" href="#properties-7">Properties</a></h2>
 <table><thead><tr><th>Enum</th><th>Type</th><th>Default</th><th>Range</th><th>Description</th></tr></thead><tbody>
 <tr><td>SYZ_P_POSITION</td><td>double3</td><td>(0, 0, 0)</td><td>any</td><td>The position of the sourec.</td></tr>
 <tr><td>SYZ_P_ORIENTATION</td><td>double6</td><td>(0, 1, 0, 0, 0, 1)</td><td>Two packed unit vectors</td><td>The orientation of the source as <code>(atx, aty, atz, upx, upy, upz)</code>. Currently unused.</td></tr>
@@ -737,42 +737,42 @@ so this doesn't make a Source free in terms of things like HRTF and effect sends
 <tr><td>SYZ_P_CLOSENESS_BOOST</td><td>double</td><td>From Context</td><td>any finite double</td><td>The closeness boost for this source in DB.</td></tr>
 <tr><td>SYZ_P_CLOSENESS_BOOST_DISTANCE</td><td>double</td><td>From Context</td><td>value &gt;= 0.0</td><td>The closeness boost distance for this source.</td></tr>
 </tbody></table>
-<h2><a class="header" href="#remarks-6" id="remarks-6">Remarks</a></h2>
+<h2 id="remarks-6"><a class="header" href="#remarks-6">Remarks</a></h2>
 <p>A Source3D represents an entity in 3D space.  For explanations of the above properties, see <a href="object_reference/../concepts/3d_panning.html">3D Panning</a>.</p>
 <p>When created, Source3D reads all of its defaults from the Context's corresponding properties.  Changes to the Context versions don't affect already created sources.  A typical use case is to configure the Context to the defaults of the game, and then create sources.</p>
-<h1><a class="header" href="#generator-abstract" id="generator-abstract">Generator (abstract)</a></h1>
+<h1 id="generator-abstract"><a class="header" href="#generator-abstract">Generator (abstract)</a></h1>
 <p>Generators generate audio, and are how Synthizer knows what to play through sources. In addition to direct
 generation, some generators take other generators as arguments, e.g. per-source effects and filters.</p>
-<h2><a class="header" href="#properties-8" id="properties-8">Properties</a></h2>
+<h2 id="properties-8"><a class="header" href="#properties-8">Properties</a></h2>
 <p>All generators support the following properties:</p>
 <table><thead><tr><th>Enum</th><th>Type</th><th>Default</th><th>Range</th><th>Description</th></tr></thead><tbody>
 <tr><td>SYZ_P_GAIN</td><td>double</td><td>1.0</td><td>value &gt;= 0.0</td><td>The gain of the generator.</td></tr>
 <tr><td>SYZ_P_PITCH_BEND</td><td>double</td><td>1.0</td><td>value &gt;= 0.0</td><td>Pitch bend of the generator as a multiplier (2.0 is +1 octave, 0.5 is -1 octave, etc)</td></tr>
 </tbody></table>
-<h2><a class="header" href="#functions-3" id="functions-3">Functions</a></h2>
-<h3><a class="header" href="#syz_pause-syz_play-2" id="syz_pause-syz_play-2"><code>syz_pause</code>, <code>syz_play</code></a></h3>
+<h2 id="functions-3"><a class="header" href="#functions-3">Functions</a></h2>
+<h3 id="syz_pause-syz_play-2"><a class="header" href="#syz_pause-syz_play-2"><code>syz_pause</code>, <code>syz_play</code></a></h3>
 <pre><code>syz_ErrorCode syz_pause(syz_Handle object);
 syz_ErrorCode syz_play(syz_Handle object);
 
 </code></pre>
 <p>The standard play/pause functions, which do exactly what their name suggests.</p>
-<h2><a class="header" href="#remarks-7" id="remarks-7">Remarks</a></h2>
+<h2 id="remarks-7"><a class="header" href="#remarks-7">Remarks</a></h2>
 <p>Not all generators support <code>SYZ_P_PITCH_BEND</code> because it doesn't necessarily make sense for them to do so.  Where this is the case, this manual
 will document that in the remarks for that generator type.  Additionally, in cases where
 <code>SYZ_P_PITCH_BEND</code> has non-obvious behavior, the remarks will document that as well.  The most common place to se non-obvious <code>SYZ_P_PITCH_BEND</code> behavior is in effects.</p>
-<h1><a class="header" href="#streaminggenerator" id="streaminggenerator">StreamingGenerator</a></h1>
+<h1 id="streaminggenerator"><a class="header" href="#streaminggenerator">StreamingGenerator</a></h1>
 <p>Inherits from <a href="object_reference/./generator.html">Generator</a>.</p>
-<h2><a class="header" href="#constructors-7" id="constructors-7">Constructors</a></h2>
-<h3><a class="header" href="#syz_createstreaminggenerator" id="syz_createstreaminggenerator"><code>syz_createStreamingGenerator</code></a></h3>
+<h2 id="constructors-7"><a class="header" href="#constructors-7">Constructors</a></h2>
+<h3 id="syz_createstreaminggenerator"><a class="header" href="#syz_createstreaminggenerator"><code>syz_createStreamingGenerator</code></a></h3>
 <pre><code>SYZ_CAPI syz_ErrorCode syz_createStreamingGenerator(syz_Handle *out, syz_Handle context, const char *protocol, const char *path, const char *options);
 </code></pre>
 <p>Creates a StreamingGenerator from the standard <a href="object_reference/../concepts/streams.html">stream parameters</a>.</p>
-<h2><a class="header" href="#properties-9" id="properties-9">Properties</a></h2>
+<h2 id="properties-9"><a class="header" href="#properties-9">Properties</a></h2>
 <table><thead><tr><th>Enum</th><th>Type</th><th>Default Value</th><th>Range</th><th>Description</th></tr></thead><tbody>
 <tr><td>SYZ_P_POSITION</td><td>double</td><td>0.0</td><td>value &gt;= 0.0</td><td>The position in of the stream.</td></tr>
 <tr><td>SYZ_P_LOOPING</td><td>int</td><td>0</td><td>0 or 1</td><td>Whether playback loops</td></tr>
 </tbody></table>
-<h2><a class="header" href="#remarks-8" id="remarks-8">Remarks</a></h2>
+<h2 id="remarks-8"><a class="header" href="#remarks-8">Remarks</a></h2>
 <p>StreamingGenerator plays streams, decoding and reading on demand.  The typical use case is for music playback.</p>
 <p>Due to the expense of streaming from disk and other I/O sources, having more than a few StreamingGenerators going will cause a decrease in audio quality on many systems, typically manifesting as drop--outs and crackling.
 StreamingGenerator creates one background thread per instance and does all decoding and I/O in that thread.</p>
@@ -780,20 +780,20 @@ StreamingGenerator creates one background thread per instance and does all decod
 Thereafter, it will pick up property changes every time the background thread wakes up to add more data to the buffer.  This means that most operations are high latency, currently on the order of 100 to 200 MS.
 The least latent operation is the initial start-up, which will begin playing as soon as enough data is decoded.  How long that takes depends on the format and I/O characteristics of the stream, as well as
 the user's machine and current load of the system.</p>
-<h1><a class="header" href="#buffergenerator" id="buffergenerator">BufferGenerator</a></h1>
+<h1 id="buffergenerator"><a class="header" href="#buffergenerator">BufferGenerator</a></h1>
 <p>Inherits from <a href="object_reference/./generator.html">Generator</a>.</p>
-<h2><a class="header" href="#constructors-8" id="constructors-8">Constructors</a></h2>
-<h3><a class="header" href="#syz_createbuffergenerator" id="syz_createbuffergenerator"><code>syz_createBufferGenerator</code></a></h3>
+<h2 id="constructors-8"><a class="header" href="#constructors-8">Constructors</a></h2>
+<h3 id="syz_createbuffergenerator"><a class="header" href="#syz_createbuffergenerator"><code>syz_createBufferGenerator</code></a></h3>
 <pre><code>SYZ_CAPI syz_ErrorCode syz_createBufferGenerator(syz_Handle *out, syz_Handle context);
 </code></pre>
 <p>Creates a BufferGenerator. The buffer is set to NULL and the resulting generator will play silence until one is associated.</p>
-<h2><a class="header" href="#properties-10" id="properties-10">Properties</a></h2>
+<h2 id="properties-10"><a class="header" href="#properties-10">Properties</a></h2>
 <table><thead><tr><th>Enum</th><th>Type</th><th>Default Value</th><th>Range</th><th>Description</th></tr></thead><tbody>
 <tr><td>SYZ_P_BUFFER</td><td>Object</td><td>0</td><td>Any Buffer handle</td><td>The buffer to play</td></tr>
 <tr><td>SYZ_P_POSITION</td><td>double</td><td>0.0</td><td>value &gt;= 0.0</td><td>The position in the buffer.</td></tr>
 <tr><td>SYZ_P_LOOPING</td><td>int</td><td>0</td><td>0 or 1</td><td>Whether playback loops at the end of the buffer.</td></tr>
 </tbody></table>
-<h2><a class="header" href="#remarks-9" id="remarks-9">Remarks</a></h2>
+<h2 id="remarks-9"><a class="header" href="#remarks-9">Remarks</a></h2>
 <p>BufferGenerators play <a href="object_reference/./buffer.html">Buffer</a>s.</p>
 <p><code>SYZ_P_POSITION</code> is reset if <code>SYZ_P_BUFFER</code> is modified.</p>
 <p><code>SYZ_P_POSITION</code> can be set past the end of the buffer.  If <code>SYZ_P_LOOPING = 0</code>, the generator will play silence.  Otherwise, the position will immediately loop to the beginning.</p>
@@ -801,51 +801,51 @@ the user's machine and current load of the system.</p>
 <p><code>SYZ_P_PITCH_BEND</code> is a multiplicative rate on the playback of the buffer.  Though this clarification is currently unimportant, the difference between this and it being <em>the</em> rate
 is that it will eventually be combined with doppler effects.  A value of 2.0 is one octave higher. A value of 0.5 is one octave lower.  Expect <code>SYZ_P_PITCH_BEND</code> to move to a base &quot;class&quot; in future:
 though we only support it for buffers at the moment, many other generator types will be able to do so in future.</p>
-<h1><a class="header" href="#noisegenerator" id="noisegenerator">NoiseGenerator</a></h1>
+<h1 id="noisegenerator"><a class="header" href="#noisegenerator">NoiseGenerator</a></h1>
 <p>Inherits from <a href="object_reference/./generator.html">Generator</a>.</p>
-<h2><a class="header" href="#constructors-9" id="constructors-9">Constructors</a></h2>
-<h3><a class="header" href="#syz_createnoisegenerator" id="syz_createnoisegenerator"><code>syz_createNoiseGenerator</code></a></h3>
+<h2 id="constructors-9"><a class="header" href="#constructors-9">Constructors</a></h2>
+<h3 id="syz_createnoisegenerator"><a class="header" href="#syz_createnoisegenerator"><code>syz_createNoiseGenerator</code></a></h3>
 <pre><code>SYZ_CAPI syz_ErrorCode syz_createNoiseGenerator(syz_Handle *out, syz_Handle context, unsigned int channels);
 </code></pre>
 <p>Creates a NoiseGenerator configured for uniform noise with the specified number of output channels.
 The number of output channels cannot be configured at runtime.  Each channel produces decorrelated noise.</p>
-<h2><a class="header" href="#properties-11" id="properties-11">Properties</a></h2>
+<h2 id="properties-11"><a class="header" href="#properties-11">Properties</a></h2>
 <table><thead><tr><th>Enum</th><th>Type</th><th>Default Value</th><th>Range</th><th>Description</th></tr></thead><tbody>
 <tr><td>SYZ_P_NOISE_TYPE</td><td>int</td><td>SYZ_NOISE_TYPE_UNIFORM</td><td>any SYZ_NOISE_TYPE</td><td>The type of noise to generate. See remarks.</td></tr>
 </tbody></table>
-<h2><a class="header" href="#remarks-10" id="remarks-10">Remarks</a></h2>
+<h2 id="remarks-10"><a class="header" href="#remarks-10">Remarks</a></h2>
 <p>NoiseGenerators generate noise, which will be useful in future when various effects are added.  For instance filtered noise makes plausible wind.
 Note that noise generators don't support <code>SYZ_P_PITCH_BEND</code> because noise doesn't have a pitch by definition.</p>
 <p>Synthizer allows setting the algorithm used to generate noise to one of the following options.  Note that these are more precisely named than white/pink/brown; the sections below document the equivalent in the more standard nomenclature.</p>
-<h3><a class="header" href="#syz_noise_type_uniform" id="syz_noise_type_uniform"><code>SYZ_NOISE_TYPE_UNIFORM</code></a></h3>
+<h3 id="syz_noise_type_uniform"><a class="header" href="#syz_noise_type_uniform"><code>SYZ_NOISE_TYPE_UNIFORM</code></a></h3>
 <p>A uniform noise source.  From an audio perspective this is white noise, but is sampled from a uniform rather than Gaussian distribution for efficiency.</p>
-<h3><a class="header" href="#syz_noise_type_vm" id="syz_noise_type_vm"><code>SYZ_NOISE_TYPE_VM</code></a></h3>
+<h3 id="syz_noise_type_vm"><a class="header" href="#syz_noise_type_vm"><code>SYZ_NOISE_TYPE_VM</code></a></h3>
 <p>This is pink noise generated with the Voss-McCartney algorithm, which consists of a number of summed uniform random number generators which are run at different rates.
 Synthizer adds an additional random number generator at the top of the hierachy in order to improve the color of the noise in the high frequencies.</p>
-<h3><a class="header" href="#syz_noise_type_filtered_brown" id="syz_noise_type_filtered_brown"><code>SYZ_NOISE_TYPE_FILTERED_BROWN</code></a></h3>
+<h3 id="syz_noise_type_filtered_brown"><a class="header" href="#syz_noise_type_filtered_brown"><code>SYZ_NOISE_TYPE_FILTERED_BROWN</code></a></h3>
 <p>This is brown noise generated with a -6DB filter.</p>
-<h1><a class="header" href="#globaleffect" id="globaleffect">GlobalEffect</a></h1>
+<h1 id="globaleffect"><a class="header" href="#globaleffect">GlobalEffect</a></h1>
 <p>This is the abstract base class for global effects.</p>
-<h2><a class="header" href="#properties-12" id="properties-12">Properties</a></h2>
+<h2 id="properties-12"><a class="header" href="#properties-12">Properties</a></h2>
 <table><thead><tr><th>Enum</th><th>Type</th><th>Default</th><th>Range</th><th>Description</th></tr></thead><tbody>
 <tr><td>SYZ_P_GAIN</td><td>double</td><td>1.0</td><td>value &gt;= 0.0</td><td>The overall gain of the effect.</td></tr>
 </tbody></table>
-<h2><a class="header" href="#functions-4" id="functions-4">Functions</a></h2>
-<h3><a class="header" href="#syz_effectreset" id="syz_effectreset"><code>syz_effectReset</code></a></h3>
+<h2 id="functions-4"><a class="header" href="#functions-4">Functions</a></h2>
+<h3 id="syz_effectreset"><a class="header" href="#syz_effectreset"><code>syz_effectReset</code></a></h3>
 <pre><code>SYZ_CAPI syz_ErrorCode syz_effectReset(syz_Handle effect);
 </code></pre>
 <p>Clears the internal state of the effect. Intended for design/development purposes.  This function may produce clicks and other artifacts and is slow.</p>
-<h2><a class="header" href="#remarks-11" id="remarks-11">Remarks</a></h2>
+<h2 id="remarks-11"><a class="header" href="#remarks-11">Remarks</a></h2>
 <p>All global effects inherit from this object type.</p>
-<h1><a class="header" href="#echo" id="echo">Echo</a></h1>
+<h1 id="echo"><a class="header" href="#echo">Echo</a></h1>
 <p>IMPORTANT: this object is provisional and may be subject to change.</p>
-<h2><a class="header" href="#constructors-10" id="constructors-10">Constructors</a></h2>
-<h3><a class="header" href="#syz_createglobalecho" id="syz_createglobalecho"><code>syz_createGlobalEcho</code></a></h3>
+<h2 id="constructors-10"><a class="header" href="#constructors-10">Constructors</a></h2>
+<h3 id="syz_createglobalecho"><a class="header" href="#syz_createglobalecho"><code>syz_createGlobalEcho</code></a></h3>
 <pre><code>SYZ_CAPI syz_ErrorCode syz_createGlobalEcho(syz_Handle *out, syz_Handle context);
 </code></pre>
 <p>Creates the global variant of the echo effect.</p>
-<h2><a class="header" href="#functions-5" id="functions-5">Functions</a></h2>
-<h3><a class="header" href="#syz_echosettaps" id="syz_echosettaps"><code>syz_echoSetTaps</code></a></h3>
+<h2 id="functions-5"><a class="header" href="#functions-5">Functions</a></h2>
+<h3 id="syz_echosettaps"><a class="header" href="#syz_echosettaps"><code>syz_echoSetTaps</code></a></h3>
 <pre><code>struct syz_EchoTapConfig {
 	float delay;
 	float gain_l;
@@ -856,9 +856,9 @@ SYZ_CAPI syz_ErrorCode syz_echoSetTaps(syz_Handle handle, unsigned int n_taps, s
 </code></pre>
 <p>Configure the taps for this Echo.  Currently, delay must be no greater than 5 seconds.  To clear the taps, set the echo
 to an array of 0 elements.</p>
-<h2><a class="header" href="#properties-13" id="properties-13">Properties</a></h2>
+<h2 id="properties-13"><a class="header" href="#properties-13">Properties</a></h2>
 <p>None</p>
-<h2><a class="header" href="#remarks-12" id="remarks-12">Remarks</a></h2>
+<h2 id="remarks-12"><a class="header" href="#remarks-12">Remarks</a></h2>
 <p>This is a stereo tapped delay line, with a one-block crossfade when taps are reconfigured.  The max delay is currently fixed at 5 seconds, but this will be made user configurable in future.</p>
 <p>This implementation offers precise control over the placement of taps, at the cost of not being able to have indefinitely long echo effects.  It's most useful for modeling discrete, panned
 echo taps.  Some ways this is useful are:</p>
@@ -869,16 +869,16 @@ echo taps.  Some ways this is useful are:</p>
 </ul>
 <p>This is effectively discrete convolution for 2 channels, implemented using an algorithm designed for sparse taps.
 In other words, the cost of any echo effect is <code>O(taps)</code>.  Anything up to a few thousand discrete taps is probably fine, but beyond that the cost will become prohibitive.</p>
-<h1><a class="header" href="#fdnreverb" id="fdnreverb">FdnReverb</a></h1>
+<h1 id="fdnreverb"><a class="header" href="#fdnreverb">FdnReverb</a></h1>
 <p>A reverb based off a feedback delay network.</p>
 <p>Inherits from <a href="object_reference/./global_effect.html">GlobalEffect</a>.</p>
 <p>This is provisional functionality, and subject to change.</p>
-<h2><a class="header" href="#constructors-11" id="constructors-11">Constructors</a></h2>
-<h3><a class="header" href="#syz_createglobalfdnreverb" id="syz_createglobalfdnreverb"><code>syz_createGlobalFdnReverb</code></a></h3>
+<h2 id="constructors-11"><a class="header" href="#constructors-11">Constructors</a></h2>
+<h3 id="syz_createglobalfdnreverb"><a class="header" href="#syz_createglobalfdnreverb"><code>syz_createGlobalFdnReverb</code></a></h3>
 <pre><code>SYZ_CAPI syz_ErrorCode syz_createGlobalFdnReverb(syz_Handle *out, syz_Handle context);
 </code></pre>
 <p>Creates a global FDN reverb with default settings.</p>
-<h2><a class="header" href="#properties-14" id="properties-14">Properties</a></h2>
+<h2 id="properties-14"><a class="header" href="#properties-14">Properties</a></h2>
 <p>See remarks for a description of what these do and how to use them effectively.</p>
 <table><thead><tr><th>Enum</th><th>Type</th><th>Default</th><th>Range</th><th>Description</th></tr></thead><tbody>
 <tr><td>SYZ_P_MEAN_FREE_PATH</td><td>double</td><td>0.02</td><td>0.0 to 0.5</td><td>The mean free path of the simulated environment.</td></tr>
@@ -892,7 +892,7 @@ In other words, the cost of any echo effect is <code>O(taps)</code>.  Anything u
 <tr><td>SYZ_P_LATE_REFLECTIONS_MODULATION_FREQUENCY</td><td>double</td><td>0.5</td><td>0.01 to 100.0</td><td>The frequency of the modulation of the delay lines inthe feedback paths.</td></tr>
 <tr><td>SYZ_P_LATE_REFLECTIONS_DELAY</td><td>double</td><td>0.01</td><td>0.0 to 0.5</td><td>The delay of the late reflections relative to the input in seconds.</td></tr>
 </tbody></table>
-<h2><a class="header" href="#remarks-13" id="remarks-13">Remarks</a></h2>
+<h2 id="remarks-13"><a class="header" href="#remarks-13">Remarks</a></h2>
 <p>This is a reverb composed of a feedback delay network with 8 internal delay lines.  The algorithm proceeds as follows:</p>
 <ul>
 <li>Audio is fed through the input filter, a lowpass.  Use this to eliminate high frequencies, which can be quite harsh when fed to reverb algorithms.
@@ -910,7 +910,7 @@ Currently, this filter is hardcoded, but Synthizer will be introducing a propert
 <code>SYZ_P_EARLY_REFLECTIONS_*</code> namespace is reserved for that purpose.  The plan is to feed them through HRTF in order to attempt to capture the shape of the room, possibly with a per-source model.</p>
 <p>The reverb is also missing the ability to pan late reflections; this is on the roadmap.</p>
 <p>The default configuration is something to the effect of a medium-sized room.  Presets will be added in future.  The following sections explain considerations for reverb design with this algorithm:</p>
-<h3><a class="header" href="#a-note-on-property-changes" id="a-note-on-property-changes">A Note On Property Changes</a></h3>
+<h3 id="a-note-on-property-changes"><a class="header" href="#a-note-on-property-changes">A Note On Property Changes</a></h3>
 <p>The FdnReverb effect involves a large amount of feedback and is therefore impossible to crossfade efficiently. To that end,we don't try.  Expect most property changes save for t60 and the hf/lf frequency controls to cause clicking and other artifacts.</p>
 <p>To change properties smoothly, it's best to create a reverb, set all the parameters, connect all the sources to the new one, and disconnect
 all the sources from the old one, in that order.  Synthizer may eventually do this internally, but that necessitates taking a permanent and large allocation cost without a lot of implementation work being done first, so for the moment we don't.</p>
@@ -921,17 +921,17 @@ all the sources from the old one, in that order.  Synthizer may eventually do th
 <li>When distributing/launching for real, use the above crossfading instructions.</li>
 </ul>
 <p>It is of course possible to use more than one reverb at a time as well, and to fade sources between them at different levels. Note, however, that reverbs are relatively expensive.</p>
-<h3><a class="header" href="#the-input-filter" id="the-input-filter">The Input Filter</a></h3>
+<h3 id="the-input-filter"><a class="header" href="#the-input-filter">The Input Filter</a></h3>
 <p>NOTE: the following currently isn't configurable, but the comments apply after whichever 0.8.x version introduces a filter property type.</p>
 <p>Most reverb algorithms have a problem: high frequencies are emphasized.  Synthizer's is no different.  To solve this, we introduce an input lowpass filter, which can cut out the higher frequencies.</p>
 <p>Changing this cutoff filter is the strongest tool available for coloring the reverb.  Low cutoffs are great for rooms with sound dampening, high cutoffs for concrete walls.
 It can be disabled, but doing so will typically cause metallic and periodic artifacts to be noticeable.</p>
-<h3><a class="header" href="#choosing-the-mean-free-path-and-late-reflections-delay" id="choosing-the-mean-free-path-and-late-reflections-delay">Choosing the mean free path and late reflections delay</a></h3>
+<h3 id="choosing-the-mean-free-path-and-late-reflections-delay"><a class="header" href="#choosing-the-mean-free-path-and-late-reflections-delay">Choosing the mean free path and late reflections delay</a></h3>
 <p>These two values are most directly responsible for controlling how big a space feels.  Intuitively, the mean free path is the average distance from wall to wall, and the late reflections delay
 is the time it takes for audio to hit something for the first time.  In general, get the mean free path by dividing the average distance between the walls by the speed of sound, and set the late reflections delay to something in the same order of magnitude.</p>
 <p>A good approximation for the mean free path is <code>4 * volume / surface_area</code>.  Mathematically, it's the average time sound travels before reflection off an obstacle.  Very large mean free paths produce many discrete echoes.  For unrealistically large values, the late reflections won't
 be able to converge at all.</p>
-<h3><a class="header" href="#choosing-t60-and-controlling-per-band-decay" id="choosing-t60-and-controlling-per-band-decay">Choosing T60 and controlling per-band decay</a></h3>
+<h3 id="choosing-t60-and-controlling-per-band-decay"><a class="header" href="#choosing-t60-and-controlling-per-band-decay">Choosing T60 and controlling per-band decay</a></h3>
 <p>The t60 and related properties control the gains and configuration of a filter on the feedback path.</p>
 <p>The t60 of a reverb is defined as the time it takes for the reverb to decay by <code>-60db</code>.  Effectively this can be thought of as how long until the reverb is completely silent.
 0.2 to 0.5 is a particularly reverberant and large living room, 1.0 to 2.0 is a concert hall, 5.0 is an amazingly large cavern, and values larger than that quickly become unrealistic and metallic.</p>
@@ -947,11 +947,11 @@ control coloration.</p>
 non-natural base boosting.  When the reverb starts, all frequencies are relatively equal but, as the audio continually gets fed back through the feedback paths,
 the equalizer will emphasize or deemphasize the 3 frequency bands at different rates.  To use this effectively, treat the hf/lf as defining the materials of the wall, then move t60.</p>
 <p>Note that the amount of coloration you can get from the equalizer is limited especially for short reverbs.  To control the perception of the environment more bluntly and independently of t60, use the input filter.</p>
-<h3><a class="header" href="#diffusion" id="diffusion">Diffusion</a></h3>
+<h3 id="diffusion"><a class="header" href="#diffusion">Diffusion</a></h3>
 <p>The diffusion of the reverb is how fast the reverb tail transitions from discrete echoes to a continuous reverberant response.  Synthizer exposes this to you as a percent-based control, since it's not conveniently possible to tie
 anything to a real physical quantity in this case.  Typically, diffusion at 1.0 (the default) is what you want.</p>
 <p>Another way to think of diffusion is how rough the walls are, how many obstacles there are for sound to bounce off of, etc.</p>
-<h3><a class="header" href="#delay-line-modulation" id="delay-line-modulation">Delay Line modulation</a></h3>
+<h3 id="delay-line-modulation"><a class="header" href="#delay-line-modulation">Delay Line modulation</a></h3>
 <p>A problem with feedback delay networks and/or other allpass/comb filter reverb designs is that they tend to be obviously periodic.  To deal with this, modulation of the delay
 lines on the feedback path is often introduced.  The final stage of designing an FdnReverb is to decide on the values of the modulation depth and frequency.</p>
 <p>The trade-off here is this:</p>
@@ -964,8 +964,8 @@ lines on the feedback path is often introduced.  The final stage of designing an
 <p>The artifacts introduced by large modulation depth/frequency values are least noticeable with percussive sounds and most noticeable with constant tones such as pianos and vocals.  Inversely, the periodic artifacts of no or little modulation
 are most noticeable with percussive sounds and least  noticeable with constant tones.</p>
 <p>In general, the best way to not need to touch these settings is to use realistic t60, as the beginning of the reverb isn't generally periodic.</p>
-<h1><a class="header" href="#synthizer-08x" id="synthizer-08x">Synthizer 0.8.x</a></h1>
-<h2><a class="header" href="#highlights-of-this-release" id="highlights-of-this-release">Highlights of this Release</a></h2>
+<h1 id="synthizer-08x"><a class="header" href="#synthizer-08x">Synthizer 0.8.x</a></h1>
+<h2 id="highlights-of-this-release"><a class="header" href="#highlights-of-this-release">Highlights of this Release</a></h2>
 <p>This release is about performance, and undoing the Linux rollback in 0.7.7.  As of this release,
 all code paths from the external interface don't block on the audio thread in the best case.  An internal refactor and introduction
 of a new command architecture unify a bunch of ad-hoc interfaces for fast inter-thread synchronization.</p>
@@ -980,10 +980,10 @@ Put another way, they're literally millions of times faster, and it's now possib
 </ul>
 <p>There is one exception to the lack of blocking: if code does around 10000 operations per audio tick,
 Synthizer will have no choice but to block due to internal resource exhaustion. If this proves to be an issue in practice, it is trivial to raise this limit further.</p>
-<h2><a class="header" href="#a-note-on-breakage" id="a-note-on-breakage">A Note on Breakage</a></h2>
+<h2 id="a-note-on-breakage"><a class="header" href="#a-note-on-breakage">A Note on Breakage</a></h2>
 <p>The above changes were a complex refactor.  In order to make them with as little chaos as possible Synthizer has begun introducing some basic unit tests, but nonetheless it is nearly impossible
 to make a release like this one without issues.  You are encouraged to report issues against <a href="https://github.com/synthizer/synthizer/issues">Synthizer's GitHub repository</a>.</p>
-<h2><a class="header" href="#compatibility" id="compatibility">Compatibility</a></h2>
+<h2 id="compatibility"><a class="header" href="#compatibility">Compatibility</a></h2>
 <p>Synthizer introduces the following compatibility breakages in this release:</p>
 <p>In order to get the above performance increases, it was necessary to remove the ability to read object properties.  This has the side effect of hiding details
 of object lifetime, which Synthizer may rely on in future.</p>
@@ -996,8 +996,8 @@ that incorrectly relied on the old behavior.</p>
 series.  This change was made because HRTF is only useful for headphone users, and it is not possible
 for Synthizer to reliably detect that case.  In general, stereo panning is safe on every
 audio configuration including surround sound systems.</p>
-<h2><a class="header" href="#patch-notes" id="patch-notes">Patch Notes</a></h2>
-<h3><a class="header" href="#080" id="080">0.8.0</a></h3>
+<h2 id="patch-notes"><a class="header" href="#patch-notes">Patch Notes</a></h2>
+<h3 id="080"><a class="header" href="#080">0.8.0</a></h3>
 <ul>
 <li>Initial release</li>
 <li>Undo the rollbacks in 0.7.7 and reintroduce MSVC and Linux support.</li>
@@ -1005,19 +1005,19 @@ audio configuration including surround sound systems.</p>
 <li>A number of small fixes and slight quality improvements to reverb.</li>
 <li>All of the massive performance increases from above.</li>
 </ul>
-<h2><a class="header" href="#081" id="081">0.8.1</a></h2>
+<h2 id="081"><a class="header" href="#081">0.8.1</a></h2>
 <ul>
 <li>Miniaudio was improperly configured to use a conservative profile, rather than a low latency profile.
 Caused extreme audio latency.</li>
 </ul>
-<h2><a class="header" href="#083" id="083">0.8.3</a></h2>
+<h2 id="083"><a class="header" href="#083">0.8.3</a></h2>
 <ul>
 <li>Fix: FdnReverb.t60 = 0.0 no longer internally divides by 0.</li>
 <li>fix: BufferGenerator again uses seconds for positions.  This was refactored incorrectly during 0.8.0's major changes.</li>
 <li>Objects should now die faster when their handles are freed, due to holding
 only weak references internally where possible when dispatching commands to the audio thread.</li>
 </ul>
-<h2><a class="header" href="#084" id="084">0.8.4</a></h2>
+<h2 id="084"><a class="header" href="#084">0.8.4</a></h2>
 <ul>
 <li>Contexts and all generators now support <code>SYZ_P_GAIN</code>.</li>
 <li>Contexts, sources, and generators now support play/pause via <code>syz_pause</code> and <code>syz_play</code>.
@@ -1036,19 +1036,19 @@ objects to non-Synthizer objects without having to maintain a custom mapping you
 <li>Slight memory savings.</li>
 <li>Fix: deleting contexts no longer crashes.</li>
 </ul>
-<h2><a class="header" href="#085" id="085">0.8.5</a></h2>
+<h2 id="085"><a class="header" href="#085">0.8.5</a></h2>
 <ul>
 <li>New function <code>syz_getObjectType</code> which queries the object type. Primarily
 intended for bindings developers.</li>
 <li>Fix: Synthizer no longer leaks megabytes of memory per second (issue #44).</li>
 </ul>
-<h2><a class="header" href="#086" id="086">0.8.6</a></h2>
+<h2 id="086"><a class="header" href="#086">0.8.6</a></h2>
 <p>This release contains somewhat experimental code to make decoding buffers faster by approximately 2X.  Please report any perceptible audio quality issues with <code>BufferGenerator</code>.</p>
 <ul>
 <li><code>syz_handleFree</code> now no-ops when passed <code>handle = 0</code>.</li>
 <li>Fix: deleting sources in specific orders no longer causes audio artifacts (issue #46)</li>
 </ul>
-<h2><a class="header" href="#087" id="087">0.8.7</a></h2>
+<h2 id="087"><a class="header" href="#087">0.8.7</a></h2>
 <ul>
 <li>Fix: the library no longer crashes due to internal races between handle deletion and execution of audio commands on the background thread
 <ul>
@@ -1058,30 +1058,33 @@ intended for bindings developers.</li>
 <li>Fix: streaming generators no longer spuriously seek to the beginning of their audio after generating the first few MS of audio (issue #49)</li>
 <li>Fix: <code>panning_scalar</code> will once more properly take effect if set immediately after <code>PannedSource</code> creation (issue #52)</li>
 </ul>
-<h2><a class="header" href="#088" id="088">0.8.8</a></h2>
+<h2 id="088"><a class="header" href="#088">0.8.8</a></h2>
 <ul>
 <li>An <a href="releases/../tutorials/events.html">event system</a>.  This is alpha, and changes are expected in 0.9.</li>
 <li>Add <code>SYZ_P_PANNER_STRATEGY</code> to Context to default panner strategies for new sources.</li>
 </ul>
-<h2><a class="header" href="#089" id="089">0.8.9</a></h2>
+<h2 id="089"><a class="header" href="#089">0.8.9</a></h2>
 <ul>
 <li>Fix: non-looping BufferGenerator with a pitch bend is no longer silent</li>
 <li>Fix/improvement: In Python, Synthizer events inherit from a common base class.</li>
 </ul>
-<h2><a class="header" href="#0810" id="0810">0.8.10</a></h2>
+<h2 id="0810"><a class="header" href="#0810">0.8.10</a></h2>
 <p>This release is the long-awaited improved HRTF.  This might not be the final version, but it's much
 better in quality and the scripts to generate it are now much easier to maintain.  Please leave any feedback
 <a href="https://github.com/synthizer/synthizer/issues/27">here</a>.  in particular, it is not feasible to test the entire sphere,
 so it may be possible to find azimuth/elevation combinations which do weird things.</p>
-<h1><a class="header" href="#release-notes-for-00x-to-08x" id="release-notes-for-00x-to-08x">Release Notes for 0.0.x to 0.8.x</a></h1>
+<h2 id="0811-0816"><a class="header" href="#0811-0816">0.8.11-0.8.16</a></h2>
+<p>These releases are a test series for moving CI to GitHub Actions. Though not user-facing, 0.8.14 now blocks on successful Linux
+CI for Ubuntu 20 and thus gives Linux support which is on par with Windows.</p>
+<h1 id="release-notes-for-00x-to-08x"><a class="header" href="#release-notes-for-00x-to-08x">Release Notes for 0.0.x to 0.8.x</a></h1>
 <p>Starting at 0.8 and later, Synthizer maintains separate pages for every incompatible release with more details on compatibility breakage and what specifically changed. The following were early development versions,
 and should no longer be used.</p>
-<h2><a class="header" href="#077" id="077">0.7.7</a></h2>
+<h2 id="077"><a class="header" href="#077">0.7.7</a></h2>
 <ul>
 <li>Identical to 0.7.5.  0.7.6 introduced a major performance regression that makes Synthizer unusable (probably issue #32, but investigations are ongoing).
 After this is fixed, the next version will contain all the nice 0.7.6 things.</li>
 </ul>
-<h2><a class="header" href="#076" id="076">0.7.6</a></h2>
+<h2 id="076"><a class="header" href="#076">0.7.6</a></h2>
 <ul>
 <li>Synthizer now builds on Linux.  This is preliminary.  If you experience issues, please report them, as Linux isn't my primary platform.  That said, I have received multiple confirmations that it works.</li>
 <li>Python now publishes source distributions, which are capable of building without any extra intervention on your part, except for Windows which requires being in an appropriate MSVC shell.  On Linux, you can install Synthizer into virtualenvs with a simple <code>pip install synthizer</code>, assuming a supported C and C++ compiler.
@@ -1094,7 +1097,7 @@ no obvious right choice. If you need a different configuration, please build fro
 <li>The audio generation all runs inline in the audio callback. This has the knock-on effect of making.
 property reads even slower than they were already, but is necessary to work well on Linux. See issue #32 for tracking fast property reads.</li>
 </ul>
-<h2><a class="header" href="#075" id="075">0.7.5</a></h2>
+<h2 id="075"><a class="header" href="#075">0.7.5</a></h2>
 <ul>
 <li>Introduce <a href="releases/../object_reference/fdn_reverb.html">reverb</a>.</li>
 <li>Start building Python 3.9 wheels.</li>
@@ -1105,47 +1108,47 @@ property reads even slower than they were already, but is necessary to work well
 issue #16 where PannedSource could become silent.  Note that this may introduce other issues in exchange: it was assumed
 that the bitsets were working this entire time.</li>
 </ul>
-<h2><a class="header" href="#074" id="074">0.7.4</a></h2>
+<h2 id="074"><a class="header" href="#074">0.7.4</a></h2>
 <ul>
 <li>Document our <a href="releases/../concepts/stability.html">versioning and stability guarantees</a>.</li>
 <li>Introduce <a href="releases/../concepts/effects.html">effect routing support</a>.</li>
 <li>Introduce an <a href="releases/../object_reference/echo.html">Echo</a> effect.</li>
 </ul>
-<h2><a class="header" href="#073" id="073">0.7.3</a></h2>
+<h2 id="073"><a class="header" href="#073">0.7.3</a></h2>
 <ul>
 <li>Fix pitch bend support on BufferGenerator when looping is enabled.
 For the morbidly curious there is indeed a difference between <code>std::fmod</code> and <code>std::remainder</code></li>
 <li>Maybe fix bugs in stereo panning for the same reason.
 If you had issues with stereo panning and didn't report them, you should probably try this release.</li>
 </ul>
-<h2><a class="header" href="#072" id="072">0.7.2</a></h2>
+<h2 id="072"><a class="header" href="#072">0.7.2</a></h2>
 <ul>
 <li>New property on BufferGenerator: <code>SYZ_P_PITCH_BEND</code>.</li>
 <li>We will adopt pre-1.0 semantic versioning going forward in order to be compatible with Rust-style <code>^</code> dependencies:
 <code>0.major.minor</code>, with minor incrementing for features and major incrementing for incompatible API updates. This should enable at least some compatibility in version numbers across package managers.</li>
 </ul>
-<h2><a class="header" href="#071" id="071">0.7.1</a></h2>
+<h2 id="071"><a class="header" href="#071">0.7.1</a></h2>
 <ul>
 <li>Attempt releasing 32-bit Python wheels.</li>
 </ul>
-<h2><a class="header" href="#070" id="070">0.7.0</a></h2>
+<h2 id="070"><a class="header" href="#070">0.7.0</a></h2>
 <ul>
 <li>Add a noise generator.</li>
 <li>Internal fixes to filters.</li>
 </ul>
-<h2><a class="header" href="#064" id="064">0.6.4</a></h2>
+<h2 id="064"><a class="header" href="#064">0.6.4</a></h2>
 <ul>
 <li>Python bindings now release the GIL in from_stream.</li>
 </ul>
-<h2><a class="header" href="#063" id="063">0.6.3</a></h2>
+<h2 id="063"><a class="header" href="#063">0.6.3</a></h2>
 <ul>
 <li>Re-enable dr_flac SIMD.</li>
 <li>Fix a bug with resampling when decoding to buffers.</li>
 </ul>
-<h2><a class="header" href="#061" id="061">0.6.1</a></h2>
+<h2 id="061"><a class="header" href="#061">0.6.1</a></h2>
 <p>This release temporarily disables dr_flac SIMD support until resolution of <a href="https://github.com/mackron/dr_libs/issues/143">this upstream issue</a>.</p>
-<h2><a class="header" href="#060" id="060">0.6.0</a></h2>
-<h3><a class="header" href="#features" id="features">Features</a></h3>
+<h2 id="060"><a class="header" href="#060">0.6.0</a></h2>
+<h3 id="features"><a class="header" href="#features">Features</a></h3>
 <ul>
 <li>Major improvements to StreamingGenerator:
 <ul>
@@ -1160,14 +1163,14 @@ please open issues.</li>
 in the future, because it's the only one that's safe on all speaker arrangements.
 If you want HRTF, request it by setting <code>SYZ_P_PANNER_STRATEGY</code> on the context and/or sources.</li>
 </ul>
-<h3><a class="header" href="#bugs-fixed" id="bugs-fixed">Bugs Fixed</a></h3>
+<h3 id="bugs-fixed"><a class="header" href="#bugs-fixed">Bugs Fixed</a></h3>
 <ul>
 <li>Throw an exception instead of silently crashing on invalid audio files.</li>
 <li>Fix the fundamentally broken DirectSource mixing logic. This probably still needs some improvement but is no longer fundamentally broken.</li>
 <li>Fix Stream seeking when using LookaheadByteStream internally. This fixes/allows for StreamingGenerator to seek,
 and may also fix  loading of audio files into buffers in some cases.</li>
 </ul>
-<h2><a class="header" href="#050" id="050">0.5.0</a></h2>
+<h2 id="050"><a class="header" href="#050">0.5.0</a></h2>
 <ul>
 <li>Roll out a deferred freeing strategy, which uses C++ custom allocators to
 move freeing pointers to a background thread that wakes up on a period. This doesn't move all freeing, but gets a vast
@@ -1184,7 +1187,7 @@ no longer needa context passed in.</li>
 </li>
 <li>Fix creating buffers of files which require resampling.</li>
 </ul>
-<h2><a class="header" href="#041" id="041">0.4.1</a></h2>
+<h2 id="041"><a class="header" href="#041">0.4.1</a></h2>
 <ul>
 <li>Fixes to allocating multiple panner lanes from a PannerBank.
 <ul>
@@ -1193,7 +1196,7 @@ no longer needa context passed in.</li>
 </li>
 <li>Fix HRTF computation for angles outside the built-in HRTF dataset, but which are still in range for elevation.</li>
 </ul>
-<h2><a class="header" href="#040" id="040">0.4.0</a></h2>
+<h2 id="040"><a class="header" href="#040">0.4.0</a></h2>
 <ul>
 <li>Introduce DirectSource, for music and other non-panned assets.</li>
 <li>All sources now have gain, as part of refactoring for DirectSource.</li>
@@ -1211,7 +1214,7 @@ it'll probably use a ConcurrentQueue to enqueue updates and avoid the overhead, 
 <li>Offer additional guarantees around <code>syz_getX</code> behavior with respect to properties that Synthizer modifies, like generator positions.</li>
 <li>CONTRIBUTING.md and pull request templates.</li>
 </ul>
-<h2><a class="header" href="#030" id="030">0.3.0</a></h2>
+<h2 id="030"><a class="header" href="#030">0.3.0</a></h2>
 <ul>
 <li>Added support for Flac and MP3 via <a href="https://github.com/mackron/dr_libs">dr_libs</a>.</li>
 <li>Extended byte streams to be able to advertise their size.</li>

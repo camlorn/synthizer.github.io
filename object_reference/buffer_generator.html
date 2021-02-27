@@ -163,20 +163,20 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#buffergenerator" id="buffergenerator">BufferGenerator</a></h1>
+                        <h1 id="buffergenerator"><a class="header" href="#buffergenerator">BufferGenerator</a></h1>
 <p>Inherits from <a href="./generator.html">Generator</a>.</p>
-<h2><a class="header" href="#constructors" id="constructors">Constructors</a></h2>
-<h3><a class="header" href="#syz_createbuffergenerator" id="syz_createbuffergenerator"><code>syz_createBufferGenerator</code></a></h3>
+<h2 id="constructors"><a class="header" href="#constructors">Constructors</a></h2>
+<h3 id="syz_createbuffergenerator"><a class="header" href="#syz_createbuffergenerator"><code>syz_createBufferGenerator</code></a></h3>
 <pre><code>SYZ_CAPI syz_ErrorCode syz_createBufferGenerator(syz_Handle *out, syz_Handle context);
 </code></pre>
 <p>Creates a BufferGenerator. The buffer is set to NULL and the resulting generator will play silence until one is associated.</p>
-<h2><a class="header" href="#properties" id="properties">Properties</a></h2>
+<h2 id="properties"><a class="header" href="#properties">Properties</a></h2>
 <table><thead><tr><th>Enum</th><th>Type</th><th>Default Value</th><th>Range</th><th>Description</th></tr></thead><tbody>
 <tr><td>SYZ_P_BUFFER</td><td>Object</td><td>0</td><td>Any Buffer handle</td><td>The buffer to play</td></tr>
 <tr><td>SYZ_P_POSITION</td><td>double</td><td>0.0</td><td>value &gt;= 0.0</td><td>The position in the buffer.</td></tr>
 <tr><td>SYZ_P_LOOPING</td><td>int</td><td>0</td><td>0 or 1</td><td>Whether playback loops at the end of the buffer.</td></tr>
 </tbody></table>
-<h2><a class="header" href="#remarks" id="remarks">Remarks</a></h2>
+<h2 id="remarks"><a class="header" href="#remarks">Remarks</a></h2>
 <p>BufferGenerators play <a href="./buffer.html">Buffer</a>s.</p>
 <p><code>SYZ_P_POSITION</code> is reset if <code>SYZ_P_BUFFER</code> is modified.</p>
 <p><code>SYZ_P_POSITION</code> can be set past the end of the buffer.  If <code>SYZ_P_LOOPING = 0</code>, the generator will play silence.  Otherwise, the position will immediately loop to the beginning.</p>
