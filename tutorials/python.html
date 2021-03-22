@@ -163,30 +163,30 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="a-basic-python-tutorial"><a class="header" href="#a-basic-python-tutorial">A Basic Python Tutorial</a></h1>
-<h2 id="installation"><a class="header" href="#installation">Installation</a></h2>
+                        <h1><a class="header" href="#a-basic-python-tutorial" id="a-basic-python-tutorial">A Basic Python Tutorial</a></h1>
+<h2><a class="header" href="#installation" id="installation">Installation</a></h2>
 <p>We support Python 3.  Python wheels for Windows X64 are published to Pypi, so to install:</p>
 <pre><code class="language-bash">pip install synthizer
 </code></pre>
-<h2 id="some-basics"><a class="header" href="#some-basics">Some Basics</a></h2>
+<h2><a class="header" href="#some-basics" id="some-basics">Some Basics</a></h2>
 <p>Synthizer requires initialization and deinitialization. The best way to initialize Synthizer is to use the context manager:</p>
 <pre><code class="language-python">with synthizer.initialized():
     # Code...
 </code></pre>
 <p>The context manager will handle deinitialization on exceptions.  Though <code>synthizer.initialize()</code> and <code>synthizer.shutdown()</code> are exposed, use is discouraged as the context manager ensures clean shutdown in (almost) all cases.</p>
 <p>Once the library is deinitialized, calls into Synthizer error.</p>
-<h2 id="destroying-objects"><a class="header" href="#destroying-objects">Destroying Objects</a></h2>
+<h2><a class="header" href="#destroying-objects" id="destroying-objects">Destroying Objects</a></h2>
 <p>Unlike the rest of Python, Synthizer objects represent concrete audio architecture, which need to have a defined lifetime in order to control when they are and aren't being heard,
 and also to ensure that it can be well understood when things are and aren't using system resources.  To that end, Synthizer objects don't interact with Python garbage collection. When you're done with an object, call <code>myobj.destroy()</code>.</p>
 <p>At the moment, failing to do so will permanently leak the object.  Work in future may lift this restriction, but it's still necessary to be explicit: if you aren't, things may be audioble longer than you intend.</p>
-<h2 id="the-context"><a class="header" href="#the-context">The Context</a></h2>
+<h2><a class="header" href="#the-context" id="the-context">The Context</a></h2>
 <p>Most objects in Synthizer require a context, which represents a listener in 3D space, an audio output device, and other miscellaneous infrastructure.
 Objects are passed a context on construction, and two objects from different contexts never interact.</p>
 <p>To get a context:</p>
 <pre><code class="language-python">ctx = synthizer.Context()
 </code></pre>
 <p>Currently, selecting audio output devices isn't supported, and audio will go to the system default.</p>
-<h2 id="buffers-streams-and-generators"><a class="header" href="#buffers-streams-and-generators">Buffers, Streams, and Generators</a></h2>
+<h2><a class="header" href="#buffers-streams-and-generators" id="buffers-streams-and-generators">Buffers, Streams, and Generators</a></h2>
 <p>As elaborated in the concepts section, the Synthizer audio graph is as follows:</p>
 <ul>
 <li>A source is fed by one or more generators and pans audio.</li>
@@ -217,13 +217,13 @@ You use <code>StreamingGenerator</code> for things like music and <code>BufferGe
 <li>When Synthizer needs to overload a constructor, it does so as staticmethods on the class. We don't have
 multiple constructors here yet, but will in future.</li>
 </ul>
-<h2 id="sources"><a class="header" href="#sources">Sources</a></h2>
+<h2><a class="header" href="#sources" id="sources">Sources</a></h2>
 <p>Sources represent audio output.  They get one or more generators, combine them all, and output.  Currently we have the following kinds of sources:</p>
 <ul>
 <li>A PannedSource is manually controlled using azimuth and elevation or, alternatively, a panning scalar.</li>
 <li>Source3D is a 3D environmental source with the usual things you'd expect: distance model, position, etc.</li>
 </ul>
-<h2 id="properties"><a class="header" href="#properties">Properties</a></h2>
+<h2><a class="header" href="#properties" id="properties">Properties</a></h2>
 <p>Synthizer offers the following kinds of properties:</p>
 <ul>
 <li>int, represented as either a Python integer type or an enum. An example of the latter case is <code>source.distance_model</code>, which is a <code>synthizer.DistanceModel</code>. Synthizer exposes enums as Python 3.4-style enums via Cython.</li>
@@ -250,7 +250,7 @@ A common mistake is to try to use Synthizer to store data, for example putting t
 <p>Object properties are internally referenced in a weak fashion. That is to say that destroying (<code>.destroy()</code>)the object the property is set to will clear the property. </p>
 <p>In the Python bindings, Synthizer translates <code>SYZ_P_MY_PROPERTY</code> to <code>obj.my_property</code>. The translations of the tables in the object reference are nearly mechanical, and this simple
 transformation always tells you where the property lives in Python.</p>
-<h2 id="an-aside-orientation-formulas"><a class="header" href="#an-aside-orientation-formulas">An aside: orientation formulas</a></h2>
+<h2><a class="header" href="#an-aside-orientation-formulas" id="an-aside-orientation-formulas">An aside: orientation formulas</a></h2>
 <p>Before going much further, most people seem to eventually ask about trigonometry with respect to using a 3D audio library for 2D games. The high level overview
 for those who already know trigonometry is that Synthizer's coordinate system is right-handed and orientations consist of 2 orthogonal unit vectors <code>(atx, aty, atz, upx, upy, upz)</code> stored
 as a packed property so that they can both be set atomically.  But the longer version for those who don't know trigonometry is:</p>
@@ -268,7 +268,7 @@ def make_orientation(degrees):
     return (math.sin(rad), math.cos(rad), 0, 0, 0, 1)
 </code></pre>
 <p>Setting <code>context.orientation</code> to the result of the above will set things up so that you can treat positive x as east, positive y as north, and positive z as up. The default orientation faces the listener north.</p>
-<h2 id="putting-it-together"><a class="header" href="#putting-it-together">Putting it Together</a></h2>
+<h2><a class="header" href="#putting-it-together" id="putting-it-together">Putting it Together</a></h2>
 <p>To play a source in 3D space, do the following:</p>
 <ul>
 <li>Create a context.</li>
@@ -279,7 +279,7 @@ def make_orientation(degrees):
 <li><code>source.add_generator(generator)</code></li>
 <li>Then manipulate position, etc. on the source.</li>
 </ul>
-<h2 id="a-worked-example"><a class="header" href="#a-worked-example">A Worked Example</a></h2>
+<h2><a class="header" href="#a-worked-example" id="a-worked-example">A Worked Example</a></h2>
 <p>The following is a 3D media player, the audio library equivalent of hello world. It supports the following commands:</p>
 <ul>
 <li><code>pause</code>, <code>play</code>: pause/play the source</li>
@@ -418,6 +418,21 @@ with synthizer.initialized():
 
         </div>
 
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
         
 
         

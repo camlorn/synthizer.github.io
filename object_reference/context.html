@@ -163,13 +163,13 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="context"><a class="header" href="#context">Context</a></h1>
-<h2 id="constructors"><a class="header" href="#constructors">Constructors</a></h2>
-<h3 id="syz_createcontext"><a class="header" href="#syz_createcontext"><code>syz_createContext</code></a></h3>
+                        <h1><a class="header" href="#context" id="context">Context</a></h1>
+<h2><a class="header" href="#constructors" id="constructors">Constructors</a></h2>
+<h3><a class="header" href="#syz_createcontext" id="syz_createcontext"><code>syz_createContext</code></a></h3>
 <pre><code>SYZ_CAPI syz_ErrorCode syz_createContext(syz_Handle *out);
 </code></pre>
 <p>Creates a context configured to play through the default output device.</p>
-<h2 id="properties"><a class="header" href="#properties">Properties</a></h2>
+<h2><a class="header" href="#properties" id="properties">Properties</a></h2>
 <table><thead><tr><th>Enum</th><th>Type</th><th>Default</th><th>Range</th><th>Description</th></tr></thead><tbody>
 <tr><td>SYZ_P_GAIN</td><td>double</td><td>1.0</td><td>value &gt;= 0.0</td><td>The gain of the context</td></tr>
 <tr><td>SYZ_P_POSITION</td><td>double3</td><td>(0, 0, 0)</td><td>any</td><td>The position of the listener.</td></tr>
@@ -182,14 +182,14 @@
 <tr><td>SYZ_P_CLOSENESS_BOOST_DISTANCE</td><td>double</td><td>0.0</td><td>value &gt;= 0.0</td><td>The default closeness boost distance for new sources</td></tr>
 <tr><td>SYZ_P_PANNER_STRATEGY</td><td>int</td><td>SYZ_PANNER_STRATEGY_STEREO</td><td>any SYZ_PANNER_STRATEGY</td><td>The default panner strategy for new sources.</td></tr>
 </tbody></table>
-<h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
-<h3 id="syz_pause-syz_play"><a class="header" href="#syz_pause-syz_play"><code>syz_pause</code>, <code>syz_play</code></a></h3>
+<h2><a class="header" href="#functions" id="functions">Functions</a></h2>
+<h3><a class="header" href="#syz_pause-syz_play" id="syz_pause-syz_play"><code>syz_pause</code>, <code>syz_play</code></a></h3>
 <pre><code>syz_ErrorCode syz_pause(syz_Handle object);
 syz_ErrorCode syz_play(syz_Handle object);
 </code></pre>
 <p>The standard play/pause functions, which do exactly what their name suggests.</p>
 <p>When the context is paused, nothing it manages advances and no audio is audible.</p>
-<h2 id="remarks"><a class="header" href="#remarks">Remarks</a></h2>
+<h2><a class="header" href="#remarks" id="remarks">Remarks</a></h2>
 <p>The context is the main entrypoint to Synthizer, responsible for the following:</p>
 <ul>
 <li>Control and manipulation of the audio device.</li>
@@ -241,6 +241,21 @@ For efficiency, whether two objects are from different contexts is unvalidated, 
 
         </div>
 
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
         
 
         

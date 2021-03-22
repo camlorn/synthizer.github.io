@@ -163,23 +163,23 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="buffer"><a class="header" href="#buffer">Buffer</a></h1>
-<h2 id="constructors"><a class="header" href="#constructors">Constructors</a></h2>
-<h3 id="syz_createbufferfromstream"><a class="header" href="#syz_createbufferfromstream"><code>syz_createBufferFromStream</code></a></h3>
+                        <h1><a class="header" href="#buffer" id="buffer">Buffer</a></h1>
+<h2><a class="header" href="#constructors" id="constructors">Constructors</a></h2>
+<h3><a class="header" href="#syz_createbufferfromstream" id="syz_createbufferfromstream"><code>syz_createBufferFromStream</code></a></h3>
 <pre><code>SYZ_CAPI syz_ErrorCode syz_createBufferFromStream(syz_Handle *out, const char *protocol, const char *path, const char *options);
 </code></pre>
 <p>Currently, the only way to make a buffer is from a stream, in the self-explanatory manner. See <a href="../concepts/streams.html">Streams</a> for information on streams.</p>
 <p>This call will decode the stream in the calling thread, returning errors as necessary. Synthizer will eventually offer a BufferCache which supports background decoding and caching, but for the moment the responsibility of background decoding is placed on the calling program.</p>
-<h2 id="properties"><a class="header" href="#properties">Properties</a></h2>
+<h2><a class="header" href="#properties" id="properties">Properties</a></h2>
 <p>None.</p>
-<h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
-<h3 id="getters"><a class="header" href="#getters">Getters</a></h3>
+<h2><a class="header" href="#functions" id="functions">Functions</a></h2>
+<h3><a class="header" href="#getters" id="getters">Getters</a></h3>
 <pre><code>SYZ_CAPI syz_ErrorCode syz_bufferGetChannels(unsigned int *out, syz_Handle buffer);
 SYZ_CAPI syz_ErrorCode syz_bufferGetLengthInSamples(unsigned int *out, syz_Handle buffer);
 SYZ_CAPI syz_ErrorCode syz_bufferGetLengthInSeconds(double *out, syz_Handle buffer);
 </code></pre>
 <p>The self-explanatory getters. These aren't properties because they can't be written and they shouldn't participate in the property infrastructure.</p>
-<h2 id="remarks"><a class="header" href="#remarks">Remarks</a></h2>
+<h2><a class="header" href="#remarks" id="remarks">Remarks</a></h2>
 <p>Buffers hold audio data, as a collection of contiguous chunks.  Data is resampled to the Synthizer samplerate and converted to 16-bit PCM using triangular dither.</p>
 <p>Buffers are one of the few Synthizer objects that don't require a context.  They may be used freely with any object requiring a buffer, from any thread.  In order to facilitate this, buffers are immutable after creation.</p>
 <p>The approximate memory usage of a buffer in bytes is <code>2 * channels * duration_in_seconds * 44100</code>.  Loading large assets into buffers is not recommended. For things such as music tracks, use <a href="./streaming_generator.html">StreamingGenerator</a>s.  Note that on 32-bit architectures, some operating systems only allow a 2 gigabyte address space.  Synthizer avoids allocating buffers as contiguous arrays in part to allow efficient use of 32-bit address spaces, but this only goes so far.  If on a 32-bit architecture, expect to run out of memory from Synthizer's perspective well before decoding 2 Gigabytes of buffers simultaneously due to the inability to find consecutive free pages.</p>
@@ -221,6 +221,21 @@ SYZ_CAPI syz_ErrorCode syz_bufferGetLengthInSeconds(double *out, syz_Handle buff
 
         </div>
 
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
         
 
         

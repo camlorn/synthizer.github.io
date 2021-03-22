@@ -163,11 +163,11 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="events-alpha"><a class="header" href="#events-alpha">Events (alpha)</a></h1>
+                        <h1><a class="header" href="#events-alpha" id="events-alpha">Events (alpha)</a></h1>
 <p>The following functionality is alpha.  In particular, significant changes are expected in the
 0.9 release.  For the moment the only documentation is this tutorial; it will be improved after the planned 0.9 changes and
 as part of the general pre-1.0 documentation project.</p>
-<h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
+<h2><a class="header" href="#introduction" id="introduction">Introduction</a></h2>
 <p>Synthizer supports sending events.  Currently, it can send finished and looped events for both
 BufferGenerator and StreamingGenerator.  This will be extended to other objects and concepts in future,
 as appropriate.  The events have the following meanings:</p>
@@ -184,7 +184,7 @@ effectively a memory leak.  In other words, only enable events if you know you'l
 <p>The events system will drop events which would refer to invalid handles on a best-effort basis, so that
 an invalid handle is never returned to the caller of <code>syz_contextGetNextEvent</code>.  This is guaranteed to work as long as all deletion happens on the same thread as the event polling.  In future, Synthizer is going to switch handles
 to a reference-counted scheme which will improve the concurrency story.</p>
-<h2 id="a-python-tutorial"><a class="header" href="#a-python-tutorial">A Python Tutorial</a></h2>
+<h2><a class="header" href="#a-python-tutorial" id="a-python-tutorial">A Python Tutorial</a></h2>
 <p>In Python, events are exposed as an iterator on the context:</p>
 <pre><code>for event in ctx.get_events():
     if isinstance(e, synthizer.FinishedEvent):
@@ -233,6 +233,21 @@ In future, other event types may include more information.</p>
 
         </div>
 
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
         
 
         

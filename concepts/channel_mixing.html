@@ -163,7 +163,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="channel-upmixing-and-downmixing"><a class="header" href="#channel-upmixing-and-downmixing">Channel Upmixing and Downmixing</a></h1>
+                        <h1><a class="header" href="#channel-upmixing-and-downmixing" id="channel-upmixing-and-downmixing">Channel Upmixing and Downmixing</a></h1>
 <p>Synthizer's current channel mixing algorithm is as follows:</p>
 <ul>
 <li>Mono to anything duplicates in all channels.</li>
@@ -210,6 +210,21 @@ When better support is added, this page wil be extended explaining how it works,
 
         </div>
 
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
         
 
         

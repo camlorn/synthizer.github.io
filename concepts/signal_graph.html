@@ -163,7 +163,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="the-signal-graph-library-parameters-and-limitations"><a class="header" href="#the-signal-graph-library-parameters-and-limitations">The Signal Graph, Library Parameters, and Limitations</a></h1>
+                        <h1><a class="header" href="#the-signal-graph-library-parameters-and-limitations" id="the-signal-graph-library-parameters-and-limitations">The Signal Graph, Library Parameters, and Limitations</a></h1>
 <p>Synthizer's signal graph is as follows:</p>
 <ul>
 <li>1 or more generators feed a source.</li>
@@ -218,6 +218,21 @@ slab which allows for relatively fast handle translation without syscalls.  If t
 
         </div>
 
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
         
 
         

@@ -163,23 +163,23 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="source-abstract"><a class="header" href="#source-abstract">Source (abstract)</a></h1>
-<h2 id="constructors"><a class="header" href="#constructors">Constructors</a></h2>
+                        <h1><a class="header" href="#source-abstract" id="source-abstract">Source (abstract)</a></h1>
+<h2><a class="header" href="#constructors" id="constructors">Constructors</a></h2>
 <p>None.</p>
-<h2 id="properties"><a class="header" href="#properties">Properties</a></h2>
+<h2><a class="header" href="#properties" id="properties">Properties</a></h2>
 <table><thead><tr><th>Enum</th><th>Type</th><th>Default</th><th>Range</th><th>Description</th></tr></thead><tbody>
 <tr><td>SYZ_P_GAIN</td><td>double</td><td>Any double &gt; 0</td><td>An additional gain factor applied to this source.</td><td></td></tr>
 <tr><td>SYZ_P_FILTER</td><td>biquad</td><td>identity</td><td>any</td><td>A filter which applies to all audio leaving the source, before <code>SYZ_P_FILTER_DIRECT</code> and <code>SYZ_P_FILTER_EFFECTS</code>.</td></tr>
 <tr><td>SYZ_P_FILTER_DIRECT</td><td>biquad</td><td>identity</td><td>any</td><td>A filter which applies after <code>SYZ_P_FILTER</code> but not to audio traveling to effect sends.</td></tr>
 <tr><td>SYZ_P_FILTER_EFFECTS</td><td>biquad</td><td>identity</td><td>any</td><td>A filter which runs after <code>SYZ_P_FILTER</code> but only applies to audio traveling through effect sends.</td></tr>
 </tbody></table>
-<h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
-<h3 id="syz_sourceaddgenerator-syz_sourceremovegenerator"><a class="header" href="#syz_sourceaddgenerator-syz_sourceremovegenerator"><code>syz_sourceAddGenerator</code>, <code>syz_sourceRemoveGenerator</code></a></h3>
+<h2><a class="header" href="#functions" id="functions">Functions</a></h2>
+<h3><a class="header" href="#syz_sourceaddgenerator-syz_sourceremovegenerator" id="syz_sourceaddgenerator-syz_sourceremovegenerator"><code>syz_sourceAddGenerator</code>, <code>syz_sourceRemoveGenerator</code></a></h3>
 <pre><code>SYZ_CAPI syz_ErrorCode syz_sourceAddGenerator(syz_Handle source, syz_Handle generator);
 SYZ_CAPI syz_ErrorCode syz_sourceRemoveGenerator(syz_Handle source, syz_Handle generator);
 </code></pre>
 <p>Add/remove a generator from a source. Each generator may be added once and duplicate add calls will have no effect. Each generator should only be used with one source at a time.</p>
-<h3 id="syz_pause-syz_play"><a class="header" href="#syz_pause-syz_play"><code>syz_pause</code>, <code>syz_play</code></a></h3>
+<h3><a class="header" href="#syz_pause-syz_play" id="syz_pause-syz_play"><code>syz_pause</code>, <code>syz_play</code></a></h3>
 <pre><code>syz_ErrorCode syz_pause(syz_Handle object);
 syz_ErrorCode syz_play(syz_Handle object);
 
@@ -187,7 +187,7 @@ syz_ErrorCode syz_play(syz_Handle object);
 <p>The standard play/pause functions.  Note that all subclasses of Source will still process panners for the time being,
 so this doesn't make a Source free in terms of things like HRTF and effect sends.  This case will be optimized further in future.</p>
 <p>When a Source is paused, no generator connected to it advances even if the generator is unpaused.</p>
-<h2 id="remarks"><a class="header" href="#remarks">Remarks</a></h2>
+<h2><a class="header" href="#remarks" id="remarks">Remarks</a></h2>
 <p>Sources represent audio output.  They combine all generators connected to them, apply any effects if necessary, and feed the context. Subclasses of Source add panning and other features.</p>
 <p>All sources offer filters via <code>SYZ_P_FILTER</code>, <code>SYZ_P_FILTER_DIRECT</code> and <code>SYZ_P_FILTER_EFFECTS</code>.
 First, <code>SYZ_P_FILTER</code> is applied, then the audio is split into two paths: the portion heading directly to the speakers gets <code>SYZ_P_FILTER_DIRECT</code>, and the portion
@@ -230,6 +230,21 @@ heading to the effect sends gets <code>SYZ_P_FILTER_EFFECTS</code>.  This can be
 
         </div>
 
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
         
 
         

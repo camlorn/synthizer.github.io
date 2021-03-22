@@ -163,8 +163,8 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="synthizer-08x"><a class="header" href="#synthizer-08x">Synthizer 0.8.x</a></h1>
-<h2 id="highlights-of-this-release"><a class="header" href="#highlights-of-this-release">Highlights of this Release</a></h2>
+                        <h1><a class="header" href="#synthizer-08x" id="synthizer-08x">Synthizer 0.8.x</a></h1>
+<h2><a class="header" href="#highlights-of-this-release" id="highlights-of-this-release">Highlights of this Release</a></h2>
 <p>This release is about performance, and undoing the Linux rollback in 0.7.7.  As of this release,
 all code paths from the external interface don't block on the audio thread in the best case.  An internal refactor and introduction
 of a new command architecture unify a bunch of ad-hoc interfaces for fast inter-thread synchronization.</p>
@@ -179,10 +179,10 @@ Put another way, they're literally millions of times faster, and it's now possib
 </ul>
 <p>There is one exception to the lack of blocking: if code does around 10000 operations per audio tick,
 Synthizer will have no choice but to block due to internal resource exhaustion. If this proves to be an issue in practice, it is trivial to raise this limit further.</p>
-<h2 id="a-note-on-breakage"><a class="header" href="#a-note-on-breakage">A Note on Breakage</a></h2>
+<h2><a class="header" href="#a-note-on-breakage" id="a-note-on-breakage">A Note on Breakage</a></h2>
 <p>The above changes were a complex refactor.  In order to make them with as little chaos as possible Synthizer has begun introducing some basic unit tests, but nonetheless it is nearly impossible
 to make a release like this one without issues.  You are encouraged to report issues against <a href="https://github.com/synthizer/synthizer/issues">Synthizer's GitHub repository</a>.</p>
-<h2 id="compatibility"><a class="header" href="#compatibility">Compatibility</a></h2>
+<h2><a class="header" href="#compatibility" id="compatibility">Compatibility</a></h2>
 <p>Synthizer introduces the following compatibility breakages in this release:</p>
 <p>In order to get the above performance increases, it was necessary to remove the ability to read object properties.  This has the side effect of hiding details
 of object lifetime, which Synthizer may rely on in future.</p>
@@ -195,8 +195,8 @@ that incorrectly relied on the old behavior.</p>
 series.  This change was made because HRTF is only useful for headphone users, and it is not possible
 for Synthizer to reliably detect that case.  In general, stereo panning is safe on every
 audio configuration including surround sound systems.</p>
-<h2 id="patch-notes"><a class="header" href="#patch-notes">Patch Notes</a></h2>
-<h3 id="080"><a class="header" href="#080">0.8.0</a></h3>
+<h2><a class="header" href="#patch-notes" id="patch-notes">Patch Notes</a></h2>
+<h3><a class="header" href="#080" id="080">0.8.0</a></h3>
 <ul>
 <li>Initial release</li>
 <li>Undo the rollbacks in 0.7.7 and reintroduce MSVC and Linux support.</li>
@@ -204,19 +204,19 @@ audio configuration including surround sound systems.</p>
 <li>A number of small fixes and slight quality improvements to reverb.</li>
 <li>All of the massive performance increases from above.</li>
 </ul>
-<h2 id="081"><a class="header" href="#081">0.8.1</a></h2>
+<h2><a class="header" href="#081" id="081">0.8.1</a></h2>
 <ul>
 <li>Miniaudio was improperly configured to use a conservative profile, rather than a low latency profile.
 Caused extreme audio latency.</li>
 </ul>
-<h2 id="083"><a class="header" href="#083">0.8.3</a></h2>
+<h2><a class="header" href="#083" id="083">0.8.3</a></h2>
 <ul>
 <li>Fix: FdnReverb.t60 = 0.0 no longer internally divides by 0.</li>
 <li>fix: BufferGenerator again uses seconds for positions.  This was refactored incorrectly during 0.8.0's major changes.</li>
 <li>Objects should now die faster when their handles are freed, due to holding
 only weak references internally where possible when dispatching commands to the audio thread.</li>
 </ul>
-<h2 id="084"><a class="header" href="#084">0.8.4</a></h2>
+<h2><a class="header" href="#084" id="084">0.8.4</a></h2>
 <ul>
 <li>Contexts and all generators now support <code>SYZ_P_GAIN</code>.</li>
 <li>Contexts, sources, and generators now support play/pause via <code>syz_pause</code> and <code>syz_play</code>.
@@ -235,19 +235,19 @@ objects to non-Synthizer objects without having to maintain a custom mapping you
 <li>Slight memory savings.</li>
 <li>Fix: deleting contexts no longer crashes.</li>
 </ul>
-<h2 id="085"><a class="header" href="#085">0.8.5</a></h2>
+<h2><a class="header" href="#085" id="085">0.8.5</a></h2>
 <ul>
 <li>New function <code>syz_getObjectType</code> which queries the object type. Primarily
 intended for bindings developers.</li>
 <li>Fix: Synthizer no longer leaks megabytes of memory per second (issue #44).</li>
 </ul>
-<h2 id="086"><a class="header" href="#086">0.8.6</a></h2>
+<h2><a class="header" href="#086" id="086">0.8.6</a></h2>
 <p>This release contains somewhat experimental code to make decoding buffers faster by approximately 2X.  Please report any perceptible audio quality issues with <code>BufferGenerator</code>.</p>
 <ul>
 <li><code>syz_handleFree</code> now no-ops when passed <code>handle = 0</code>.</li>
 <li>Fix: deleting sources in specific orders no longer causes audio artifacts (issue #46)</li>
 </ul>
-<h2 id="087"><a class="header" href="#087">0.8.7</a></h2>
+<h2><a class="header" href="#087" id="087">0.8.7</a></h2>
 <ul>
 <li>Fix: the library no longer crashes due to internal races between handle deletion and execution of audio commands on the background thread
 <ul>
@@ -257,26 +257,26 @@ intended for bindings developers.</li>
 <li>Fix: streaming generators no longer spuriously seek to the beginning of their audio after generating the first few MS of audio (issue #49)</li>
 <li>Fix: <code>panning_scalar</code> will once more properly take effect if set immediately after <code>PannedSource</code> creation (issue #52)</li>
 </ul>
-<h2 id="088"><a class="header" href="#088">0.8.8</a></h2>
+<h2><a class="header" href="#088" id="088">0.8.8</a></h2>
 <ul>
 <li>An <a href="../tutorials/events.html">event system</a>.  This is alpha, and changes are expected in 0.9.</li>
 <li>Add <code>SYZ_P_PANNER_STRATEGY</code> to Context to default panner strategies for new sources.</li>
 </ul>
-<h2 id="089"><a class="header" href="#089">0.8.9</a></h2>
+<h2><a class="header" href="#089" id="089">0.8.9</a></h2>
 <ul>
 <li>Fix: non-looping BufferGenerator with a pitch bend is no longer silent</li>
 <li>Fix/improvement: In Python, Synthizer events inherit from a common base class.</li>
 </ul>
-<h2 id="0810"><a class="header" href="#0810">0.8.10</a></h2>
+<h2><a class="header" href="#0810" id="0810">0.8.10</a></h2>
 <p>This release is the long-awaited improved HRTF.  This might not be the final version, but it's much
 better in quality and the scripts to generate it are now much easier to maintain.  Please leave any feedback
 <a href="https://github.com/synthizer/synthizer/issues/27">here</a>.  in particular, it is not feasible to test the entire sphere,
 so it may be possible to find azimuth/elevation combinations which do weird things.</p>
-<h2 id="0811-0816"><a class="header" href="#0811-0816">0.8.11-0.8.16</a></h2>
+<h2><a class="header" href="#0811-0816" id="0811-0816">0.8.11-0.8.16</a></h2>
 <p>These releases are a test series for moving CI to GitHub Actions. Though not user-facing, 0.8.14 now blocks on successful Linux
 CI for Ubuntu 20 and thus gives Linux support which is on par with Windows.</p>
-<h2 id="0817"><a class="header" href="#0817">0.8.17</a></h2>
-<p>The flagship feature of this release is <a href="../concepts/filters.html">filters</a>.  Pytyhon users
+<h2><a class="header" href="#0817" id="0817">0.8.17</a></h2>
+<p>The flagship feature of this release is <a href="../concepts/filters.html">filters</a>.  Python users
 should see <a href="../tutorials/python_filters.html">the Python tutorial</a>.  Also:</p>
 <ul>
 <li>Synthizer now builds on Ubuntu 18.</li>
@@ -326,6 +326,21 @@ to the crossfade helpers should make bugs like this much rarer, and probably fix
 
         </div>
 
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
         
 
         
