@@ -1,0 +1,390 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title> 3D Audio, Panning, and HRTF - The Synthizer Manual</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="../favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="../favicon.png">
+        
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">Python Tutorials</li><li class="chapter-item expanded "><a href="../python_tutorials/introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../python_tutorials/installation.html"><strong aria-hidden="true">3.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../python_tutorials/basics.html"><strong aria-hidden="true">4.</strong> A Basic Media Player</a></li><li class="chapter-item expanded "><a href="../python_tutorials/linger.html"><strong aria-hidden="true">5.</strong> Configuring Linger</a></li><li class="chapter-item expanded "><a href="../python_tutorials/events.html"><strong aria-hidden="true">6.</strong> Events</a></li><li class="chapter-item expanded "><a href="../python_tutorials/filters.html"><strong aria-hidden="true">7.</strong> Filters</a></li><li class="chapter-item expanded affix "><li class="part-title">Concepts</li><li class="chapter-item expanded "><a href="../concepts/c_api.html"><strong aria-hidden="true">8.</strong> Introduction to the C API</a></li><li class="chapter-item expanded "><a href="../concepts/initialization.html"><strong aria-hidden="true">9.</strong> Logging, Initialization, and Shutdown</a></li><li class="chapter-item expanded "><a href="../concepts/handles.html"><strong aria-hidden="true">10.</strong> Handles and userdata</a></li><li class="chapter-item expanded "><a href="../concepts/audio_in.html"><strong aria-hidden="true">11.</strong> Basics of Audio In Synthizer</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../concepts/context.html"><strong aria-hidden="true">11.1.</strong> The Context</a></li><li class="chapter-item expanded "><a href="../concepts/generators.html"><strong aria-hidden="true">11.2.</strong> Introduction to Generators</a></li><li class="chapter-item expanded "><a href="../concepts/sources.html"><strong aria-hidden="true">11.3.</strong> Introduction to Sources</a></li><li class="chapter-item expanded "><a href="../concepts/properties.html"><strong aria-hidden="true">11.4.</strong> Controlling Object Properties</a></li><li class="chapter-item expanded "><a href="../concepts/gain.html"><strong aria-hidden="true">11.5.</strong> Setting Gain/volume</a></li><li class="chapter-item expanded "><a href="../concepts/pausing.html"><strong aria-hidden="true">11.6.</strong> Pausing and Resuming Playback</a></li><li class="chapter-item expanded "><a href="../concepts/lingering.html"><strong aria-hidden="true">11.7.</strong> Configuring Objects to Continue Playing Until Silent</a></li><li class="chapter-item expanded "><a href="../concepts/decoding.html"><strong aria-hidden="true">11.8.</strong> Streams and Decoding Audio Data</a></li><li class="chapter-item expanded "><a href="../concepts/libsndfile.html"><strong aria-hidden="true">11.9.</strong> Loading Libsndfile</a></li><li class="chapter-item expanded "><a href="../concepts/custom_streams.html"><strong aria-hidden="true">11.10.</strong> Implementing Custom Streams and Custom Stream Protocols</a></li><li class="chapter-item expanded "><a href="../concepts/channel_mixing.html"><strong aria-hidden="true">11.11.</strong> Channel Upmixing and Downmixing </a></li></ol></li><li class="chapter-item expanded "><a href="../concepts/3d_audio.html" class="active"><strong aria-hidden="true">12.</strong> 3D Audio, Panning, and HRTF</a></li><li class="chapter-item expanded "><a href="../concepts/filters_and_effects.html"><strong aria-hidden="true">13.</strong> Filters and Effects</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../concepts/filters.html"><strong aria-hidden="true">13.1.</strong> Filters</a></li><li class="chapter-item expanded "><a href="../concepts/effects.html"><strong aria-hidden="true">13.2.</strong> Effects and Effect Routing</a></li></ol></li><li class="chapter-item expanded "><a href="../concepts/events.html"><strong aria-hidden="true">14.</strong> Events</a></li><li class="chapter-item expanded "><a href="../concepts/stability.html"><strong aria-hidden="true">15.</strong> Stability Guarantees</a></li><li class="chapter-item expanded affix "><li class="part-title">The Object Reference</li><li class="chapter-item expanded "><a href="../object_reference/context.html"><strong aria-hidden="true">16.</strong> Context</a></li><li class="chapter-item expanded "><a href="../object_reference/buffer.html"><strong aria-hidden="true">17.</strong> Buffer</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="../object_reference/source.html"><strong aria-hidden="true">18.</strong> Operations Common to All Sources</a></li><li class="chapter-item expanded "><a href="../object_reference/direct_source.html"><strong aria-hidden="true">19.</strong> DirectSource</a></li><li class="chapter-item expanded "><a href="../object_reference/spatialized_source.html"><strong aria-hidden="true">20.</strong> Operations Common to Panned and 3D Sources</a></li><li class="chapter-item expanded "><a href="../object_reference/panned_source.html"><strong aria-hidden="true">21.</strong> PannedSource</a></li><li class="chapter-item expanded "><a href="../object_reference/source_3d.html"><strong aria-hidden="true">22.</strong> Source3D</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="../object_reference/generator.html"><strong aria-hidden="true">23.</strong> Operations Common to All Generators</a></li><li class="chapter-item expanded "><a href="../object_reference/streaming_generator.html"><strong aria-hidden="true">24.</strong> StreamingGenerator</a></li><li class="chapter-item expanded "><a href="../object_reference/buffer_generator.html"><strong aria-hidden="true">25.</strong> BufferGenerator</a></li><li class="chapter-item expanded "><a href="../object_reference/noise_generator.html"><strong aria-hidden="true">26.</strong> NoiseGenerator</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="../object_reference/global_effect.html"><strong aria-hidden="true">27.</strong> Operations Common to All Effects</a></li><li class="chapter-item expanded "><a href="../object_reference/global_echo.html"><strong aria-hidden="true">28.</strong> GlobalEcho</a></li><li class="chapter-item expanded "><a href="../object_reference/global_fdn_reverb.html"><strong aria-hidden="true">29.</strong> GlobalFdnReverb</a></li><li class="chapter-item expanded affix "><li class="part-title">Appendecies</li><li class="chapter-item expanded "><a href="../appendices/audio_eq_cookbook.html"><strong aria-hidden="true">30.</strong> Audio EQ Cookbook</a></li><li class="chapter-item expanded affix "><li class="part-title">Release notes</li><li class="chapter-item expanded "><a href="../releases/0.9.x.html"><strong aria-hidden="true">31.</strong> 0.9.x</a></li><li class="chapter-item expanded "><a href="../releases/0.8.x.html"><strong aria-hidden="true">32.</strong> 0.8.X</a></li><li class="chapter-item expanded "><a href="../releases/pre-0.8.html"><strong aria-hidden="true">33.</strong> 0.0 to 0.7.x</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">The Synthizer Manual</h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="3d-audio-panning-and-hrtf"><a class="header" href="#3d-audio-panning-and-hrtf">3D Audio, Panning, and HRTF</a></h1>
+<h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
+<p>Synthizer supports panning audio through two interfaces.</p>
+<p>First is <a href="../object_reference/panned_source.html">PannedSource</a>, which provides
+simple azimuth/elevation controls and the ability to pan based off a scalar, a
+value between -1 (all left) and 1 (all right).  In this case the user
+application must compute these values itself.</p>
+<p>The second way is to use <a href="../object_reference/source_3d.html">Source3D</a>, which
+simulates a 3D environment when fed positional data.  This ection concerns
+itself with proper use of <code>Source3D</code>, which is less straightforward for those
+who haven't had prior exposure to these concepts.</p>
+<h2 id="introduction-1"><a class="header" href="#introduction-1">Introduction</a></h2>
+<p>There are two mandatorey steps to using <code>Source3D</code> as well as a few optional
+ones.  The two mandatory steps are these:</p>
+<ul>
+<li>On the context, update <code>SYZ_P_POSITION</code> and <code>SYZ_P_ORIENTATION</code> with the
+listener's position and orientation</li>
+<li>On the source, update <code>SYZ_P_POSITION</code> with the source's position.</li>
+</ul>
+<p>And optionally:</p>
+<ul>
+<li>Configure the default distance model to control how rapidly sources become
+quiet.</li>
+<li>Emphasize that sources have become close to the listener with the focus boost.</li>
+<li>Add effects (covered in <a href="./filters_and_effects.html">a dedicated section</a>).</li>
+</ul>
+<h2 id="dont-move-sources-through-the-head"><a class="header" href="#dont-move-sources-through-the-head">Don't Move Sources Through the Head</a></h2>
+<p>People frequently pick up Synthizer, then try to move the source through the
+center of the listener's head, then ask why it's weird and didn't work.  It is
+important to realize that this is a physical simulation of reality, and that the
+reason you can move the source through the listener's head in the first place is
+that this isn't an easily detectable case.  If you aren't driving Synthizer in a
+way connected to physical reality--for example if you are attempting to use <code>x</code>
+as a way to pan sources from left to right and not linked to a position--then
+you probably want <code>PannedSource</code> instead.</p>
+<h2 id="setting-global-defaults"><a class="header" href="#setting-global-defaults">Setting Global Defaults</a></h2>
+<p>In addition to controlling the listener, the context offers the ability to set
+defaults for all values discussed below.  This is done through a set of
+<code>SYZ_P_DEFAULT_*</code> properties which match the names of those on sources.  This is
+of particular interest to those wishing to use HRTF, which is off by default.</p>
+<h2 id="synthizers-coordinate-system-and-orientations"><a class="header" href="#synthizers-coordinate-system-and-orientations">Synthizer's Coordinate System and Orientations</a></h2>
+<p>The short version for those who are familiar with libraries that need position
+and orientation data: Synthizer uses a right-handed coordinate system and
+configures orientation through <a href="./properties.html">double6 properties</a> so that it
+is possible to atomically set all 6 values at once.  This is represented as a
+packed at and up vector pair in the format <code>(at_x, at_y, at_z, up_x, up_y, up_z)</code> on the context under the <code>SYZ_P_ORIENTATION</code> property.  As with every
+other library doing a similar thing, these are unit vectors.</p>
+<p>The short version for those who want a 2D coordinate system where positive y is
+north, positive x is east, and player orientations are represented as degrees
+clockwise of north: use only x and y of <code>SYZ_P_POSITION</code>, and set
+<code>SYZ_P_ORIENTATION</code> as follows:</p>
+<pre><code>(sin(angle * PI / 180), cos(angle * PI / 180), 0, 0, 0, 1)
+</code></pre>
+<p>The longer version is as follows.</p>
+<p>Listener positions are represented through 3 values: the position, the at
+vector, and the up vector.  The position is self-explanatory.  The at vector
+points in the direction the listener is looking at all times, and the up vector
+points out the top of the listener's head, as if there were a pole up the spine.
+By driving these 3 values, it is possible to represent any position and
+orientation a listener might assume.</p>
+<p>Synthizer uses a right-handed coordinate system, which means that if the at
+vector is pointed at positive x and the up vector at positive y, positive z
+moves sources to the right.  This is called a right-handed coordinate system
+because of the right-hand rule: if you point your fingers along positive x and
+curl them toward positive y, your finger points at positive z.  This isn't a
+standard.  Every library that does something with object positions tends to
+choose a different value.  If combining Synthizer with other non-2D components,
+it may be necessary to convert between coordinate systems. Resources on how to
+do this may easily be found through Google.</p>
+<p>The at and up vectors must always be orthogonal, that is forming a right angle
+with each other.  In order to facilitate this, Synthizer uses double6 properties
+so that both values can and must be set at the same time.  If we didn't, then
+there would be a brief period where one was set and the other wasn't, in which
+case they would temporarily be invalid.  Synthizer doesn't try to validate that
+these vectors are orthogonal and generally tries to do its best when they
+aren't, but nonetheless behavior in this case is undefined.</p>
+<p>Finally, the at and up vectors must be unit vectors: vectors of length 1.</p>
+<h2 id="panning-strategies-and-hrtf"><a class="header" href="#panning-strategies-and-hrtf">Panning strategies and HRTF.</a></h2>
+<p>The panning strategy specifies how sources are to be panned.  Synthizer supports
+the following panning strategies:</p>
+<table><thead><tr><th>Strategy</th><th>Channels</th><th>Description</th></tr></thead><tbody>
+<tr><td>SYZ_PANNER_STRATEGY_HRTF</td><td>2</td><td>An HRTF implementation, intended for use via headphones.</td></tr>
+<tr><td>SYZ_PANNER_STRATEGY_STEREO</td><td>2</td><td>A simple stereo panning strategy assuming speakers are at -90 and 90.</td></tr>
+</tbody></table>
+<p>When a  source is first created, it gets the panning strategy from
+<code>SYZ_P_DEFAULT_PANNER_STRATEGY</code> on the context.  Applications wishing to change
+the default should do so before creating sources.</p>
+<p>By default Synthizer is configured to use a stereo panning strategy, which
+simply pans between two speakers.  This is because stereo panning strategies
+work on all devices from headphones to 5.1 surround sound systems, and it is not
+possible for Synthizer to reliably determine if the user is using headphones or
+not.  HRTF provides a much better experience for headphone users but must be
+enabled by your application through setting the default panner strategy or doing
+so on individual sources.</p>
+<p>Since panning strategies are per source, it is possible to have sources using
+different panning strategies.  This is useful for two reasons: HRTF is expensive
+enough that you may wish to disable it if dealing with hundreds or thousands of
+sources, and it is sometimes useful to let UI elements use a different panning
+strategy.  An example of this latter case is an audio gauge which pans from left
+to right.</p>
+<h2 id="distance-models"><a class="header" href="#distance-models">Distance Models</a></h2>
+<p>The distance model controls how quickly sources become quiet as they move away
+from the listener.  This is controlled through the following properties:</p>
+<ul>
+<li><code>SYZ_P_DISTANCE_MODEL</code>: which of the distance model formulas to use.</li>
+<li><code>SYZ_P_DISTANCE_MAX</code>: the maximum distance at which the source will be
+audible.</li>
+<li><code>SYZ_P_DISTANCE_REF</code>: if you assume your source is a sphere, what's the radius
+of it?</li>
+<li><code>SYZ_P_ROLLOFF</code>: with some formulas, how rapidly does the sound get quieter?
+Generally, configuring this to a higher value makes the sound drop off more
+immediately near the head, then have more subtle changes at further distances.</li>
+</ul>
+<p>It is not possible to provide generally applicable advice for what you should
+set the distance model to.  A game using meters needs very different settings
+than one using feet or light years.  Furthermore, these don't have concrete
+physical correspondances.  Of the things Synthizer offers, this is possibly the
+least physically motivated and the most artistic from a game design perspective.
+In other words: play with different values and see what you like.</p>
+<p>The concrete formulas for the distance models are as follows.  Let <code>d</code> be the
+distance to the source, <code>d_ref</code> the reference distance, <code>d_max</code> the max
+distance, <code>r</code> the roll-off factor. Then the gain of the source is computed as a
+linear scalar using one of the following formulas:</p>
+<table><thead><tr><th>Model</th><th>Formula</th></tr></thead><tbody>
+<tr><td>SYZ_DISTANCE_MODEL_NONE</td><td><code>1.0</code></td></tr>
+<tr><td>SYZ_DISTANCE_MODEL_LINEAR</td><td>1 - r * (clamp(d, d_ref, d_max) - d_ref) / (d_max - d_ref);</td></tr>
+<tr><td>SYZ_DISTANCE_MODEL_EXPONENTIAL when <code>d_ref == 0.0</code></td><td>0.0</td></tr>
+<tr><td>SYZ_DISTANCE_MODEL_EXPONENTIAL when <code>d_ref &gt; 0.0</code></td><td><code>(max(d_ref, d) / d_ref) ** -r</code></td></tr>
+<tr><td>SYZ_DISTANCE_MODEL_INVERSE when <code>d_ref = 0.0</code></td><td><code>0.0</code></td></tr>
+<tr><td>SYZ_DISTANCE_MODEL_INVERSE when <code>d_ref &gt; 0.0</code></td><td><code>d_ref / (d_ref + r * max(d, d_ref) - d_ref)</code></td></tr>
+</tbody></table>
+<h2 id="the-closeness-boost"><a class="header" href="#the-closeness-boost">The Closeness Boost</a></h2>
+<p>Sometimes, it is desirable to make sources &quot;pop out&quot; of the background
+environment.  For example, if the player approaches an object with which they
+can interact, making it noticeably louder as the boundary is crossed can be
+useful.  This is of primary interest to audiogame designers, a type of game for
+the blind, as it can be used to emphasize features of the environment in
+non-realistic but informative ways.</p>
+<p>This is controlled through two properties:</p>
+<ul>
+<li><code>SYZ_P_CLOSENESS_BOOST</code>: a value in DB controlling how much louder to make the
+sound.  Negative values are allowed.</li>
+<li><code>SYZ_P_CLOSENESS_BOOST_DISTANCE</code>: when the source is closer than this
+distance, begin applying the closeness boost.</li>
+</ul>
+<p>When the source is closer than the configured distance, the normal gain
+computation still applies, but an additional factor, the number of DB in the
+closeness boost, is added.  This means that it is still possible for players to
+know if they are getting closer to the source.</p>
+<p>The reason that the closeness boost is specified inDB  is that otherwise it
+would require values greater than 1.0, and it is primarily going to be fed from
+artists and map developers.  If we discover that this is a problem in future, it
+will be patched in a major Synthizer version bump.</p>
+<p>Note that closeness boost has not gotten a lot of use yet.  Though we are
+unlikely to remove the interface, the internal algorithms backing it might
+change.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../concepts/channel_mixing.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../concepts/filters_and_effects.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../concepts/channel_mixing.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../concepts/filters_and_effects.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

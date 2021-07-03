@@ -1,0 +1,397 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Implementing Custom Streams and Custom Stream Protocols - The Synthizer Manual</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="../favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="../favicon.png">
+        
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">Python Tutorials</li><li class="chapter-item expanded "><a href="../python_tutorials/introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../python_tutorials/installation.html"><strong aria-hidden="true">3.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../python_tutorials/basics.html"><strong aria-hidden="true">4.</strong> A Basic Media Player</a></li><li class="chapter-item expanded "><a href="../python_tutorials/linger.html"><strong aria-hidden="true">5.</strong> Configuring Linger</a></li><li class="chapter-item expanded "><a href="../python_tutorials/events.html"><strong aria-hidden="true">6.</strong> Events</a></li><li class="chapter-item expanded "><a href="../python_tutorials/filters.html"><strong aria-hidden="true">7.</strong> Filters</a></li><li class="chapter-item expanded affix "><li class="part-title">Concepts</li><li class="chapter-item expanded "><a href="../concepts/c_api.html"><strong aria-hidden="true">8.</strong> Introduction to the C API</a></li><li class="chapter-item expanded "><a href="../concepts/initialization.html"><strong aria-hidden="true">9.</strong> Logging, Initialization, and Shutdown</a></li><li class="chapter-item expanded "><a href="../concepts/handles.html"><strong aria-hidden="true">10.</strong> Handles and userdata</a></li><li class="chapter-item expanded "><a href="../concepts/audio_in.html"><strong aria-hidden="true">11.</strong> Basics of Audio In Synthizer</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../concepts/context.html"><strong aria-hidden="true">11.1.</strong> The Context</a></li><li class="chapter-item expanded "><a href="../concepts/generators.html"><strong aria-hidden="true">11.2.</strong> Introduction to Generators</a></li><li class="chapter-item expanded "><a href="../concepts/sources.html"><strong aria-hidden="true">11.3.</strong> Introduction to Sources</a></li><li class="chapter-item expanded "><a href="../concepts/properties.html"><strong aria-hidden="true">11.4.</strong> Controlling Object Properties</a></li><li class="chapter-item expanded "><a href="../concepts/gain.html"><strong aria-hidden="true">11.5.</strong> Setting Gain/volume</a></li><li class="chapter-item expanded "><a href="../concepts/pausing.html"><strong aria-hidden="true">11.6.</strong> Pausing and Resuming Playback</a></li><li class="chapter-item expanded "><a href="../concepts/lingering.html"><strong aria-hidden="true">11.7.</strong> Configuring Objects to Continue Playing Until Silent</a></li><li class="chapter-item expanded "><a href="../concepts/decoding.html"><strong aria-hidden="true">11.8.</strong> Streams and Decoding Audio Data</a></li><li class="chapter-item expanded "><a href="../concepts/libsndfile.html"><strong aria-hidden="true">11.9.</strong> Loading Libsndfile</a></li><li class="chapter-item expanded "><a href="../concepts/custom_streams.html" class="active"><strong aria-hidden="true">11.10.</strong> Implementing Custom Streams and Custom Stream Protocols</a></li><li class="chapter-item expanded "><a href="../concepts/channel_mixing.html"><strong aria-hidden="true">11.11.</strong> Channel Upmixing and Downmixing </a></li></ol></li><li class="chapter-item expanded "><a href="../concepts/3d_audio.html"><strong aria-hidden="true">12.</strong> 3D Audio, Panning, and HRTF</a></li><li class="chapter-item expanded "><a href="../concepts/filters_and_effects.html"><strong aria-hidden="true">13.</strong> Filters and Effects</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../concepts/filters.html"><strong aria-hidden="true">13.1.</strong> Filters</a></li><li class="chapter-item expanded "><a href="../concepts/effects.html"><strong aria-hidden="true">13.2.</strong> Effects and Effect Routing</a></li></ol></li><li class="chapter-item expanded "><a href="../concepts/events.html"><strong aria-hidden="true">14.</strong> Events</a></li><li class="chapter-item expanded "><a href="../concepts/stability.html"><strong aria-hidden="true">15.</strong> Stability Guarantees</a></li><li class="chapter-item expanded affix "><li class="part-title">The Object Reference</li><li class="chapter-item expanded "><a href="../object_reference/context.html"><strong aria-hidden="true">16.</strong> Context</a></li><li class="chapter-item expanded "><a href="../object_reference/buffer.html"><strong aria-hidden="true">17.</strong> Buffer</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="../object_reference/source.html"><strong aria-hidden="true">18.</strong> Operations Common to All Sources</a></li><li class="chapter-item expanded "><a href="../object_reference/direct_source.html"><strong aria-hidden="true">19.</strong> DirectSource</a></li><li class="chapter-item expanded "><a href="../object_reference/spatialized_source.html"><strong aria-hidden="true">20.</strong> Operations Common to Panned and 3D Sources</a></li><li class="chapter-item expanded "><a href="../object_reference/panned_source.html"><strong aria-hidden="true">21.</strong> PannedSource</a></li><li class="chapter-item expanded "><a href="../object_reference/source_3d.html"><strong aria-hidden="true">22.</strong> Source3D</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="../object_reference/generator.html"><strong aria-hidden="true">23.</strong> Operations Common to All Generators</a></li><li class="chapter-item expanded "><a href="../object_reference/streaming_generator.html"><strong aria-hidden="true">24.</strong> StreamingGenerator</a></li><li class="chapter-item expanded "><a href="../object_reference/buffer_generator.html"><strong aria-hidden="true">25.</strong> BufferGenerator</a></li><li class="chapter-item expanded "><a href="../object_reference/noise_generator.html"><strong aria-hidden="true">26.</strong> NoiseGenerator</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="../object_reference/global_effect.html"><strong aria-hidden="true">27.</strong> Operations Common to All Effects</a></li><li class="chapter-item expanded "><a href="../object_reference/global_echo.html"><strong aria-hidden="true">28.</strong> GlobalEcho</a></li><li class="chapter-item expanded "><a href="../object_reference/global_fdn_reverb.html"><strong aria-hidden="true">29.</strong> GlobalFdnReverb</a></li><li class="chapter-item expanded affix "><li class="part-title">Appendecies</li><li class="chapter-item expanded "><a href="../appendices/audio_eq_cookbook.html"><strong aria-hidden="true">30.</strong> Audio EQ Cookbook</a></li><li class="chapter-item expanded affix "><li class="part-title">Release notes</li><li class="chapter-item expanded "><a href="../releases/0.9.x.html"><strong aria-hidden="true">31.</strong> 0.9.x</a></li><li class="chapter-item expanded "><a href="../releases/0.8.x.html"><strong aria-hidden="true">32.</strong> 0.8.X</a></li><li class="chapter-item expanded "><a href="../releases/pre-0.8.html"><strong aria-hidden="true">33.</strong> 0.0 to 0.7.x</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">The Synthizer Manual</h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="implementing-custom-streams-and-custom-stream-protocols"><a class="header" href="#implementing-custom-streams-and-custom-stream-protocols">Implementing Custom Streams and Custom Stream Protocols</a></h1>
+<p>Synthizer supports implementing custom streams in order to read from places that
+aren't files or memory: encrypted asset stores, the network, and so on.  This
+section explains how to implement them.</p>
+<p>before continuing, carefully consider whether you need this.  Implementing a
+stream ina  higher level language and forcing Synthizer to go through it has a
+small but likely noticeable performance hit.  It'll work fine, but the built-in
+functionality will certainly be faster and more scalable.  Implementing a stream
+in C is a complex process.  If your app can use the already-existing
+funtionality, it is encouraged to do so.</p>
+<h2 id="a-complete-python-example"><a class="header" href="#a-complete-python-example">A Complete Python Example</a></h2>
+<p>The rest of this section will explain ind detail how streams work from the C
+API, but this is a very complex topic and most of the infrastructure which
+exists for it exists to make it possible to write convenient bindings.
+Consequently, here is a complete and simple custom stream which wraps a Python
+file object, registered as a custom protocol:</p>
+<pre><code>class CustomStream:
+    def __init__(self, path):
+        self.file = open(path, &quot;rb&quot;)
+
+    def read(self, size):
+        return self.file.read(size)
+
+    def seek(self, position):
+        self.file.seek(position)
+
+    def close(self):
+        self.file.close()
+
+    def get_length(self):
+        pos = self.file.tell()
+        len = self.file.seek(0, 2)
+        self.file.seek(pos)
+        return len
+
+def factory(protocol, path, param):
+    return CustomStream(path)
+
+
+synthizer.register_stream_protocol(&quot;custom&quot;, factory)
+gen = synthizer.StreamingGenerator.from_stream_params(ctx, &quot;custom&quot;, sys.argv[1])
+</code></pre>
+<p>Your bindings will document how to do this, for example in Python see
+<code>help(synthizer.register_stream_protocol)</code>.  it's usually going to be this level
+of complexity when doing it from a binding.  The rest of this section explains
+what's going on from the C perspective, but non-C users are still encouriaged to
+read it because it explains the general idea and offers best practices for
+efficient and stable stream usage.</p>
+<p>It's important to note that though this example demonstrates using
+<code>StreamingGenerator</code>, buffers have similar methods to decode themselves from
+streams.  Since <code>StreamingGenerator</code> has a large latency for anything but the
+initial start-up, the primary use case is actually likely to be buffers.</p>
+<h2 id="the-c-interface"><a class="header" href="#the-c-interface">The C Interface</a></h2>
+<p>To define a custom stream, the following types are used:</p>
+<pre><code>typedef int syz_StreamReadCallback(unsigned long long *read, unsigned long long requested, char *destination, void *userdata, const char ** err_msg);
+typedef int syz_StreamSeekCallback(unsigned long long pos, void *userdata, const char **err_msg);
+typedef int syz_StreamCloseCallback(void *userdata, const char **err_msg);
+typedef void syz_StreamDestroyCallback(void *userdata);
+
+struct syz_CustomStreamDef {
+    syz_StreamReadCallback *read_cb;
+    syz_StreamSeekCallback *seek_cb;
+    syz_StreamCloseCallback *close_cb;
+    syz_StreamDestroyCallback *destroy_cb;
+    long long length;
+    void *userdata;
+};
+
+SYZ_CAPI syz_ErrorCode syz_createStreamHandleFromCustomStream(syz_Handle *out, struct syz_CustomStreamDef *callbacks);
+
+typedef int syz_StreamOpenCallback(struct syz_CustomStreamDef *callbacks, const char *protocol, const char *path, void *param, void *userdata, const char **err_msg);
+SYZ_CAPI syz_ErrorCode syz_registerStreamProtocol(const char *protocol, syz_StreamOpenCallback *callback, void *userdata);
+</code></pre>
+<p>The following sections explain how these functions work.</p>
+<h2 id="ways-to-get-a-custom-stream"><a class="header" href="#ways-to-get-a-custom-stream">Ways To Get A Custom Stream</a></h2>
+<p>There are two ways to get a custom stream.  You can:</p>
+<ul>
+<li>Fill out the callbacks in <code>syz_CustomStreamDef</code> and use
+<code>syz_createStreamHandleFromCustomStream</code>.</li>
+<li>Write a function which will fill out <code>syz_CustomStreamDef</code> from the standard
+stream parameters, and register a protocol with <code>syz_registerStreamProtocol</code>.</li>
+</ul>
+<p>The difference between these is the scope: if you don't register a protocol,
+only your app can access the custom stream, presumably via a module that
+produces them.  This is good because it keeps things modular.  If registering a
+protocol, however, the protocol can be used from anywhere in the process,
+including other libraries and modules.  For example, writing a
+<code>encrypted_sqlite3</code> protocol C library could then be used to add the
+<code>&quot;encrypted_sqlite3&quot;</code> protocol to any language.</p>
+<p>Protocol names must be unique.  The behavior is undefined if they aren't.  A
+good way of ensuring this is to namespace them.  For example,
+<code>&quot;ahicks92.my_super_special_protocol&quot;</code>.</p>
+<p>The <code>void *param</code> parameter is reserved for your implementation, and passed to
+the factory callback if using the stream parameters approach.  It's assumed that
+implementations going through <code>syz_createStreamHandleFromCustomStreamDef</code>
+already have a way to move this information around.</p>
+<h2 id="non-callback-syz_customstreamdef-parameters"><a class="header" href="#non-callback-syz_customstreamdef-parameters">Non-callback <code>syz_CustomStreamDef</code> parameters</a></h2>
+<p>These are:</p>
+<ul>
+<li><code>length</code>, which must be set and known for seekable streams.  If the length of
+the stream is unknown, set it to -1.</li>
+<li><code>userdata</code>, which is passed as the userdata parameter to all stream callbacks.</li>
+</ul>
+<h2 id="the-stream-callbacks"><a class="header" href="#the-stream-callbacks">The Stream Callbacks</a></h2>
+<p>Streams have the following callbacks, with mostly self-explanatory parameters:</p>
+<ul>
+<li>If going through the protocol interface, the open callback is called when the
+stream is first opened.  If going through
+<code>syz_createStreamHandleFromCustomStream</code>, it is assumed that the app already
+opened the stream and has put whatever it is going to need into the <code>userdata</code>
+field.</li>
+<li>After that, the read and (if present) seek callbacks are called until the
+stream is no longer needed.  The seek callback is optional.</li>
+<li>The close callback is called when Synthizer will no longer use the underlying
+asset.</li>
+<li>The destroy callback, optional, is called when it is safe to free all
+resources the stream is using.</li>
+</ul>
+<p>For more information on why we offer both the close and destroy callback, see
+below on error handling.</p>
+<p>All callbacks should return 0 on success, and (if necessary) write to their out
+parameters.</p>
+<p>The read callback must always read exactly as many bytes are requested, never
+more.  If it reads less bytes than were requested, Synthizer treats this as an
+end-of-stream condition.  If the end of the stream has already been reached, the
+read callback should claim it read no bytes.</p>
+<p>The seek callback is optional.  Streams don't need to support seeking, but (1)
+this disables seeking in <code>StreamingGenerator</code> and (2) this disables support for
+Libsndfile if Libsndfile was loaded.  In order to be seekable, a stream must:</p>
+<ul>
+<li>Have a seek callback; and</li>
+<li>Fill out the <code>length</code> field with a positive value, the length of the stream in
+bytes.</li>
+</ul>
+<h2 id="error-handling"><a class="header" href="#error-handling">Error Handling</a></h2>
+<p>To indicate an error, callbacks should return a non-zero return value and
+(optionally) set their <code>err_msg</code> parameter to a string representation of the
+error.  Synthizer will log these errors if logging is enabled.  For more complex
+error handling, apps are encouraged to ferry the information from streams to
+their main threads themselves.  If a stream callback fails, Synthizer will
+generally stop the stream all together.  Consequently, apps should do their best
+to recover and never fail the stream.  Synthizer takes the approach of assuming
+that any error is likely unrecoverable and expects that implementations already
+did their best to succeed.</p>
+<p>if the read callback fails, the position of the stream isn't updated.  If the
+seek callback fails, Synthizer assumes that the position didn't move.</p>
+<p>the reason that Synthizer offers a destroy callback in addition to one for
+closing is so that streams may use non-static strings as error messages.
+Synthizer may not be done logging these when the stream is closed, so apps doing
+this should make sure that they live at least as long as the destroy callback,
+after which Synthizer promises to never use anything related to this stream
+again.</p>
+<p>The simplest way to handle error messages for C users is to just use string
+constants, but for other languages such as Python it is useful to be able to
+convert errors to strings and attach them to the binding's object so that these
+can be logged.  The destroy callback primarily exists for this use case.</p>
+<p>Synthizer makes one more guarantee on the lifetime required of <code>err_msg</code>
+strings: they need only live as long as the next time a stream callback is
+called.  This means that, for example, the Python binding only keeps the most
+recent error string around and replaces it as necessary.</p>
+<h2 id="thread-safety"><a class="header" href="#thread-safety">Thread Safety</a></h2>
+<p>Streams will only ever be used by one thread at a time, but may be moved between
+threads.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../concepts/libsndfile.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../concepts/channel_mixing.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../concepts/libsndfile.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../concepts/channel_mixing.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

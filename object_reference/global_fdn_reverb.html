@@ -1,0 +1,400 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>GlobalFdnReverb - The Synthizer Manual</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="../favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="../favicon.png">
+        
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">Python Tutorials</li><li class="chapter-item expanded "><a href="../python_tutorials/introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../python_tutorials/installation.html"><strong aria-hidden="true">3.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../python_tutorials/basics.html"><strong aria-hidden="true">4.</strong> A Basic Media Player</a></li><li class="chapter-item expanded "><a href="../python_tutorials/linger.html"><strong aria-hidden="true">5.</strong> Configuring Linger</a></li><li class="chapter-item expanded "><a href="../python_tutorials/events.html"><strong aria-hidden="true">6.</strong> Events</a></li><li class="chapter-item expanded "><a href="../python_tutorials/filters.html"><strong aria-hidden="true">7.</strong> Filters</a></li><li class="chapter-item expanded affix "><li class="part-title">Concepts</li><li class="chapter-item expanded "><a href="../concepts/c_api.html"><strong aria-hidden="true">8.</strong> Introduction to the C API</a></li><li class="chapter-item expanded "><a href="../concepts/initialization.html"><strong aria-hidden="true">9.</strong> Logging, Initialization, and Shutdown</a></li><li class="chapter-item expanded "><a href="../concepts/handles.html"><strong aria-hidden="true">10.</strong> Handles and userdata</a></li><li class="chapter-item expanded "><a href="../concepts/audio_in.html"><strong aria-hidden="true">11.</strong> Basics of Audio In Synthizer</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../concepts/context.html"><strong aria-hidden="true">11.1.</strong> The Context</a></li><li class="chapter-item expanded "><a href="../concepts/generators.html"><strong aria-hidden="true">11.2.</strong> Introduction to Generators</a></li><li class="chapter-item expanded "><a href="../concepts/sources.html"><strong aria-hidden="true">11.3.</strong> Introduction to Sources</a></li><li class="chapter-item expanded "><a href="../concepts/properties.html"><strong aria-hidden="true">11.4.</strong> Controlling Object Properties</a></li><li class="chapter-item expanded "><a href="../concepts/gain.html"><strong aria-hidden="true">11.5.</strong> Setting Gain/volume</a></li><li class="chapter-item expanded "><a href="../concepts/pausing.html"><strong aria-hidden="true">11.6.</strong> Pausing and Resuming Playback</a></li><li class="chapter-item expanded "><a href="../concepts/lingering.html"><strong aria-hidden="true">11.7.</strong> Configuring Objects to Continue Playing Until Silent</a></li><li class="chapter-item expanded "><a href="../concepts/decoding.html"><strong aria-hidden="true">11.8.</strong> Streams and Decoding Audio Data</a></li><li class="chapter-item expanded "><a href="../concepts/libsndfile.html"><strong aria-hidden="true">11.9.</strong> Loading Libsndfile</a></li><li class="chapter-item expanded "><a href="../concepts/custom_streams.html"><strong aria-hidden="true">11.10.</strong> Implementing Custom Streams and Custom Stream Protocols</a></li><li class="chapter-item expanded "><a href="../concepts/channel_mixing.html"><strong aria-hidden="true">11.11.</strong> Channel Upmixing and Downmixing </a></li></ol></li><li class="chapter-item expanded "><a href="../concepts/3d_audio.html"><strong aria-hidden="true">12.</strong> 3D Audio, Panning, and HRTF</a></li><li class="chapter-item expanded "><a href="../concepts/filters_and_effects.html"><strong aria-hidden="true">13.</strong> Filters and Effects</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../concepts/filters.html"><strong aria-hidden="true">13.1.</strong> Filters</a></li><li class="chapter-item expanded "><a href="../concepts/effects.html"><strong aria-hidden="true">13.2.</strong> Effects and Effect Routing</a></li></ol></li><li class="chapter-item expanded "><a href="../concepts/events.html"><strong aria-hidden="true">14.</strong> Events</a></li><li class="chapter-item expanded "><a href="../concepts/stability.html"><strong aria-hidden="true">15.</strong> Stability Guarantees</a></li><li class="chapter-item expanded affix "><li class="part-title">The Object Reference</li><li class="chapter-item expanded "><a href="../object_reference/context.html"><strong aria-hidden="true">16.</strong> Context</a></li><li class="chapter-item expanded "><a href="../object_reference/buffer.html"><strong aria-hidden="true">17.</strong> Buffer</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="../object_reference/source.html"><strong aria-hidden="true">18.</strong> Operations Common to All Sources</a></li><li class="chapter-item expanded "><a href="../object_reference/direct_source.html"><strong aria-hidden="true">19.</strong> DirectSource</a></li><li class="chapter-item expanded "><a href="../object_reference/spatialized_source.html"><strong aria-hidden="true">20.</strong> Operations Common to Panned and 3D Sources</a></li><li class="chapter-item expanded "><a href="../object_reference/panned_source.html"><strong aria-hidden="true">21.</strong> PannedSource</a></li><li class="chapter-item expanded "><a href="../object_reference/source_3d.html"><strong aria-hidden="true">22.</strong> Source3D</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="../object_reference/generator.html"><strong aria-hidden="true">23.</strong> Operations Common to All Generators</a></li><li class="chapter-item expanded "><a href="../object_reference/streaming_generator.html"><strong aria-hidden="true">24.</strong> StreamingGenerator</a></li><li class="chapter-item expanded "><a href="../object_reference/buffer_generator.html"><strong aria-hidden="true">25.</strong> BufferGenerator</a></li><li class="chapter-item expanded "><a href="../object_reference/noise_generator.html"><strong aria-hidden="true">26.</strong> NoiseGenerator</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="../object_reference/global_effect.html"><strong aria-hidden="true">27.</strong> Operations Common to All Effects</a></li><li class="chapter-item expanded "><a href="../object_reference/global_echo.html"><strong aria-hidden="true">28.</strong> GlobalEcho</a></li><li class="chapter-item expanded "><a href="../object_reference/global_fdn_reverb.html" class="active"><strong aria-hidden="true">29.</strong> GlobalFdnReverb</a></li><li class="chapter-item expanded affix "><li class="part-title">Appendecies</li><li class="chapter-item expanded "><a href="../appendices/audio_eq_cookbook.html"><strong aria-hidden="true">30.</strong> Audio EQ Cookbook</a></li><li class="chapter-item expanded affix "><li class="part-title">Release notes</li><li class="chapter-item expanded "><a href="../releases/0.9.x.html"><strong aria-hidden="true">31.</strong> 0.9.x</a></li><li class="chapter-item expanded "><a href="../releases/0.8.x.html"><strong aria-hidden="true">32.</strong> 0.8.X</a></li><li class="chapter-item expanded "><a href="../releases/pre-0.8.html"><strong aria-hidden="true">33.</strong> 0.0 to 0.7.x</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">The Synthizer Manual</h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="globalfdnreverb"><a class="header" href="#globalfdnreverb">GlobalFdnReverb</a></h1>
+<p>A reverb based off a feedback delay network.</p>
+<p>Inherits from <a href="./global_effect.html">GlobalEffect</a>.</p>
+<h2 id="constructors"><a class="header" href="#constructors">Constructors</a></h2>
+<h3 id="syz_createglobalfdnreverb"><a class="header" href="#syz_createglobalfdnreverb"><code>syz_createGlobalFdnReverb</code></a></h3>
+<pre><code>SYZ_CAPI syz_ErrorCode syz_createGlobalFdnReverb(syz_Handle *out, syz_Handle context);
+</code></pre>
+<p>Creates a global FDN reverb with default settings.</p>
+<h2 id="properties"><a class="header" href="#properties">Properties</a></h2>
+<p>See remarks for a description of what these do and how to use them effectively.</p>
+<p>In addition to the below, FdnReverb defaults its gain to 0.7.  Gains of 1.0 are
+almost never what you want, since that makes the reverb as loud as the
+non-reverb audio paths.</p>
+<table><thead><tr><th>Enum</th><th>Type</th><th>Default</th><th>Range</th><th>Description</th></tr></thead><tbody>
+<tr><td>SYZ_P_INPUT_FILTER</td><td>Biquad</td><td>Lowpass Butterworth at 2000 HZ</td><td>any biquad</td><td>a filter that applies to the audio at the input of the reverb.</td></tr>
+<tr><td>SYZ_P_MEAN_FREE_PATH</td><td>double</td><td>0.1</td><td>0.0 to 0.5</td><td>The mean free path of the simulated environment.</td></tr>
+<tr><td>SYZ_P_T60</td><td>double</td><td>0.3</td><td>0.0 to 100.0</td><td>The T60 of the reverb</td></tr>
+<tr><td>SYZ_P_LATE_REFLECTIONS_LF_ROLLOFF</td><td>double</td><td>1.0</td><td>0.0 to 2.0</td><td>A multiplicative factor on T60 for the low frequency band</td></tr>
+<tr><td>SYZ_P_LATE_REFLECTIONS_LF_REFERENCE</td><td>double</td><td>200.0</td><td>0.0 to 22050.0</td><td>Where the low band of the feedback equalizer ends</td></tr>
+<tr><td>SYZ_P_LATE_REFLECTIONS_HF_ROLLOFF</td><td>double</td><td>0.5</td><td>0.0 to 2.0</td><td>A multiplicative factor on T60 for the high frequency band</td></tr>
+<tr><td>SYZ_P_LATE_REFLECTIONS_HF_REFERENCE</td><td>double</td><td>500.0</td><td>0.0 to 22050.0</td><td>Where the high band of the equalizer starts.</td></tr>
+<tr><td>SYZ_P_LATE_REFLECTIONS_DIFFUSION</td><td>double</td><td>1.0</td><td>0.0 to 1.0</td><td>Controls the diffusion of the late reflections as a percent.</td></tr>
+<tr><td>SYZ_P_LATE_REFLECTIONS_MODULATION_DEPTH</td><td>double</td><td>0.01</td><td>0.0 to 0.3</td><td>The depth of the modulation of the delay lines on the feedback path in seconds.</td></tr>
+<tr><td>SYZ_P_LATE_REFLECTIONS_MODULATION_FREQUENCY</td><td>double</td><td>0.5</td><td>0.01 to 100.0</td><td>The frequency of the modulation of the delay lines inthe feedback paths.</td></tr>
+<tr><td>SYZ_P_LATE_REFLECTIONS_DELAY</td><td>double</td><td>0.03</td><td>0.0 to 0.5</td><td>The delay of the late reflections relative to the input in seconds.</td></tr>
+</tbody></table>
+<h2 id="remarks"><a class="header" href="#remarks">Remarks</a></h2>
+<p>This is a reverb composed of a feedback delay network with 8 internal delay
+lines.  The algorithm proceeds as follows:</p>
+<ul>
+<li>Audio is fed through the input filter, a lowpass.  Use this to eliminate high
+frequencies, which can be quite harsh when fed to reverb algorithms.</li>
+<li>Then, audio is fed into a series of 8 delay lines, connected with a feedback
+matrix.  It's essentially a set of parallel allpass filters with some
+additional feedbacks, but inspired by physics.
+<ul>
+<li>Each of these delay lines is modulated, to reduce periodicity.</li>
+<li>On each feedback path, the audio is fed through an equalizer to precisely
+control the decay rate in 3 frequency bands.</li>
+</ul>
+</li>
+<li>Two decorrelated channels are extracted. This will be increased to 4 when
+surround sound support is added.</li>
+<li>Finally, the output is delayed by the late reflections delay.</li>
+</ul>
+<p>The current reverb modle is missing spatialized early reflections.  Practically
+speaking this makes very little difference when using an FDN because the FDN
+simulates them effectively on its own, but the <code>SYZ_P_EARLY_REFLECTIONS_*</code>
+namespace is reserved for that purpose.  The plan is to feed them through HRTF
+in order to attempt to capture the shape of the room, possibly with a per-source
+model.</p>
+<p>The reverb is also missing the ability to pan late reflections; this is on the
+roadmap.</p>
+<p>The default configuration is something to the effect of a medium-sized room.
+Presets will be added in future.  The following sections explain considerations
+for reverb design with this algorithm:</p>
+<h3 id="a-note-on-property-changes"><a class="header" href="#a-note-on-property-changes">A Note On Property Changes</a></h3>
+<p>The FdnReverb effect involves a large amount of feedback and is therefore
+impossible to crossfade efficiently. To that end,we don't try.  Expect most
+property changes save for t60 and the hf/lf frequency controls to cause clicking
+and other artifacts.</p>
+<p>To change properties smoothly, it's best to create a reverb, set all the
+parameters, connect all the sources to the new one, and disconnect all the
+sources from the old one, in that order.  Synthizer may eventually do this
+internally, but that necessitates taking a permanent and large allocation cost
+without a lot of implementation work being done first, so for the moment we
+don't.</p>
+<p>In practice, this doesn't matter.  Most environments don't change reverb
+characteristics.  A good flow is as follows:</p>
+<ul>
+<li>Design the reverb in your level editor/other environment.</li>
+<li>When necessary, use <code>syz_effectReset</code> for interactive experimentation.</li>
+<li>When distributing/launching for real, use the above crossfading instructions.</li>
+</ul>
+<p>It is of course possible to use more than one reverb at a time as well, and to
+fade sources between them at different levels. Note, however, that reverbs are
+relatively expensive.</p>
+<h3 id="the-input-filter"><a class="header" href="#the-input-filter">The Input Filter</a></h3>
+<p>Most reverb algorithms have a problem: high frequencies are emphasized.
+Synthizer's is no different.  To solve this, we introduce an input lowpass
+filter, which can cut out the higher frequencies. This is <code>SYZ_P_FILTER_INPUT</code>,
+available on all effects, but defaulted by the reverb to a lowpass at 1500 HZ
+because most of the negative characteristics of reverbs occur when high
+frequencies are overemphasized.</p>
+<p>Changing this cutoff filter is the strongest tool available for coloring the
+reverb.  Low cutoffs are great for rooms with sound dampening, high cutoffs for
+concrete walls. It can be disabled, but doing so will typically cause metallic
+and periodic artifacts to be noticeable.</p>
+<p>It's also possible to swap it with other filter types.  Lowpass filters are
+effectively the only filter type that aligns with the real world in the context
+of a reverb, but other filter types can produce interesting effects.</p>
+<h3 id="choosing-the-mean-free-path-and-late-reflections-delay"><a class="header" href="#choosing-the-mean-free-path-and-late-reflections-delay">Choosing the mean free path and late reflections delay</a></h3>
+<p>These two values are most directly responsible for controlling how big a space
+feels.  Intuitively, the mean free path is the average distance from wall to
+wall, and the late reflections delay is the time it takes for audio to hit
+something for the first time.  In general, get the mean free path by dividing
+the average distance between the walls by the speed of sound, and set the late
+reflections delay to something in the same order of magnitude.</p>
+<p>A good approximation for the mean free path is <code>4 * volume / surface_area</code>.
+Mathematically, it's the average time sound travels before reflection off an
+obstacle.  Very large mean free paths produce many discrete echoes.  For
+unrealistically large values, the late reflections won't be able to converge at
+all.</p>
+<h3 id="choosing-t60-and-controlling-per-band-decay"><a class="header" href="#choosing-t60-and-controlling-per-band-decay">Choosing T60 and controlling per-band decay</a></h3>
+<p>The t60 and related properties control the gains and configuration of a filter
+on the feedback path.</p>
+<p>The t60 of a reverb is defined as the time it takes for the reverb to decay by
+<code>-60db</code>.  Effectively this can be thought of as how long until the reverb is
+completely silent. 0.2 to 0.5 is a particularly reverberant and large living
+room, 1.0 to 2.0 is a concert hall, 5.0 is an amazingly large cavern, and values
+larger than that quickly become unrealistic and metallic.</p>
+<p>Most environments don't have the same decay time for all frequency bands, so the
+FdnReverb actually uses a 3-band equalizer instead of raw gains on the feedback
+paths.  The bands are as follows:</p>
+<ul>
+<li>0.0 to <code>SYZ_P_LATE_REFLECTIONS_LF_REFERENCE</code></li>
+<li><code>SYZ_P_LATE_REFLECTIONS_LF_REFERENCE</code> to <code>SYZ_P_LATE_REFLECTIONS_HF_REFERENCE</code></li>
+<li><code>SYZ_P_LATE_REFLECTIONS_HF_REFERENCE</code> to nyquist</li>
+</ul>
+<p><code>SYZ_P_T60</code> controls the decay time of the middle frequency band.  The lower
+band is <code>t60 * lf_rolloff</code>, and the upper <code>t60 * hf_rolloff</code>.  This allows you
+to simply change T60, and let the rolloff ratios control coloration.</p>
+<p>Intuitively, rooms with carpet on all the walls have a rather low hf reference
+and rolloff, and giant stone caverns are close to equal in all frequency bands.
+The lf reference/rolloff pairing can be used primarily for non-natural base
+boosting.  When the reverb starts, all frequencies are relatively equal but, as
+the audio continually gets fed back through the feedback paths, the equalizer
+will emphasize or deemphasize the 3 frequency bands at different rates.  To use
+this effectively, treat the hf/lf as defining the materials of the wall, then
+move t60.</p>
+<p>Note that the amount of coloration you can get from the equalizer is limited
+especially for short reverbs.  To control the perception of the environment more
+bluntly and independently of t60, use the input filter.</p>
+<h3 id="diffusion"><a class="header" href="#diffusion">Diffusion</a></h3>
+<p>The diffusion of the reverb is how fast the reverb tail transitions from
+discrete echoes to a continuous reverberant response.  Synthizer exposes this to
+you as a percent-based control, since it's not conveniently possible to tie
+anything to a real physical quantity in this case.  Typically, diffusion at 1.0
+(the default) is what you want.</p>
+<p>Another way to think of diffusion is how rough the walls are, how many obstacles
+there are for sound to bounce off of, etc.</p>
+<h3 id="delay-line-modulation"><a class="header" href="#delay-line-modulation">Delay Line modulation</a></h3>
+<p>A problem with feedback delay networks and/or other allpass/comb filter reverb
+designs is that they tend to be obviously periodic.  To deal with this,
+modulation of the delay lines on the feedback path is often introduced.  The
+final stage of designing an FdnReverb is to decide on the values of the
+modulation depth and frequency.</p>
+<p>The trade-off here is this:</p>
+<ul>
+<li>At low modulation depth/frequency, the reverb likes to sound metallic.</li>
+<li>At high modulation depth/frequency, the reverb gains very obvious nonlinear
+effects.</li>
+<li>At very high modulation depth/frequency, the reverb doesn't sound like a
+reverb at all.</li>
+</ul>
+<p>FdnReverb tries to default to universally applicable settings, but it might
+still be worth adjusting these. To disable modulation all together, set the
+depth to 0.0; due to internal details, setting the frequency to 0.0 is not
+possible.</p>
+<p>The artifacts introduced by large modulation depth/frequency values are least
+noticeable with percussive sounds and most noticeable with constant tones such
+as pianos and vocals.  Inversely, the periodic artifacts of no or little
+modulation are most noticeable with percussive sounds and least  noticeable with
+constant tones.</p>
+<p>In general, the best way to not need to touch these settings is to use realistic
+t60, as the beginning of the reverb isn't generally periodic.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../object_reference/global_echo.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../appendices/audio_eq_cookbook.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../object_reference/global_echo.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../appendices/audio_eq_cookbook.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
