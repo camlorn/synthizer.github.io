@@ -163,18 +163,18 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="release-notes-for-00x-to-08x"><a class="header" href="#release-notes-for-00x-to-08x">Release Notes for 0.0.x to 0.8.x</a></h1>
+                        <h1><a class="header" href="#release-notes-for-00x-to-08x" id="release-notes-for-00x-to-08x">Release Notes for 0.0.x to 0.8.x</a></h1>
 <p>Starting at 0.8 and later, Synthizer maintains separate pages for every
 incompatible release with more details on compatibility breakage and what
 specifically changed. The following were early development versions, and should
 no longer be used.</p>
-<h2 id="077"><a class="header" href="#077">0.7.7</a></h2>
+<h2><a class="header" href="#077" id="077">0.7.7</a></h2>
 <ul>
 <li>Identical to 0.7.5.  0.7.6 introduced a major performance regression that
 makes Synthizer unusable (probably issue #32, but investigations are ongoing).
 After this is fixed, the next version will contain all the nice 0.7.6 things.</li>
 </ul>
-<h2 id="076"><a class="header" href="#076">0.7.6</a></h2>
+<h2><a class="header" href="#076" id="076">0.7.6</a></h2>
 <ul>
 <li>Synthizer now builds on Linux.  This is preliminary.  If you experience
 issues, please report them, as Linux isn't my primary platform.  That said, I
@@ -199,7 +199,7 @@ knock-on effect of making. property reads even slower than they were already,
 but is necessary to work well on Linux. See issue #32 for tracking fast
 property reads.</li>
 </ul>
-<h2 id="075"><a class="header" href="#075">0.7.5</a></h2>
+<h2><a class="header" href="#075" id="075">0.7.5</a></h2>
 <ul>
 <li>Introduce <a href="../object_reference/global_fdn_reverb.html">reverb</a>.</li>
 <li>Start building Python 3.9 wheels.</li>
@@ -214,13 +214,13 @@ sources to panner lanes, for example issue #16 where PannedSource could become
 silent.  Note that this may introduce other issues in exchange: it was assumed
 that the bitsets were working this entire time.</li>
 </ul>
-<h2 id="074"><a class="header" href="#074">0.7.4</a></h2>
+<h2><a class="header" href="#074" id="074">0.7.4</a></h2>
 <ul>
 <li>Document our <a href="../concepts/stability.html">versioning and stability guarantees</a>.</li>
 <li>Introduce <a href="../concepts/effects.html">effect routing support</a>.</li>
 <li>Introduce an <a href="../object_reference/global_echo.html">Echo</a> effect.</li>
 </ul>
-<h2 id="073"><a class="header" href="#073">0.7.3</a></h2>
+<h2><a class="header" href="#073" id="073">0.7.3</a></h2>
 <ul>
 <li>Fix pitch bend support on BufferGenerator when looping is enabled. For the
 morbidly curious there is indeed a difference between <code>std::fmod</code> and
@@ -228,7 +228,7 @@ morbidly curious there is indeed a difference between <code>std::fmod</code> and
 <li>Maybe fix bugs in stereo panning for the same reason. If you had issues with
 stereo panning and didn't report them, you should probably try this release.</li>
 </ul>
-<h2 id="072"><a class="header" href="#072">0.7.2</a></h2>
+<h2><a class="header" href="#072" id="072">0.7.2</a></h2>
 <ul>
 <li>New property on BufferGenerator: <code>SYZ_P_PITCH_BEND</code>.</li>
 <li>We will adopt pre-1.0 semantic versioning going forward in order to be
@@ -237,29 +237,29 @@ incrementing for features and major incrementing for incompatible API updates.
 This should enable at least some compatibility in version numbers across
 package managers.</li>
 </ul>
-<h2 id="071"><a class="header" href="#071">0.7.1</a></h2>
+<h2><a class="header" href="#071" id="071">0.7.1</a></h2>
 <ul>
 <li>Attempt releasing 32-bit Python wheels.</li>
 </ul>
-<h2 id="070"><a class="header" href="#070">0.7.0</a></h2>
+<h2><a class="header" href="#070" id="070">0.7.0</a></h2>
 <ul>
 <li>Add a noise generator.</li>
 <li>Internal fixes to filters.</li>
 </ul>
-<h2 id="064"><a class="header" href="#064">0.6.4</a></h2>
+<h2><a class="header" href="#064" id="064">0.6.4</a></h2>
 <ul>
 <li>Python bindings now release the GIL in from_stream.</li>
 </ul>
-<h2 id="063"><a class="header" href="#063">0.6.3</a></h2>
+<h2><a class="header" href="#063" id="063">0.6.3</a></h2>
 <ul>
 <li>Re-enable dr_flac SIMD.</li>
 <li>Fix a bug with resampling when decoding to buffers.</li>
 </ul>
-<h2 id="061"><a class="header" href="#061">0.6.1</a></h2>
+<h2><a class="header" href="#061" id="061">0.6.1</a></h2>
 <p>This release temporarily disables dr_flac SIMD support until resolution of <a href="https://github.com/mackron/dr_libs/issues/143">this
 upstream issue</a>.</p>
-<h2 id="060"><a class="header" href="#060">0.6.0</a></h2>
-<h3 id="features"><a class="header" href="#features">Features</a></h3>
+<h2><a class="header" href="#060" id="060">0.6.0</a></h2>
+<h3><a class="header" href="#features" id="features">Features</a></h3>
 <ul>
 <li>Major improvements to StreamingGenerator:
 <ul>
@@ -276,7 +276,7 @@ panning strategy in the future, because it's the only one that's safe on all
 speaker arrangements. If you want HRTF, request it by setting
 <code>SYZ_P_PANNER_STRATEGY</code> on the context and/or sources.</li>
 </ul>
-<h3 id="bugs-fixed"><a class="header" href="#bugs-fixed">Bugs Fixed</a></h3>
+<h3><a class="header" href="#bugs-fixed" id="bugs-fixed">Bugs Fixed</a></h3>
 <ul>
 <li>
 <p>Throw an exception instead of silently crashing on invalid audio files.</p>
@@ -289,7 +289,7 @@ needs some improvement but is no longer fundamentally broken.</p>
 <p>Fix Stream seeking when using LookaheadByteStream internally. This
 fixes/allows for StreamingGenerator to seek, and may also fix  loading of
 audio files into buffers in some cases.</p>
-<h2 id="050"><a class="header" href="#050">0.5.0</a></h2>
+<h2><a class="header" href="#050" id="050">0.5.0</a></h2>
 </li>
 <li>
 <p>Roll out a deferred freeing strategy, which uses C++ custom allocators to move
@@ -318,7 +318,7 @@ need it.</li>
 <p>Fix creating buffers of files which require resampling.</p>
 </li>
 </ul>
-<h2 id="041"><a class="header" href="#041">0.4.1</a></h2>
+<h2><a class="header" href="#041" id="041">0.4.1</a></h2>
 <ul>
 <li>Fixes to allocating multiple panner lanes from a PannerBank.
 <ul>
@@ -328,7 +328,7 @@ need it.</li>
 <li>Fix HRTF computation for angles outside the built-in HRTF dataset, but which
 are still in range for elevation.</li>
 </ul>
-<h2 id="040"><a class="header" href="#040">0.4.0</a></h2>
+<h2><a class="header" href="#040" id="040">0.4.0</a></h2>
 <ul>
 <li>Introduce DirectSource, for music and other non-panned assets.</li>
 <li>All sources now have gain, as part of refactoring for DirectSource.</li>
@@ -354,7 +354,7 @@ This bug brought to you by surprising C++ numeric_limits behavior.</li>
 properties that Synthizer modifies, like generator positions.</li>
 <li>CONTRIBUTING.md and pull request templates.</li>
 </ul>
-<h2 id="030"><a class="header" href="#030">0.3.0</a></h2>
+<h2><a class="header" href="#030" id="030">0.3.0</a></h2>
 <ul>
 <li>Added support for Flac and MP3 via
 <a href="https://github.com/mackron/dr_libs">dr_libs</a>.</li>

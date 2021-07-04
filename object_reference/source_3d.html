@@ -163,13 +163,13 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="source3d"><a class="header" href="#source3d">Source3D</a></h1>
-<h2 id="constructors"><a class="header" href="#constructors">Constructors</a></h2>
-<h3 id="syz_createsource3d"><a class="header" href="#syz_createsource3d"><code>syz_createSource3D</code></a></h3>
+                        <h1><a class="header" href="#source3d" id="source3d">Source3D</a></h1>
+<h2><a class="header" href="#constructors" id="constructors">Constructors</a></h2>
+<h3><a class="header" href="#syz_createsource3d" id="syz_createsource3d"><code>syz_createSource3D</code></a></h3>
 <pre><code>SYZ_CAPI syz_ErrorCode syz_createSource3D(syz_Handle *out, syz_Handle context);
 </code></pre>
 <p>Creates a source3d positioned at the origin and with no associated generators.</p>
-<h2 id="properties"><a class="header" href="#properties">Properties</a></h2>
+<h2><a class="header" href="#properties" id="properties">Properties</a></h2>
 <table><thead><tr><th>Enum</th><th>Type</th><th>Default</th><th>Range</th><th>Description</th></tr></thead><tbody>
 <tr><td>SYZ_P_POSITION</td><td>double3</td><td>(0, 0, 0)</td><td>any</td><td>The position of the source.</td></tr>
 <tr><td>SYZ_P_ORIENTATION</td><td>double6</td><td>(0, 1, 0, 0, 0, 1)</td><td>Two packed unit vectors</td><td>The orientation of the source as <code>(atx, aty, atz, upx, upy, upz)</code>. Currently unused.</td></tr>
@@ -180,7 +180,7 @@
 <tr><td>SYZ_P_CLOSENESS_BOOST</td><td>double</td><td>From Context</td><td>any finite double</td><td>The closeness boost for this source in DB.</td></tr>
 <tr><td>SYZ_P_CLOSENESS_BOOST_DISTANCE</td><td>double</td><td>From Context</td><td>value &gt;= 0.0</td><td>The closeness boost distance for this source.</td></tr>
 </tbody></table>
-<h2 id="remarks"><a class="header" href="#remarks">Remarks</a></h2>
+<h2><a class="header" href="#remarks" id="remarks">Remarks</a></h2>
 <p>A Source3D represents an entity in 3D space.  For explanations of the above
 properties, see <a href="../concepts/3d_audio.html">3D Audio</a>.</p>
 <p>When created, Source3D reads all of its defaults from the Context's

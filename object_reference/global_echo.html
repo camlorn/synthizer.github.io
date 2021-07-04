@@ -163,14 +163,14 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="globalecho"><a class="header" href="#globalecho">GlobalEcho</a></h1>
-<h2 id="constructors"><a class="header" href="#constructors">Constructors</a></h2>
-<h3 id="syz_createglobalecho"><a class="header" href="#syz_createglobalecho"><code>syz_createGlobalEcho</code></a></h3>
+                        <h1><a class="header" href="#globalecho" id="globalecho">GlobalEcho</a></h1>
+<h2><a class="header" href="#constructors" id="constructors">Constructors</a></h2>
+<h3><a class="header" href="#syz_createglobalecho" id="syz_createglobalecho"><code>syz_createGlobalEcho</code></a></h3>
 <pre><code>SYZ_CAPI syz_ErrorCode syz_createGlobalEcho(syz_Handle *out, syz_Handle context);
 </code></pre>
 <p>Creates an echoe effect.</p>
-<h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
-<h3 id="syz_echosettaps"><a class="header" href="#syz_echosettaps"><code>syz_echoSetTaps</code></a></h3>
+<h2><a class="header" href="#functions" id="functions">Functions</a></h2>
+<h3><a class="header" href="#syz_echosettaps" id="syz_echosettaps"><code>syz_echoSetTaps</code></a></h3>
 <pre><code>struct syz_EchoTapConfig {
     float delay;
     float gain_l;
@@ -181,9 +181,9 @@ SYZ_CAPI syz_ErrorCode syz_globalEchoSetTaps(syz_Handle handle, unsigned int n_t
 </code></pre>
 <p>Configure the taps for this Echo.  Currently, delay must be no greater than 5
 seconds.  To clear the taps, set the echo to an array of 0 elements.</p>
-<h2 id="properties"><a class="header" href="#properties">Properties</a></h2>
+<h2><a class="header" href="#properties" id="properties">Properties</a></h2>
 <p>None</p>
-<h2 id="remarks"><a class="header" href="#remarks">Remarks</a></h2>
+<h2><a class="header" href="#remarks" id="remarks">Remarks</a></h2>
 <p>This is a stereo tapped delay line, with a one-block crossfade when taps are
 reconfigured.  The max delay is currently fixed at 5 seconds, but this will be
 made user configurable in future.</p>

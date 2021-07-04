@@ -163,10 +163,10 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="09x"><a class="header" href="#09x">0.9.x</a></h1>
-<p>This release primaerily focuses on being the final major API breakage before
-1.0, supporting Mac, improving the story around thread safety, and closing the
-gaps around loading audio from non-file sources.</p>
+                        <h1><a class="header" href="#09x" id="09x">0.9.x</a></h1>
+<p>This release primarily focuses on being the final major API breakage before 1.0,
+supporting Mac, improving the story around thread safety, and closing the gaps
+around loading audio from non-file sources.</p>
 <p>It is anticipated that there will be no more major API breakage before 1.0, and
 hopefully no more API breakage at all.  In some ways, this release is a 1.0 RC,
 though there are yet a few features left before 1.0 can happen.</p>
@@ -174,7 +174,7 @@ though there are yet a few features left before 1.0 can happen.</p>
 Sponsors</a>.  This is by no means required.
 That said, this release required buying a Mac, so I have now put money into
 Synthizer in addition to time.</p>
-<h2 id="stability-of-this-release"><a class="header" href="#stability-of-this-release">Stability of this Release</a></h2>
+<h2><a class="header" href="#stability-of-this-release" id="stability-of-this-release">Stability of this Release</a></h2>
 <p>This is a weekend project and this release contains a lot of manually tested new
 features, so it will be astonishing if you don't find bugs.  I generally do a
 good job fixing them within a week, so please <a href="https://github.com/synthizer/synthizer/issues">report them against the Synthizer
@@ -182,8 +182,8 @@ repository</a>.  There will likely
 be a few point releases before all of the bugs iron themselves out.</p>
 <p>Automated testing is on the wishlist, but is infeasible due to lack of time and
 is generally a massive undertaking.</p>
-<h2 id="new-features-in-this-release"><a class="header" href="#new-features-in-this-release">New Features in this Release</a></h2>
-<h3 id="mac-and-arm-support"><a class="header" href="#mac-and-arm-support">Mac and Arm Support</a></h3>
+<h2><a class="header" href="#new-features-in-this-release" id="new-features-in-this-release">New Features in this Release</a></h2>
+<h3><a class="header" href="#mac-and-arm-support" id="mac-and-arm-support">Mac and Arm Support</a></h3>
 <p>Synthizer now supports Os X, both the Python bindings and the C library.  Unlike
 other platforms, you will need to install XCode for the Python bindings to work.</p>
 <p>As a consequence, ARM is now also supported and testing is done locally on an M1
@@ -192,7 +192,7 @@ Mac.</p>
 to support older versions of Mac reliably.  Testing currently happens against
 Big Sur locally, and CI builds against catalina.  In general Synthizer will make
 an effort to support the latest major release of OS X.</p>
-<h3 id="a-new-manual"><a class="header" href="#a-new-manual">A New Manual</a></h3>
+<h3><a class="header" href="#a-new-manual" id="a-new-manual">A New Manual</a></h3>
 <p>This manual has been almost entirely rewritten, and the concepts and Python
 tutorial sections now contain a lot more content.  You can now find more
 detailed information on common patterns, 3D audio, and more.  Additionally, many
@@ -200,7 +200,7 @@ sections have been split into more targeted and smaller sections, which should
 make things easier to find.</p>
 <p>If you're using the Python bindings, you probably still need to read the source
 code, but there is now more than one tutorial.</p>
-<h3 id="support-for-custom-streams-and-in-memory-assets"><a class="header" href="#support-for-custom-streams-and-in-memory-assets">Support for Custom Streams and In-memory Assets</a></h3>
+<h3><a class="header" href="#support-for-custom-streams-and-in-memory-assets" id="support-for-custom-streams-and-in-memory-assets">Support for Custom Streams and In-memory Assets</a></h3>
 <p>Synthizer now supports:</p>
 <ul>
 <li><a href="../concepts/custom_streams.html">Loading from custom streams</a>.</li>
@@ -209,40 +209,40 @@ code, but there is now more than one tutorial.</p>
 <li>Loading buffers from application-generated float arrays via
 <code>syz_createBufferFromFloatArray</code>.</li>
 </ul>
-<h3 id="libsndfile-support"><a class="header" href="#libsndfile-support">Libsndfile Support</a></h3>
+<h3><a class="header" href="#libsndfile-support" id="libsndfile-support">Libsndfile Support</a></h3>
 <p>Synthizer can now <a href="../concepts/libsndfile.html">load Libsndfile</a>.  This adds
 support for all formats Libsndfile supports, most notably Ogg, and works with
 all forms of getting data into Synthizer save custom streams that don't
 implement seeking functionality.  See the linked section for more info.</p>
 <p>Due to licensing incompatibilities, this can't be statically linked and you will
 need to distribute the shared object alongside your app.</p>
-<h3 id="ability-to-configure-objects-to-play-until-finished"><a class="header" href="#ability-to-configure-objects-to-play-until-finished">Ability to Configure Objects to Play Until Finished</a></h3>
+<h3><a class="header" href="#ability-to-configure-objects-to-play-until-finished" id="ability-to-configure-objects-to-play-until-finished">Ability to Configure Objects to Play Until Finished</a></h3>
 <p>Synthizer now has a concept of <a href="../concepts/lingering.html">lingering</a>, which can
 be used to configure Synthizer generators and sources to stick around until
 they've finished playing rather than dying immediately on deletion.  This
 replaces home-grown solutions using events with a built-in solution for
 fire-and-forget situations where you simply want to play one sound and don't
 want to have to track it yourself.</p>
-<h3 id="reference-counted-handles"><a class="header" href="#reference-counted-handles">Reference-counted Handles</a></h3>
+<h3><a class="header" href="#reference-counted-handles" id="reference-counted-handles">Reference-counted Handles</a></h3>
 <p>For lower-level languages, Synthizer now supports reference counted handles.
 This allows for implementing things like the C++ <code>shared_ptr</code> or Rust's <code>Arc</code>,
 where objects may be being used by multiple threads and must not be deleted
 until all threads are finished.</p>
-<h3 id="thread-safe-event-handling"><a class="header" href="#thread-safe-event-handling">Thread-safe Event Handling</a></h3>
+<h3><a class="header" href="#thread-safe-event-handling" id="thread-safe-event-handling">Thread-safe Event Handling</a></h3>
 <p>As explained in <a href="../concepts/events.html">the new section on events</a>, Synthizer
 events now take temporary references on the handles they refer to.  This allows
 event handling loops to run concurrently with handle deletion without
 invalidating handles out from under the event handler.  This increased lifetime
 only extends until <code>syz_eventDeinit</code>, but it is possible to use
 <code>syz_handleIncRef</code> to hold onto the handle for longer if desired.</p>
-<h3 id="no-property-type-overloading"><a class="header" href="#no-property-type-overloading">No Property Type Overloading</a></h3>
+<h3><a class="header" href="#no-property-type-overloading" id="no-property-type-overloading">No Property Type Overloading</a></h3>
 <p>Synthizer properties are always only of one type by constant.  For example
 <code>SYZ_P_POSITION</code> is always a d3.  This required renaming <code>SYZ_P_POSITION</code> on
 generators to <code>SYZ_P_PLAYBACK_POSITION</code>.</p>
-<h3 id="the-effects-api-is-no-longer-provisional"><a class="header" href="#the-effects-api-is-no-longer-provisional">The Effects API Is No Longer Provisional</a></h3>
+<h3><a class="header" href="#the-effects-api-is-no-longer-provisional" id="the-effects-api-is-no-longer-provisional">The Effects API Is No Longer Provisional</a></h3>
 <p>At this point, it's not going to change again, so we have removed the
 provisional notices in this manual.</p>
-<h2 id="incompatibilities-in-this-release"><a class="header" href="#incompatibilities-in-this-release">Incompatibilities in this Release</a></h2>
+<h2><a class="header" href="#incompatibilities-in-this-release" id="incompatibilities-in-this-release">Incompatibilities in this Release</a></h2>
 <ul>
 <li>You now destroy handles with <code>syz_handleDecRef</code> because they're reference
 counted.

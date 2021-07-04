@@ -163,19 +163,19 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="pannedsource"><a class="header" href="#pannedsource">PannedSource</a></h1>
-<h2 id="constructors"><a class="header" href="#constructors">Constructors</a></h2>
-<h3 id="syz_createpannedsource"><a class="header" href="#syz_createpannedsource"><code>syz_createPannedSource</code></a></h3>
+                        <h1><a class="header" href="#pannedsource" id="pannedsource">PannedSource</a></h1>
+<h2><a class="header" href="#constructors" id="constructors">Constructors</a></h2>
+<h3><a class="header" href="#syz_createpannedsource" id="syz_createpannedsource"><code>syz_createPannedSource</code></a></h3>
 <pre><code>SYZ_CAPI syz_ErrorCode syz_createPannedSource(syz_Handle *out, syz_Handle context);
 </code></pre>
 <p>Creates a panned source.</p>
-<h3 id="properties"><a class="header" href="#properties">Properties</a></h3>
+<h3><a class="header" href="#properties" id="properties">Properties</a></h3>
 <table><thead><tr><th>Enum</th><th>Type</th><th>Default</th><th>Range</th><th>Description</th></tr></thead><tbody>
 <tr><td>SYZ_P_AZIMUTH</td><td>double</td><td>0.0</td><td>0.0 to 360.0</td><td>The azimuth of the panner. See remarks.</td></tr>
 <tr><td>SYZ_P_ELEVATION</td><td>double</td><td>0.0</td><td>-90.0 to 90.0</td><td>See remarks</td></tr>
 <tr><td>SYZ_P_PANNING_SCALAR</td><td>double</td><td>0.0</td><td>-1.0 to 1.0</td><td>see remarks</td></tr>
 </tbody></table>
-<h1 id="remarks"><a class="header" href="#remarks">Remarks</a></h1>
+<h1><a class="header" href="#remarks" id="remarks">Remarks</a></h1>
 <p>The PannedSource gives direct control over a panner, which is either controlled
 via azimuth/elevation in degrees or a panning scalar.</p>
 <p>If using azimuth/elevation, 0.0 azimuth is forward and positive angles are

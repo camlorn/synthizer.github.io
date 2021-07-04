@@ -163,15 +163,15 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="globalfdnreverb"><a class="header" href="#globalfdnreverb">GlobalFdnReverb</a></h1>
+                        <h1><a class="header" href="#globalfdnreverb" id="globalfdnreverb">GlobalFdnReverb</a></h1>
 <p>A reverb based off a feedback delay network.</p>
 <p>Inherits from <a href="./global_effect.html">GlobalEffect</a>.</p>
-<h2 id="constructors"><a class="header" href="#constructors">Constructors</a></h2>
-<h3 id="syz_createglobalfdnreverb"><a class="header" href="#syz_createglobalfdnreverb"><code>syz_createGlobalFdnReverb</code></a></h3>
+<h2><a class="header" href="#constructors" id="constructors">Constructors</a></h2>
+<h3><a class="header" href="#syz_createglobalfdnreverb" id="syz_createglobalfdnreverb"><code>syz_createGlobalFdnReverb</code></a></h3>
 <pre><code>SYZ_CAPI syz_ErrorCode syz_createGlobalFdnReverb(syz_Handle *out, syz_Handle context);
 </code></pre>
 <p>Creates a global FDN reverb with default settings.</p>
-<h2 id="properties"><a class="header" href="#properties">Properties</a></h2>
+<h2><a class="header" href="#properties" id="properties">Properties</a></h2>
 <p>See remarks for a description of what these do and how to use them effectively.</p>
 <p>In addition to the below, FdnReverb defaults its gain to 0.7.  Gains of 1.0 are
 almost never what you want, since that makes the reverb as loud as the
@@ -189,7 +189,7 @@ non-reverb audio paths.</p>
 <tr><td>SYZ_P_LATE_REFLECTIONS_MODULATION_FREQUENCY</td><td>double</td><td>0.5</td><td>0.01 to 100.0</td><td>The frequency of the modulation of the delay lines inthe feedback paths.</td></tr>
 <tr><td>SYZ_P_LATE_REFLECTIONS_DELAY</td><td>double</td><td>0.03</td><td>0.0 to 0.5</td><td>The delay of the late reflections relative to the input in seconds.</td></tr>
 </tbody></table>
-<h2 id="remarks"><a class="header" href="#remarks">Remarks</a></h2>
+<h2><a class="header" href="#remarks" id="remarks">Remarks</a></h2>
 <p>This is a reverb composed of a feedback delay network with 8 internal delay
 lines.  The algorithm proceeds as follows:</p>
 <ul>
@@ -219,7 +219,7 @@ roadmap.</p>
 <p>The default configuration is something to the effect of a medium-sized room.
 Presets will be added in future.  The following sections explain considerations
 for reverb design with this algorithm:</p>
-<h3 id="a-note-on-property-changes"><a class="header" href="#a-note-on-property-changes">A Note On Property Changes</a></h3>
+<h3><a class="header" href="#a-note-on-property-changes" id="a-note-on-property-changes">A Note On Property Changes</a></h3>
 <p>The FdnReverb effect involves a large amount of feedback and is therefore
 impossible to crossfade efficiently. To that end,we don't try.  Expect most
 property changes save for t60 and the hf/lf frequency controls to cause clicking
@@ -240,7 +240,7 @@ characteristics.  A good flow is as follows:</p>
 <p>It is of course possible to use more than one reverb at a time as well, and to
 fade sources between them at different levels. Note, however, that reverbs are
 relatively expensive.</p>
-<h3 id="the-input-filter"><a class="header" href="#the-input-filter">The Input Filter</a></h3>
+<h3><a class="header" href="#the-input-filter" id="the-input-filter">The Input Filter</a></h3>
 <p>Most reverb algorithms have a problem: high frequencies are emphasized.
 Synthizer's is no different.  To solve this, we introduce an input lowpass
 filter, which can cut out the higher frequencies. This is <code>SYZ_P_FILTER_INPUT</code>,
@@ -254,7 +254,7 @@ and periodic artifacts to be noticeable.</p>
 <p>It's also possible to swap it with other filter types.  Lowpass filters are
 effectively the only filter type that aligns with the real world in the context
 of a reverb, but other filter types can produce interesting effects.</p>
-<h3 id="choosing-the-mean-free-path-and-late-reflections-delay"><a class="header" href="#choosing-the-mean-free-path-and-late-reflections-delay">Choosing the mean free path and late reflections delay</a></h3>
+<h3><a class="header" href="#choosing-the-mean-free-path-and-late-reflections-delay" id="choosing-the-mean-free-path-and-late-reflections-delay">Choosing the mean free path and late reflections delay</a></h3>
 <p>These two values are most directly responsible for controlling how big a space
 feels.  Intuitively, the mean free path is the average distance from wall to
 wall, and the late reflections delay is the time it takes for audio to hit
@@ -266,7 +266,7 @@ Mathematically, it's the average time sound travels before reflection off an
 obstacle.  Very large mean free paths produce many discrete echoes.  For
 unrealistically large values, the late reflections won't be able to converge at
 all.</p>
-<h3 id="choosing-t60-and-controlling-per-band-decay"><a class="header" href="#choosing-t60-and-controlling-per-band-decay">Choosing T60 and controlling per-band decay</a></h3>
+<h3><a class="header" href="#choosing-t60-and-controlling-per-band-decay" id="choosing-t60-and-controlling-per-band-decay">Choosing T60 and controlling per-band decay</a></h3>
 <p>The t60 and related properties control the gains and configuration of a filter
 on the feedback path.</p>
 <p>The t60 of a reverb is defined as the time it takes for the reverb to decay by
@@ -296,7 +296,7 @@ move t60.</p>
 <p>Note that the amount of coloration you can get from the equalizer is limited
 especially for short reverbs.  To control the perception of the environment more
 bluntly and independently of t60, use the input filter.</p>
-<h3 id="diffusion"><a class="header" href="#diffusion">Diffusion</a></h3>
+<h3><a class="header" href="#diffusion" id="diffusion">Diffusion</a></h3>
 <p>The diffusion of the reverb is how fast the reverb tail transitions from
 discrete echoes to a continuous reverberant response.  Synthizer exposes this to
 you as a percent-based control, since it's not conveniently possible to tie
@@ -304,7 +304,7 @@ anything to a real physical quantity in this case.  Typically, diffusion at 1.0
 (the default) is what you want.</p>
 <p>Another way to think of diffusion is how rough the walls are, how many obstacles
 there are for sound to bounce off of, etc.</p>
-<h3 id="delay-line-modulation"><a class="header" href="#delay-line-modulation">Delay Line modulation</a></h3>
+<h3><a class="header" href="#delay-line-modulation" id="delay-line-modulation">Delay Line modulation</a></h3>
 <p>A problem with feedback delay networks and/or other allpass/comb filter reverb
 designs is that they tend to be obviously periodic.  To deal with this,
 modulation of the delay lines on the feedback path is often introduced.  The
