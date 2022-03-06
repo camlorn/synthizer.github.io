@@ -163,8 +163,8 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#controlling-object-properties" id="controlling-object-properties">Controlling Object Properties</a></h1>
-<h2><a class="header" href="#basics" id="basics">Basics</a></h2>
+                        <h1 id="controlling-object-properties"><a class="header" href="#controlling-object-properties">Controlling Object Properties</a></h1>
+<h2 id="basics"><a class="header" href="#basics">Basics</a></h2>
 <p>most interesting audio control happens through properties, which are like knobs
 on hardware controllers or dials in your DAW.  Synthizer picks the values of
 properties up on the next audio tick and automatically handles crossfading and
@@ -211,13 +211,13 @@ SYZ_CAPI syz_ErrorCode syz_setBiquad(syz_Handle target, int property, const stru
 </code></pre>
 <p>Property accesses happen without syscalls and are usually atomic operations and
 enqueues on a lockfree queue.</p>
-<h2><a class="header" href="#object-properties-are-weak" id="object-properties-are-weak">Object Properties Are Weak</a></h2>
+<h2 id="object-properties-are-weak"><a class="header" href="#object-properties-are-weak">Object Properties Are Weak</a></h2>
 <p>Object properties do not increment the reference count of the handle associated
 with them.  There isn't much to say here, but it is important enough that it's
 worth calling out with a section.  For example, if you set the buffer on a
 buffer generator and then decrement the buffer's reference count to 0, the
 generator will stop playing audio rather than keeping the buffer alive.</p>
-<h2><a class="header" href="#a-note-on-reading" id="a-note-on-reading">A Note on Reading</a></h2>
+<h2 id="a-note-on-reading"><a class="header" href="#a-note-on-reading">A Note on Reading</a></h2>
 <p>Property reads need to be further explained.  Because audio programming requires
 not blocking the audio thread, Synthizer internally uses queues for property
 writes.  This means that any read may be outdated by some amount, even if the

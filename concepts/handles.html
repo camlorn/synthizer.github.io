@@ -163,7 +163,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#handles-and-userdata" id="handles-and-userdata">Handles and userdata</a></h1>
+                        <h1 id="handles-and-userdata"><a class="header" href="#handles-and-userdata">Handles and userdata</a></h1>
 <p>Synthizer objects are referred to via reference-counted handles, with an optional <code>void *</code> userdata pointer that can be
 associated to link them to application state:</p>
 <pre><code>SYZ_CAPI syz_ErrorCode syz_handleIncRef(syz_Handle handle);
@@ -174,7 +174,7 @@ SYZ_CAPI syz_ErrorCode syz_handleGetUserdata(void **out, syz_Handle handle);
 typedef void syz_UserdataFreeCallback(void *);
 SYZ_CAPI syz_ErrorCode syz_handleSetUserdata(syz_Handle handle, void *userdata, syz_UserdataFreeCallback *free_callback);
 </code></pre>
-<h2><a class="header" href="#basics-of-handles" id="basics-of-handles">basics of Handles</a></h2>
+<h2 id="basics-of-handles"><a class="header" href="#basics-of-handles">basics of Handles</a></h2>
 <p>All Synthizer handles start with a reference count of 1.  When the reference count reaches 0, the object is scheduled
 for deletion, but may not be deleted immediately.  Uniquely among Synthizer functions, <code>syz_handleIncRef</code> and
 <code>syz_handleDecRef</code> can be called after library shutdown in order to allow languages like Rust to implement infallible
@@ -184,9 +184,9 @@ stay around for a while can be dealt with userdata support, as described below.<
 application provided that the application is itself using reference counts correctly.</p>
 <p>Synthizer objects are like classes.  They have &quot;methods&quot; and &quot;bases&quot;.  For example all generators support a common set
 of operations named with a <code>syz_generatorXXX</code> prefix.</p>
-<h3><a class="header" href="#the-reserved-config-argument" id="the-reserved-config-argument">The reserved config argument</a></h3>
+<h3 id="the-reserved-config-argument"><a class="header" href="#the-reserved-config-argument">The reserved config argument</a></h3>
 <p>Many constructors take a <code>void *config</code> argument.  This must be set to NULL, and is reserved for future use.</p>
-<h3><a class="header" href="#userdata" id="userdata">Userdata</a></h3>
+<h3 id="userdata"><a class="header" href="#userdata">Userdata</a></h3>
 <p>Synthizer makes it possible to associate application data via a <code>void *</code> pointer which will share the object's actual
 lifetime rather than the lifetime of the handle to the object.  This is useful for allowing applications to store state,
 but also helps to deal with the lifetime issues introduced by the mismatch between the last reference count of the

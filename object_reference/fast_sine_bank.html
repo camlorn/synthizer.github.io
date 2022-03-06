@@ -163,10 +163,10 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#fastsinebankgenerator" id="fastsinebankgenerator">FastSineBankGenerator</a></h1>
+                        <h1 id="fastsinebankgenerator"><a class="header" href="#fastsinebankgenerator">FastSineBankGenerator</a></h1>
 <p>Generate basic waveforms which can be expressed as the sum of sine waves (e.g. square, triangle).</p>
-<h2><a class="header" href="#constructors" id="constructors">Constructors</a></h2>
-<h3><a class="header" href="#syz_createfastsinebankgenerator" id="syz_createfastsinebankgenerator"><code>syz_createFastSineBankGenerator</code></a></h3>
+<h2 id="constructors"><a class="header" href="#constructors">Constructors</a></h2>
+<h3 id="syz_createfastsinebankgenerator"><a class="header" href="#syz_createfastsinebankgenerator"><code>syz_createFastSineBankGenerator</code></a></h3>
 <pre><code>struct syz_SineBankWave {
   double frequency_mul;
   double phase;
@@ -191,7 +191,7 @@ remarks for specifics on what this means and what the values in the configuratio
 <p>Most applications will want to use the helpers which configure the bank with specific well-known waveforms.</p>
 <p>You own the memory pointed to by <code>syz_SineBankConfig</code>, and it may be freed immediately after the constructor call.
 Pointing it at values on the stack is fine.</p>
-<h3><a class="header" href="#specific-waveform-helpers" id="specific-waveform-helpers">Specific waveform helpers</a></h3>
+<h3 id="specific-waveform-helpers"><a class="header" href="#specific-waveform-helpers">Specific waveform helpers</a></h3>
 <pre><code>SYZ_CAPI syz_ErrorCode syz_createFastSineBankGeneratorSine(syz_Handle *out, syz_Handle context,
                                                            double initial_frequency, void *config, void *userdata,
                                                            syz_UserdataFreeCallback *userdata_free_callback);
@@ -209,13 +209,13 @@ SYZ_CAPI syz_ErrorCode syz_createFastSineBankGeneratorSaw(syz_Handle *out, syz_H
 </code></pre>
 <p>Create waveforms of specific types, e.g. what you'd get from a digital synthesizer.  Most applications will wish to use
 these functions. See remarks for additional notes on quality.</p>
-<h2><a class="header" href="#properties" id="properties">Properties</a></h2>
+<h2 id="properties"><a class="header" href="#properties">Properties</a></h2>
 <table><thead><tr><th>Enum</th><th>Type</th><th>Default Value</th><th>Range</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>SYZ_P_FREQUENCY</code></td><td>double</td><td>set by constructor</td><td>any positive value</td><td>the frequency of the waveform.</td></tr>
 </tbody></table>
-<h2><a class="header" href="#linger-behavior" id="linger-behavior">Linger behavior</a></h2>
+<h2 id="linger-behavior"><a class="header" href="#linger-behavior">Linger behavior</a></h2>
 <p>Fades out over a few ms.</p>
-<h2><a class="header" href="#remarks" id="remarks">Remarks</a></h2>
+<h2 id="remarks"><a class="header" href="#remarks">Remarks</a></h2>
 <p>This implements a fast sine wave generation algorithm which is on the order of single-digit clock cycles per sample, at
 the cost of slight accuracy.  The intended use is to generate chiptune-quality waveforms.  For those not familiar, most
 waveforms may be constructed of summed sine waves at specific frequencies, so this functions as a general-purpose wave

@@ -163,8 +163,8 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#decoding-audio-data" id="decoding-audio-data">Decoding Audio Data</a></h1>
-<h2><a class="header" href="#the-quick-overview" id="the-quick-overview">The Quick Overview</a></h2>
+                        <h1 id="decoding-audio-data"><a class="header" href="#decoding-audio-data">Decoding Audio Data</a></h1>
+<h2 id="the-quick-overview"><a class="header" href="#the-quick-overview">The Quick Overview</a></h2>
 <p>Synthizer supports mp3, wav, and flac.  If you need more formats, then you can
 <a href="./libsndfile.html">load Libsndfile</a> or decode the data yourself.</p>
 <p>If you need to read from a file, use e.g. <code>syz_createBufferFromFile</code>.  If you
@@ -177,7 +177,7 @@ object reference.  Everything supports some function that's equivalent to
 <p>These functions are the most stable interface because they can be easily
 supported across incompatible library versions.  If your app can use them, it
 should do so.</p>
-<h2><a class="header" href="#streams" id="streams">Streams</a></h2>
+<h2 id="streams"><a class="header" href="#streams">Streams</a></h2>
 <p>Almost all of these methods wrap and hide something called a stream handle,
 which can be created with e.g. <code>syz_createStreamHandleFromFile</code>, then used with
 e.g. <code>syz_createBufferFromStreamHandle</code>.  Bindings expose this to you, usually

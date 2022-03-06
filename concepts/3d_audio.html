@@ -163,8 +163,8 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#3d-audio-panning-and-hrtf" id="3d-audio-panning-and-hrtf">3D Audio, Panning, and HRTF</a></h1>
-<h2><a class="header" href="#introduction" id="introduction">Introduction</a></h2>
+                        <h1 id="3d-audio-panning-and-hrtf"><a class="header" href="#3d-audio-panning-and-hrtf">3D Audio, Panning, and HRTF</a></h1>
+<h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
 <p>Synthizer supports panning audio through two interfaces.</p>
 <p>First is <a href="../object_reference/panned_sources.html">AngularPannedSource and ScalarPannedSource</a>, which provides
 simple azimuth/elevation controls and the ability to pan based off a scalar, a
@@ -174,7 +174,7 @@ application must compute these values itself.</p>
 simulates a 3D environment when fed positional data.  This ection concerns
 itself with proper use of <code>Source3D</code>, which is less straightforward for those
 who haven't had prior exposure to these concepts.</p>
-<h2><a class="header" href="#introduction-1" id="introduction-1">Introduction</a></h2>
+<h2 id="introduction-1"><a class="header" href="#introduction-1">Introduction</a></h2>
 <p>There are two mandatory steps to using <code>Source3D</code> as well as a few optional
 ones.  The two mandatory steps are these:</p>
 <ul>
@@ -189,7 +189,7 @@ quiet.</li>
 <li>Emphasize that sources have become close to the listener with the focus boost.</li>
 <li>Add effects (covered in <a href="./filters_and_effects.html">a dedicated section</a>).</li>
 </ul>
-<h2><a class="header" href="#dont-move-sources-through-the-head" id="dont-move-sources-through-the-head">Don't Move Sources Through the Head</a></h2>
+<h2 id="dont-move-sources-through-the-head"><a class="header" href="#dont-move-sources-through-the-head">Don't Move Sources Through the Head</a></h2>
 <p>People frequently pick up Synthizer, then try to move the source through the
 center of the listener's head, then ask why it's weird and didn't work.  It is
 important to realize that this is a physical simulation of reality, and that the
@@ -198,12 +198,12 @@ that this isn't an easily detectable case.  If you aren't driving Synthizer in a
 way connected to physical reality--for example if you are attempting to use <code>x</code>
 as a way to pan sources from left to right and not linked to a position--then
 you probably want one of the raw panned sources instead.</p>
-<h2><a class="header" href="#setting-global-defaults" id="setting-global-defaults">Setting Global Defaults</a></h2>
+<h2 id="setting-global-defaults"><a class="header" href="#setting-global-defaults">Setting Global Defaults</a></h2>
 <p>In addition to controlling the listener, the context offers the ability to set
 defaults for all values discussed below.  This is done through a set of
 <code>SYZ_P_DEFAULT_*</code> properties which match the names of those on sources.  This is
 of particular interest to those wishing to use HRTF, which is off by default.</p>
-<h2><a class="header" href="#synthizers-coordinate-system-and-orientations" id="synthizers-coordinate-system-and-orientations">Synthizer's Coordinate System and Orientations</a></h2>
+<h2 id="synthizers-coordinate-system-and-orientations"><a class="header" href="#synthizers-coordinate-system-and-orientations">Synthizer's Coordinate System and Orientations</a></h2>
 <p>The short version for those who are familiar with libraries that need position
 and orientation data: Synthizer uses a right-handed coordinate system and
 configures orientation through <a href="./properties.html">double6 properties</a> so that it
@@ -240,7 +240,7 @@ case they would temporarily be invalid.  Synthizer doesn't try to validate that
 these vectors are orthogonal and generally tries to do its best when they
 aren't, but nonetheless behavior in this case is undefined.</p>
 <p>Finally, the at and up vectors must be unit vectors: vectors of length 1.</p>
-<h2><a class="header" href="#panning-strategies-and-hrtf" id="panning-strategies-and-hrtf">Panning strategies and HRTF.</a></h2>
+<h2 id="panning-strategies-and-hrtf"><a class="header" href="#panning-strategies-and-hrtf">Panning strategies and HRTF.</a></h2>
 <p>The panning strategy specifies how sources are to be panned.  Synthizer supports
 the following panning strategies:</p>
 <table><thead><tr><th>Strategy</th><th>Channels</th><th>Description</th></tr></thead><tbody>
@@ -265,7 +265,7 @@ enough that you may wish to disable it if dealing with hundreds or thousands of
 sources, and it is sometimes useful to let UI elements use a different panning
 strategy.  An example of this latter case is an audio gauge which pans from left
 to right.</p>
-<h2><a class="header" href="#distance-models" id="distance-models">Distance Models</a></h2>
+<h2 id="distance-models"><a class="header" href="#distance-models">Distance Models</a></h2>
 <p>The distance model controls how quickly sources become quiet as they move away
 from the listener.  This is controlled through the following properties:</p>
 <ul>
@@ -296,7 +296,7 @@ linear scalar using one of the following formulas:</p>
 <tr><td>SYZ_DISTANCE_MODEL_INVERSE when <code>d_ref = 0.0</code></td><td><code>0.0</code></td></tr>
 <tr><td>SYZ_DISTANCE_MODEL_INVERSE when <code>d_ref &gt; 0.0</code></td><td><code>d_ref / (d_ref + r * max(d, d_ref) - d_ref)</code></td></tr>
 </tbody></table>
-<h2><a class="header" href="#the-closeness-boost" id="the-closeness-boost">The Closeness Boost</a></h2>
+<h2 id="the-closeness-boost"><a class="header" href="#the-closeness-boost">The Closeness Boost</a></h2>
 <p>Sometimes, it is desirable to make sources &quot;pop out&quot; of the background
 environment.  For example, if the player approaches an object with which they
 can interact, making it noticeably louder as the boundary is crossed can be

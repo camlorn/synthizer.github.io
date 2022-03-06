@@ -163,16 +163,16 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#the-automation-api" id="the-automation-api">The Automation API</a></h1>
+                        <h1 id="the-automation-api"><a class="header" href="#the-automation-api">The Automation API</a></h1>
 <p>NOTE: While the intent is that the following is stable, this is provisional and subject to change until things have had
 a chance to settle.</p>
-<h2><a class="header" href="#introduction" id="introduction">Introduction</a></h2>
+<h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
 <p>Synthizer implements a WebAudio style automation API which can allow for the automation of double, d3, and d6
 properties.  This functions through a command queue of automation events, each with a time associated.</p>
 <p>In order for applications to know when automation is getting low or for other synchronization events, it is also
 possible to enqueue a command which sends an event to your application.</p>
 <p>The C API for this funtionality is very large.  Readers should refer to synthizer.h for function and struct prototypes.</p>
-<h2><a class="header" href="#a-note-on-accuracy" id="a-note-on-accuracy">A Note on Accuracy</a></h2>
+<h2 id="a-note-on-accuracy"><a class="header" href="#a-note-on-accuracy">A Note on Accuracy</a></h2>
 <p>This is the first cut of the automation API.  Consequently there's a big limitation: it's not possible to perfectly
 synchronize automation with the beginning of a generator/source's playback.  That is, as things stand, attempts to build
 instruments and keyboards are bound to be disappointing.  Future versions of Synthizer will likely improve this case,
@@ -181,7 +181,7 @@ Rather than fix this now, this API is being made available to gain experience in
 address this deficiency in the future.</p>
 <p>Improvement for accuracy and the ability to do instrument-level automation is being tracked
 <a href="https://github.com/synthizer/synthizer/issues/78">here</a>.</p>
-<h2><a class="header" href="#overview-of-usage" id="overview-of-usage">Overview of usage</a></h2>
+<h2 id="overview-of-usage"><a class="header" href="#overview-of-usage">Overview of usage</a></h2>
 <p>The flow of the automation API looks like this:</p>
 <ul>
 <li>get the current time for an object by reading one of the following properties for that object, either from the object
@@ -208,7 +208,7 @@ needs to get commands enqueued; or</li>
 </ul>
 <p>The above is involved primarily because this is C: bindings can and should offer easier, builder-like interfaces that
 aren't nearly so difficult.</p>
-<h2><a class="header" href="#whats-going-on" id="whats-going-on">What's going on?</a></h2>
+<h2 id="whats-going-on"><a class="header" href="#whats-going-on">What's going on?</a></h2>
 <p>Automation allows users to build a timeline of events and property values, relative to the context's current time. These
 events can then be enqueued for execution as time advances, and will happen within one &quot;block&quot; of the current
 time--accurate to about 5MS.  Events can be scheduled in the past, and will contribute to any fading that's going on.</p>
@@ -218,7 +218,7 @@ type is set to linear.  The key insight is that it doesn't matter when the time 
 at time 4, the value is still 5.</p>
 <p>If events are scheduled early, they happen immediately. This is in line with the intended uses of using them to know
 when automation is nearing its end or is past specific times.</p>
-<h2><a class="header" href="#time" id="time">Time</a></h2>
+<h2 id="time"><a class="header" href="#time">Time</a></h2>
 <p>Time in Synthizer is always advancing unless the context is paused.  When the context is created, time starts at 0, then
 proceeds forward.  It is possible to read the time using <code>SYZ_P_CURRENT_TIME</code>, which is available on all objects you'd
 expect: generators, source, effects, etc.  By building relative to these object-local times, it is possible for
@@ -249,7 +249,7 @@ relative to the time that was read at the beginning.</p>
 <p>Finally, as implied by the above, automation doesn't respect pausing unless it's on the context: pausing a generator
 with automation attached will still have automation advance even while it is paused.  This is currently unavoidable due
 to internal limitations which require significant work to lift.</p>
-<h2><a class="header" href="#automation-batches" id="automation-batches">Automation Batches</a></h2>
+<h2 id="automation-batches"><a class="header" href="#automation-batches">Automation Batches</a></h2>
 <p>In order to enqueue commands, it is necessary to put them somewhere.  We also want an API which allows for enqueueing
 more than one command at a time for efficiency.  In order to do this, Synthizer introduces the concept of the automation
 batch, created with <code>syz_createAutomationBatch</code>.</p>
@@ -259,7 +259,7 @@ yourself.  Once all the commands you want to add are added, <code>syz_automation
 due to internal limitations, the batch may not be reused.</p>
 <p>Note that the intent is that batches can automate multiple objects at once.  Using a different object with every command
 is perfectly fine.</p>
-<h2><a class="header" href="#commands" id="commands">Commands</a></h2>
+<h2 id="commands"><a class="header" href="#commands">Commands</a></h2>
 <p>Automation offers the following command types:</p>
 <ul>
 <li><code>SYZ_AUTOMATION_COMMAND_APPEND_PROPERTY</code>: Add a value to the timeline for a property, e.g. &quot;use linear interpolation
@@ -274,7 +274,7 @@ crosses the specified time.</li>
 the automation batch in order to clean up before adding new automation.</p>
 <p>Parameters to commands are specified as the enum variants of <code>syz_AutomationCommand</code>'s <code>params</code> union and are mostly
 self-explanatory.  Property automation is discussed below.</p>
-<h2><a class="header" href="#automating-property-values" id="automating-property-values">Automating Property values</a></h2>
+<h2 id="automating-property-values"><a class="header" href="#automating-property-values">Automating Property values</a></h2>
 <p>Using <code>SYZ_AUTOMATION_COMMAND_APPEND_PROPERTY</code>, it is possible to append values to the timeline for a property on a
 specific object.  This is done via the <code>syz_AutomationPoint</code> struct:</p>
 <pre><code>struct syz_AutomationPoint {
@@ -301,11 +301,11 @@ things like audio &quot;animations&quot; can execute accurately even if the appl
 <p>Property automation interacts with normal property sets by desugaring normal property sets to
 <code>SYZ_INTERPOLATION_TUYPE_NONE</code> points scheduled &quot;as soon as possible&quot;.  Users are encouraged to either use automation or
 property setting rather than both at the same time, but both at the same time has a consistent behavior.</p>
-<h2><a class="header" href="#events" id="events">Events</a></h2>
+<h2 id="events"><a class="header" href="#events">Events</a></h2>
 <p>Events are much simpler: you specify a <code>unsigned long long</code> parameter, and get it back when the event triggers.
 <code>unsigned long long</code> is used because it is possible to losslessly store a pointer in it on all platforms we support
 without having to worry about the size changing on 32-bit platforms.</p>
-<h2><a class="header" href="#examples" id="examples">Examples.</a></h2>
+<h2 id="examples"><a class="header" href="#examples">Examples.</a></h2>
 <p>Synthizer's repository contains some examples demonstrating common automation uses in the examples directory:</p>
 <ul>
 <li><code>simple_automation.c</code>: build a simple envelope around a waveform.</li>

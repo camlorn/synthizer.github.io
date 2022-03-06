@@ -163,15 +163,15 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#streaminggenerator" id="streaminggenerator">StreamingGenerator</a></h1>
-<h2><a class="header" href="#constructors" id="constructors">Constructors</a></h2>
-<h3><a class="header" href="#syz_createstreaminggeneratorfromfile" id="syz_createstreaminggeneratorfromfile"><code>syz_createStreamingGeneratorFromFile</code></a></h3>
+                        <h1 id="streaminggenerator"><a class="header" href="#streaminggenerator">StreamingGenerator</a></h1>
+<h2 id="constructors"><a class="header" href="#constructors">Constructors</a></h2>
+<h3 id="syz_createstreaminggeneratorfromfile"><a class="header" href="#syz_createstreaminggeneratorfromfile"><code>syz_createStreamingGeneratorFromFile</code></a></h3>
 <pre><code>SYZ_CAPI syz_ErrorCode syz_createStreamingGeneratorFromFile(syz_Handle *out, syz_Handle context, const char *path,
                                                             void *config, void *userdata,
                                                             syz_UserdataFreeCallback *userdata_free_callback);
 </code></pre>
 <p>Create a StreamingGenerator from an UTF-8 encoded path.</p>
-<h3><a class="header" href="#syz_createstreaminggeneratorfromstreamparams" id="syz_createstreaminggeneratorfromstreamparams"><code>syz_createStreamingGeneratorFromStreamParams</code></a></h3>
+<h3 id="syz_createstreaminggeneratorfromstreamparams"><a class="header" href="#syz_createstreaminggeneratorfromstreamparams"><code>syz_createStreamingGeneratorFromStreamParams</code></a></h3>
 <pre><code>SYZ_CAPI syz_ErrorCode syz_createStreamingGeneratorFromStreamParams(syz_Handle *out, syz_Handle context,
                                                                     const char *protocol, const char *path, void *param,
                                                                     void *config, void *userdata,
@@ -179,20 +179,20 @@
 </code></pre>
 <p>Create a StreamingGenerator from the standard <a href="../concepts/decoding.html">stream
 parameters</a>.</p>
-<h3><a class="header" href="#syz_createstreaminggeneratorfromstreamhandle" id="syz_createstreaminggeneratorfromstreamhandle"><code>syz_createStreamingGeneratorFromStreamHandle</code></a></h3>
+<h3 id="syz_createstreaminggeneratorfromstreamhandle"><a class="header" href="#syz_createstreaminggeneratorfromstreamhandle"><code>syz_createStreamingGeneratorFromStreamHandle</code></a></h3>
 <pre><code>SYZ_CAPI syz_ErrorCode syz_createStreamingGeneratorFromStreamHandle(syz_Handle *out, syz_Handle context,
                                                                     syz_Handle stream, void *config, void *userdata,
                                                                     syz_UserdataFreeCallback *userdata_free_callback);
 </code></pre>
 <p>Create a <code>StreamingGenerator</code> from a stream handle.</p>
-<h2><a class="header" href="#properties" id="properties">Properties</a></h2>
+<h2 id="properties"><a class="header" href="#properties">Properties</a></h2>
 <table><thead><tr><th>Enum</th><th>Type</th><th>Default Value</th><th>Range</th><th>Description</th></tr></thead><tbody>
 <tr><td>SYZ_P_PLAYBACK_POSITION</td><td>double</td><td>0.0</td><td>value &gt;= 0.0</td><td>The position of the stream.</td></tr>
 <tr><td>SYZ_P_LOOPING</td><td>int</td><td>0</td><td>0 or 1</td><td>Whether playback loops</td></tr>
 </tbody></table>
-<h2><a class="header" href="#linger-behavior" id="linger-behavior">Linger Behavior</a></h2>
+<h2 id="linger-behavior"><a class="header" href="#linger-behavior">Linger Behavior</a></h2>
 <p>Disables looping and continues until the stream ends.</p>
-<h2><a class="header" href="#remarks" id="remarks">Remarks</a></h2>
+<h2 id="remarks"><a class="header" href="#remarks">Remarks</a></h2>
 <p><code>StreamingGenerator</code> plays streams, decoding and reading on demand.  The typical
 use case is for music playback.</p>
 <p>Due to the expense of streaming from disk and other I/O sources, having more

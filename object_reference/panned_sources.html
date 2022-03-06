@@ -163,29 +163,29 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#angularpannedsource-and-scalarpannedsource" id="angularpannedsource-and-scalarpannedsource">AngularPannedSource and ScalarPannedSource</a></h1>
-<h2><a class="header" href="#constructors" id="constructors">Constructors</a></h2>
-<h3><a class="header" href="#syz_createangularpannedsource" id="syz_createangularpannedsource"><code>syz_createAngularPannedSource</code></a></h3>
+                        <h1 id="angularpannedsource-and-scalarpannedsource"><a class="header" href="#angularpannedsource-and-scalarpannedsource">AngularPannedSource and ScalarPannedSource</a></h1>
+<h2 id="constructors"><a class="header" href="#constructors">Constructors</a></h2>
+<h3 id="syz_createangularpannedsource"><a class="header" href="#syz_createangularpannedsource"><code>syz_createAngularPannedSource</code></a></h3>
 <pre><code>SYZ_CAPI syz_ErrorCode syz_createAngularPannedSource(syz_Handle *out, syz_Handle context, int panner_strategy,
                                                      double azimuth, double elevation, void *config, void *userdata,
                                                      syz_UserdataFreeCallback *userdata_free_callback);
 </code></pre>
 <p>Creates an angular panned source, which can be controled through azimuth and elevation.</p>
-<h3><a class="header" href="#syz_createscalarpannedsource" id="syz_createscalarpannedsource"><code>syz_createScalarPannedSource</code></a></h3>
+<h3 id="syz_createscalarpannedsource"><a class="header" href="#syz_createscalarpannedsource"><code>syz_createScalarPannedSource</code></a></h3>
 <pre><code>SYZ_CAPI syz_ErrorCode syz_createScalarPannedSource(syz_Handle *out, syz_Handle context, int panner_strategy,
                                                     double panning_scalar, void *config, void *userdata,
                                                     syz_UserdataFreeCallback *userdata_free_callback);
 </code></pre>
 <p>Creates a scalar panned source, controlled via the panning scalar.</p>
-<h2><a class="header" href="#properties" id="properties">Properties</a></h2>
+<h2 id="properties"><a class="header" href="#properties">Properties</a></h2>
 <table><thead><tr><th>Enum</th><th>Type</th><th>Default</th><th>Range</th><th>Description</th></tr></thead><tbody>
 <tr><td>SYZ_P_AZIMUTH</td><td>double</td><td>from constructor</td><td>0.0 to 360.0</td><td>The azimuth of the panner. See remarks.</td></tr>
 <tr><td>SYZ_P_ELEVATION</td><td>double</td><td>from constructor</td><td>-90.0 to 90.0</td><td>See remarks</td></tr>
 <tr><td>SYZ_P_PANNING_SCALAR</td><td>double</td><td>from constructor</td><td>-1.0 to 1.0</td><td>see remarks</td></tr>
 </tbody></table>
-<h2><a class="header" href="#linger-behavior" id="linger-behavior">Linger Behavior</a></h2>
+<h2 id="linger-behavior"><a class="header" href="#linger-behavior">Linger Behavior</a></h2>
 <p>Lingers until all generators have been destroyed.</p>
-<h2><a class="header" href="#remarks" id="remarks">Remarks</a></h2>
+<h2 id="remarks"><a class="header" href="#remarks">Remarks</a></h2>
 <p>The panned sources give direct control over a panner, which is either controlled via azimuth/elevation in degrees or a
 panning scalar.  Which properties you use depend on which type of source you create (angular for azimuth/elevation,
 scalar for the panning scalar).</p>

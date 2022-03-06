@@ -163,19 +163,19 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#operations-common-to-all-effects" id="operations-common-to-all-effects">Operations Common to All Effects</a></h1>
-<h2><a class="header" href="#properties" id="properties">Properties</a></h2>
+                        <h1 id="operations-common-to-all-effects"><a class="header" href="#operations-common-to-all-effects">Operations Common to All Effects</a></h1>
+<h2 id="properties"><a class="header" href="#properties">Properties</a></h2>
 <table><thead><tr><th>Enum</th><th>Type</th><th>Default</th><th>Range</th><th>Description</th></tr></thead><tbody>
 <tr><td>SYZ_P_GAIN</td><td>double</td><td>usually 1.0</td><td>value &gt;= 0.0</td><td>The overall gain of the effect.</td></tr>
 <tr><td>SYZ_P_FILTER_INPUT</td><td>biquad</td><td>usually identity. if not, documented with the effect.</td><td>any</td><td>A filter which applies to the input of this effect. Runs after filters on effect sends.</td></tr>
 </tbody></table>
-<h2><a class="header" href="#functions" id="functions">Functions</a></h2>
-<h3><a class="header" href="#syz_effectreset" id="syz_effectreset"><code>syz_effectReset</code></a></h3>
+<h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
+<h3 id="syz_effectreset"><a class="header" href="#syz_effectreset"><code>syz_effectReset</code></a></h3>
 <pre><code>SYZ_CAPI syz_ErrorCode syz_effectReset(syz_Handle effect);
 </code></pre>
 <p>Clears the internal state of the effect. Intended for design/development
 purposes.  This function may produce clicks and other artifacts and is slow.</p>
-<h2><a class="header" href="#remarks" id="remarks">Remarks</a></h2>
+<h2 id="remarks"><a class="header" href="#remarks">Remarks</a></h2>
 <p>For more information on how effects work, see <a href="../concepts/effects.html">the dedicated
 section</a>.</p>
 

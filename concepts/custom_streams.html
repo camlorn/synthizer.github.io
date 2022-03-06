@@ -163,7 +163,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#implementing-custom-streams-and-custom-stream-protocols" id="implementing-custom-streams-and-custom-stream-protocols">Implementing Custom Streams and Custom Stream Protocols</a></h1>
+                        <h1 id="implementing-custom-streams-and-custom-stream-protocols"><a class="header" href="#implementing-custom-streams-and-custom-stream-protocols">Implementing Custom Streams and Custom Stream Protocols</a></h1>
 <p>Synthizer supports implementing custom streams in order to read from places that
 aren't files or memory: encrypted asset stores, the network, and so on.  This
 section explains how to implement them.</p>
@@ -173,7 +173,7 @@ small but likely noticeable performance hit.  It'll work fine, but the built-in
 functionality will certainly be faster and more scalable.  Implementing a stream
 in C is a complex process.  If your app can use the already-existing
 funtionality, it is encouraged to do so.</p>
-<h2><a class="header" href="#a-complete-python-example" id="a-complete-python-example">A Complete Python Example</a></h2>
+<h2 id="a-complete-python-example"><a class="header" href="#a-complete-python-example">A Complete Python Example</a></h2>
 <p>The rest of this section will explain in detail how streams work from the C
 API, but this is a very complex topic and most of the infrastructure which
 exists for it exists to make it possible to write convenient bindings.
@@ -215,7 +215,7 @@ efficient and stable stream usage.</p>
 <code>StreamingGenerator</code>, buffers have similar methods to decode themselves from
 streams.  Since <code>StreamingGenerator</code> has a large latency for anything but the
 initial start-up, the primary use case is actually likely to be buffers.</p>
-<h2><a class="header" href="#the-c-interface" id="the-c-interface">The C Interface</a></h2>
+<h2 id="the-c-interface"><a class="header" href="#the-c-interface">The C Interface</a></h2>
 <p>To define a custom stream, the following types are used:</p>
 <pre><code>typedef int syz_StreamReadCallback(unsigned long long *read, unsigned long long requested, char *destination, void *userdata, const char ** err_msg);
 typedef int syz_StreamSeekCallback(unsigned long long pos, void *userdata, const char **err_msg);
@@ -237,7 +237,7 @@ typedef int syz_StreamOpenCallback(struct syz_CustomStreamDef *callbacks, const 
 SYZ_CAPI syz_ErrorCode syz_registerStreamProtocol(const char *protocol, syz_StreamOpenCallback *callback, void *userdata);
 </code></pre>
 <p>The following sections explain how these functions work.</p>
-<h2><a class="header" href="#ways-to-get-a-custom-stream" id="ways-to-get-a-custom-stream">Ways To Get A Custom Stream</a></h2>
+<h2 id="ways-to-get-a-custom-stream"><a class="header" href="#ways-to-get-a-custom-stream">Ways To Get A Custom Stream</a></h2>
 <p>There are two ways to get a custom stream.  You can:</p>
 <ul>
 <li>Fill out the callbacks in <code>syz_CustomStreamDef</code> and use
@@ -259,14 +259,14 @@ good way of ensuring this is to namespace them.  For example,
 the factory callback if using the stream parameters approach.  It's assumed that
 implementations going through <code>syz_createStreamHandleFromCustomStreamDef</code>
 already have a way to move this information around.</p>
-<h2><a class="header" href="#non-callback-syz_customstreamdef-parameters" id="non-callback-syz_customstreamdef-parameters">Non-callback <code>syz_CustomStreamDef</code> parameters</a></h2>
+<h2 id="non-callback-syz_customstreamdef-parameters"><a class="header" href="#non-callback-syz_customstreamdef-parameters">Non-callback <code>syz_CustomStreamDef</code> parameters</a></h2>
 <p>These are:</p>
 <ul>
 <li><code>length</code>, which must be set and known for seekable streams.  If the length of
 the stream is unknown, set it to -1.</li>
 <li><code>userdata</code>, which is passed as the userdata parameter to all stream callbacks.</li>
 </ul>
-<h2><a class="header" href="#the-stream-callbacks" id="the-stream-callbacks">The Stream Callbacks</a></h2>
+<h2 id="the-stream-callbacks"><a class="header" href="#the-stream-callbacks">The Stream Callbacks</a></h2>
 <p>Streams have the following callbacks, with mostly self-explanatory parameters:</p>
 <ul>
 <li>If going through the protocol interface, the open callback is called when the
@@ -296,7 +296,7 @@ Libsndfile if Libsndfile was loaded, and additionally support for decoding wav f
 <li>Fill out the <code>length</code> field with a positive value, the length of the stream in
 bytes.</li>
 </ul>
-<h2><a class="header" href="#error-handling" id="error-handling">Error Handling</a></h2>
+<h2 id="error-handling"><a class="header" href="#error-handling">Error Handling</a></h2>
 <p>To indicate an error, callbacks should return a non-zero return value and
 (optionally) set their <code>err_msg</code> parameter to a string representation of the
 error.  Synthizer will log these errors if logging is enabled.  For more complex
@@ -322,7 +322,7 @@ can be logged.  The destroy callback primarily exists for this use case.</p>
 strings: they need only live as long as the next time a stream callback is
 called.  This means that, for example, the Python binding only keeps the most
 recent error string around and replaces it as necessary.</p>
-<h2><a class="header" href="#thread-safety" id="thread-safety">Thread Safety</a></h2>
+<h2 id="thread-safety"><a class="header" href="#thread-safety">Thread Safety</a></h2>
 <p>Streams will only ever be used by one thread at a time, but may be moved between
 threads.</p>
 
