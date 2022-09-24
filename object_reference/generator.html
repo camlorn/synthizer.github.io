@@ -170,7 +170,7 @@ sources. </p>
 <p>All generators support the following properties:</p>
 <table><thead><tr><th>Enum</th><th>Type</th><th>Default</th><th>Range</th><th>Description</th></tr></thead><tbody>
 <tr><td>SYZ_P_GAIN</td><td>double</td><td>1.0</td><td>value &gt;= 0.0</td><td>The gain of the generator.</td></tr>
-<tr><td>SYZ_P_PITCH_BEND</td><td>double</td><td>1.0</td><td>value &gt;= 0.0</td><td>Pitch bend of the generator as a multiplier (2.0 is +1 octave, 0.5 is -1 octave, etc)</td></tr>
+<tr><td>SYZ_P_PITCH_BEND</td><td>double</td><td>1.0</td><td>0.0 &lt;= value &lt;= 2.0</td><td>Pitch bend of the generator as a multiplier (2.0 is +1 octave, 0.5 is -1 octave, etc)</td></tr>
 </tbody></table>
 <h2 id="remarks"><a class="header" href="#remarks">Remarks</a></h2>
 <p>Not all generators support <code>SYZ_P_PITCH_BEND</code> because it doesn't necessarily

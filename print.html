@@ -964,6 +964,7 @@ done through the following C API:</p>
 SYZ_CAPI syz_ErrorCode syz_initRouteConfig(struct syz_RouteConfig *cfg);
 SYZ_CAPI syz_ErrorCode syz_routingConfigRoute(syz_Handle context, syz_Handle output, syz_Handle input, struct syz_RouteConfig *config);
 SYZ_CAPI syz_ErrorCode syz_routingRemoveRoute(syz_Handle context, syz_Handle output, syz_Handle input, double fade_out);
+SYZ_CAPI syz_ErrorCode syz_routingRemoveAllRoutes(syz_Handle context, syz_Handle output, double fade_out);
 </code></pre>
 <p>Routes are uniquely identified by the output object (Source3D, etc) and input
 object (Echo, etc).  There is no route handle type, nor is it possible to form
@@ -979,7 +980,8 @@ might feed 70% of a source's output to something (gain = 0.7).</p>
 <p>Filters are also per route and apply after any filters on sources.  For example,
 this can be used to change the filter on a per-reverb basis for a reverb zone
 algorithm that feeds sources to more than one reverb at a time.</p>
-<p>In order to remove a route, use <code>syz_routingRemoveRoute</code>.</p>
+<p>In order to remove a route, use <code>syz_routingRemoveRoute</code>.  Alternatively, <code>syz_routingRemoveAllRoutes</code> can remove all
+routes from a source.</p>
 <p>Many effects involve feedback and/or other long-running audio as part of their
 intended function. But while in development, it is often useful to reset an
 effect.  Synthizer exposes a function for this purpose:</p>
@@ -1419,7 +1421,7 @@ sources. </p>
 <p>All generators support the following properties:</p>
 <table><thead><tr><th>Enum</th><th>Type</th><th>Default</th><th>Range</th><th>Description</th></tr></thead><tbody>
 <tr><td>SYZ_P_GAIN</td><td>double</td><td>1.0</td><td>value &gt;= 0.0</td><td>The gain of the generator.</td></tr>
-<tr><td>SYZ_P_PITCH_BEND</td><td>double</td><td>1.0</td><td>value &gt;= 0.0</td><td>Pitch bend of the generator as a multiplier (2.0 is +1 octave, 0.5 is -1 octave, etc)</td></tr>
+<tr><td>SYZ_P_PITCH_BEND</td><td>double</td><td>1.0</td><td>0.0 &lt;= value &lt;= 2.0</td><td>Pitch bend of the generator as a multiplier (2.0 is +1 octave, 0.5 is -1 octave, etc)</td></tr>
 </tbody></table>
 <h2 id="remarks-6"><a class="header" href="#remarks-6">Remarks</a></h2>
 <p>Not all generators support <code>SYZ_P_PITCH_BEND</code> because it doesn't necessarily
